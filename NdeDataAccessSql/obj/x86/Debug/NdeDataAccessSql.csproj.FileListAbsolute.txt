@@ -1,0 +1,9 @@
+D:\Work\NemanDataEx\NdeDataAccessSql\bin\x86\Debug\NdeDataAccessSql.dll
+D:\Work\NemanDataEx\NdeDataAccessSql\bin\x86\Debug\NdeDataAccessSql.pdb
+D:\Work\NemanDataEx\NdeDataAccessSql\bin\x86\Debug\NdeDataClasses.dll
+D:\Work\NemanDataEx\NdeDataAccessSql\bin\x86\Debug\NdeInterfses.dll
+D:\Work\NemanDataEx\NdeDataAccessSql\bin\x86\Debug\NdeDataClasses.pdb
+D:\Work\NemanDataEx\NdeDataAccessSql\bin\x86\Debug\NdeInterfses.pdb
+D:\Work\NemanDataEx\NdeDataAccessSql\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\Work\NemanDataEx\NdeDataAccessSql\obj\x86\Debug\NdeDataAccessSql.dll
+D:\Work\NemanDataEx\NdeDataAccessSql\obj\x86\Debug\NdeDataAccessSql.pdb

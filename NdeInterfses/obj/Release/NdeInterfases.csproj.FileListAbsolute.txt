@@ -1,0 +1,8 @@
+D:\Work\NemanDataEx\NdeInterfses\bin\Release\NdeInterfses.dll
+D:\Work\NemanDataEx\NdeInterfses\bin\Release\NdeInterfses.pdb
+D:\Work\NemanDataEx\NdeInterfses\bin\Release\NdeDataClasses.dll
+D:\Work\NemanDataEx\NdeInterfses\bin\Release\NdeDataClasses.pdb
+D:\Work\NemanDataEx\NdeInterfses\obj\Release\NdeInterfases.csprojResolveAssemblyReference.cache
+D:\Work\NemanDataEx\NdeInterfses\obj\Release\NdeInterfases.csproj.CoreCompileInputs.cache
+D:\Work\NemanDataEx\NdeInterfses\obj\Release\NdeInterfses.dll
+D:\Work\NemanDataEx\NdeInterfses\obj\Release\NdeInterfses.pdb

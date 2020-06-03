@@ -1,0 +1,14 @@
+D:\Work\NemanDataEx\NdeDataClasses\bin\Debug\NdeDataClasses.dll
+D:\Work\NemanDataEx\NdeDataClasses\bin\Debug\NdeDataClasses.pdb
+D:\Work\NemanDataEx\NdeDataClasses\obj\Debug\NdeDataClasses.csproj.CoreCompileInputs.cache
+D:\Work\NemanDataEx\NdeDataClasses\obj\Debug\NdeDataClasses.dll
+D:\Work\NemanDataEx\NdeDataClasses\obj\Debug\NdeDataClasses.pdb
+D:\Distributiv\NemanDataEx\NdeDataClasses\bin\Debug\NdeDataClasses.dll
+D:\Distributiv\NemanDataEx\NdeDataClasses\bin\Debug\NdeDataClasses.pdb
+D:\Distributiv\NemanDataEx\NdeDataClasses\obj\Debug\NdeDataClasses.dll
+D:\Distributiv\NemanDataEx\NdeDataClasses\obj\Debug\NdeDataClasses.pdb
+D:\work\NemanDataEx\NemanDataEx\NdeDataClasses\bin\Debug\NdeDataClasses.dll
+D:\work\NemanDataEx\NemanDataEx\NdeDataClasses\bin\Debug\NdeDataClasses.pdb
+D:\work\NemanDataEx\NemanDataEx\NdeDataClasses\obj\Debug\NdeDataClasses.csproj.CoreCompileInputs.cache
+D:\work\NemanDataEx\NemanDataEx\NdeDataClasses\obj\Debug\NdeDataClasses.dll
+D:\work\NemanDataEx\NemanDataEx\NdeDataClasses\obj\Debug\NdeDataClasses.pdb

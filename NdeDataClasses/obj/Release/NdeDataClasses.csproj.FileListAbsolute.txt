@@ -1,0 +1,5 @@
+D:\Work\NemanDataEx\NdeDataClasses\bin\Release\NdeDataClasses.dll
+D:\Work\NemanDataEx\NdeDataClasses\bin\Release\NdeDataClasses.pdb
+D:\Work\NemanDataEx\NdeDataClasses\obj\Release\NdeDataClasses.csproj.CoreCompileInputs.cache
+D:\Work\NemanDataEx\NdeDataClasses\obj\Release\NdeDataClasses.dll
+D:\Work\NemanDataEx\NdeDataClasses\obj\Release\NdeDataClasses.pdb

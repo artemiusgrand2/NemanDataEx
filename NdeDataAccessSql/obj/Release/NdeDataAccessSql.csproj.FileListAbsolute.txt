@@ -1,0 +1,10 @@
+D:\Work\NemanDataEx\NdeDataAccessSql\bin\Release\NdeDataAccessSql.dll
+D:\Work\NemanDataEx\NdeDataAccessSql\bin\Release\NdeDataAccessSql.pdb
+D:\Work\NemanDataEx\NdeDataAccessSql\bin\Release\NdeDataClasses.dll
+D:\Work\NemanDataEx\NdeDataAccessSql\bin\Release\NdeInterfses.dll
+D:\Work\NemanDataEx\NdeDataAccessSql\bin\Release\NdeDataClasses.pdb
+D:\Work\NemanDataEx\NdeDataAccessSql\bin\Release\NdeInterfses.pdb
+D:\Work\NemanDataEx\NdeDataAccessSql\obj\Release\NdeDataAccessSql.csprojResolveAssemblyReference.cache
+D:\Work\NemanDataEx\NdeDataAccessSql\obj\Release\NdeDataAccessSql.csproj.CoreCompileInputs.cache
+D:\Work\NemanDataEx\NdeDataAccessSql\obj\Release\NdeDataAccessSql.dll
+D:\Work\NemanDataEx\NdeDataAccessSql\obj\Release\NdeDataAccessSql.pdb

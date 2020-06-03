@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/NdeDataClasses.Commands" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/NdeDataClasses.Commands" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:2246/NdeService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/NdeDataClasses" />
+  <xs:complexType name="BindingCommand">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:element name="BindingCommand" nillable="true" type="tns:BindingCommand" />
+  <xs:complexType name="AssignTrainNumberCommand">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BindingCommand">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="StationCode" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="TrainNumber" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="TrainNumberPrefix" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="TrainNumberSuffix" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="TrainThreadId" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AssignTrainNumberCommand" nillable="true" type="tns:AssignTrainNumberCommand" />
+  <xs:complexType name="SetTrackInCommand">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BindingCommand">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="stationCode" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="trackName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="trainIdn" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="SetTrackInCommand" nillable="true" type="tns:SetTrackInCommand" />
+  <xs:complexType name="AssignMessForTrainCommand">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BindingCommand">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="messageIdn" type="xs:int" />
+          <xs:element minOccurs="0" name="trainIdn" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AssignMessForTrainCommand" nillable="true" type="tns:AssignMessForTrainCommand" />
+  <xs:complexType name="RunTrackIoTrackCommand">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BindingCommand">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="stationCode" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="trackName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="trainIdn" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="RunTrackIoTrackCommand" nillable="true" type="tns:RunTrackIoTrackCommand" />
+  <xs:complexType name="TrainProcessCommand">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BindingCommand">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Command" type="xs:int" />
+          <xs:element minOccurs="0" name="NeibStation" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Remark" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="StationCdode" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="SubCommand" type="xs:int" />
+          <xs:element minOccurs="0" name="Track" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="TrainNubmer" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="TrainPrefix" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="TrainSuffix" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="TrainProcessCommand" nillable="true" type="tns:TrainProcessCommand" />
+  <xs:complexType name="MarkMessageCommand">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BindingCommand">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="messageIdn" type="xs:int" />
+          <xs:element minOccurs="0" name="strMarker" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="MarkMessageCommand" nillable="true" type="tns:MarkMessageCommand" />
+  <xs:complexType name="WriteTrainInputCommand">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BindingCommand">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="destName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="stationCode" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="trackName" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="WriteTrainInputCommand" nillable="true" type="tns:WriteTrainInputCommand" />
+  <xs:complexType name="StopMessForTrainCommand">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BindingCommand">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="trainIdn" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="StopMessForTrainCommand" nillable="true" type="tns:StopMessForTrainCommand" />
+  <xs:complexType name="MarkTrainCommand">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BindingCommand">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="strMarker" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="trainIdn" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="MarkTrainCommand" nillable="true" type="tns:MarkTrainCommand" />
+  <xs:complexType name="WriteTrainOutputCommand">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BindingCommand">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="destName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="stationCode" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="trackName" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="WriteTrainOutputCommand" nillable="true" type="tns:WriteTrainOutputCommand" />
+  <xs:complexType name="DelPlanWireCommand">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BindingCommand">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="trainIdn" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DelPlanWireCommand" nillable="true" type="tns:DelPlanWireCommand" />
+  <xs:complexType name="BindTrainThreadsCommnand">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BindingCommand">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="SourceId" type="xs:int" />
+          <xs:element minOccurs="0" name="TargetId" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BindTrainThreadsCommnand" nillable="true" type="tns:BindTrainThreadsCommnand" />
+  <xs:complexType name="TrackPointMessagesCommand">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BindingCommand">
+        <xs:sequence>
+          <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/NdeDataClasses" minOccurs="0" name="trackPointMessages" nillable="true" type="q1:ArrayOfTrackPointMessage" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="TrackPointMessagesCommand" nillable="true" type="tns:TrackPointMessagesCommand" />
+  <xs:complexType name="BindPlanToTrainCommand">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BindingCommand">
+        <xs:sequence>
+          <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/NdeDataClasses" minOccurs="0" name="planEvents" nillable="true" type="q2:ArrayOfGIDMessage" />
+          <xs:element minOccurs="0" name="trainIdn" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BindPlanToTrainCommand" nillable="true" type="tns:BindPlanToTrainCommand" />
+</xs:schema>

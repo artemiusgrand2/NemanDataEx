@@ -1,0 +1,11 @@
+D:\Work\NemanDataEx\NdeDataAccess.Fb\bin\Release\NdeDataAccessFb.dll
+D:\Work\NemanDataEx\NdeDataAccess.Fb\bin\Release\NdeDataAccessFb.pdb
+D:\Work\NemanDataEx\NdeDataAccess.Fb\bin\Release\FirebirdSql.Data.FirebirdClient.dll
+D:\Work\NemanDataEx\NdeDataAccess.Fb\bin\Release\NdeDataClasses.dll
+D:\Work\NemanDataEx\NdeDataAccess.Fb\bin\Release\NdeInterfses.dll
+D:\Work\NemanDataEx\NdeDataAccess.Fb\bin\Release\NdeDataClasses.pdb
+D:\Work\NemanDataEx\NdeDataAccess.Fb\bin\Release\NdeInterfses.pdb
+D:\Work\NemanDataEx\NdeDataAccess.Fb\obj\Release\NdeDataAccessFb.csprojResolveAssemblyReference.cache
+D:\Work\NemanDataEx\NdeDataAccess.Fb\obj\Release\NdeDataAccessFb.csproj.CoreCompileInputs.cache
+D:\Work\NemanDataEx\NdeDataAccess.Fb\obj\Release\NdeDataAccessFb.dll
+D:\Work\NemanDataEx\NdeDataAccess.Fb\obj\Release\NdeDataAccessFb.pdb

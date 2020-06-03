@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="3d76a140-0588-4fb1-8e56-d54ef93dcbc4" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="net.tcp://10.20.47.99:15200/NdeWcfOverWinService/mex" Protocol="mex" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="4867b81d-5bcf-48bd-b5b5-8553aebb4239" SourceId="1" SourceUrl="net.tcp://10.20.47.99:15200/NdeWcfOverWinService/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="3e9793e0-31f6-4874-ae71-131c74943db9" SourceId="1" SourceUrl="net.tcp://10.20.47.99:15200/NdeWcfOverWinService/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="166018d8-0978-40a2-83cb-b87a2854f0e0" SourceId="1" SourceUrl="net.tcp://10.20.47.99:15200/NdeWcfOverWinService/mex" />
+    <MetadataFile FileName="NdeDataClasses.xsd" MetadataType="Schema" ID="9fcb8436-6a27-4db3-90ac-683b51159ba7" SourceId="1" SourceUrl="net.tcp://10.20.47.99:15200/NdeWcfOverWinService/mex" />
+    <MetadataFile FileName="Arrays.xsd" MetadataType="Schema" ID="2c431e6d-cc6b-4366-9525-968190f817d4" SourceId="1" SourceUrl="net.tcp://10.20.47.99:15200/NdeWcfOverWinService/mex" />
+    <MetadataFile FileName="NdeDataClasses.Commands.xsd" MetadataType="Schema" ID="e2404ca0-46cc-4e26-a87e-699b4949c397" SourceId="1" SourceUrl="net.tcp://10.20.47.99:15200/NdeWcfOverWinService/mex" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

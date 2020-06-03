@@ -1,0 +1,7 @@
+D:\Work\NemanDataEx\NdeInterfses\bin\x86\Debug\NdeInterfses.dll
+D:\Work\NemanDataEx\NdeInterfses\bin\x86\Debug\NdeInterfses.pdb
+D:\Work\NemanDataEx\NdeInterfses\bin\x86\Debug\NdeDataClasses.dll
+D:\Work\NemanDataEx\NdeInterfses\bin\x86\Debug\NdeDataClasses.pdb
+D:\Work\NemanDataEx\NdeInterfses\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\Work\NemanDataEx\NdeInterfses\obj\x86\Debug\NdeInterfses.dll
+D:\Work\NemanDataEx\NdeInterfses\obj\x86\Debug\NdeInterfses.pdb

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="53fdc6e4-3d3a-4ebe-af72-019a47d29852" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:2246/NdeService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="NdeService.xsd" MetadataType="Schema" ID="bfd4ab11-3cc1-4132-b285-f96e9f3839d3" SourceId="1" SourceUrl="http://localhost:2246/NdeService.svc?xsd=xsd2" />
+    <MetadataFile FileName="NdeService.wsdl" MetadataType="Wsdl" ID="026b33df-ffd7-400c-95ef-feb18c86b9a5" SourceId="1" SourceUrl="http://localhost:2246/NdeService.svc?wsdl" />
+    <MetadataFile FileName="NdeService.disco" MetadataType="Disco" ID="b8b48503-60da-4754-9132-86ffca26c577" SourceId="1" SourceUrl="http://localhost:2246/NdeService.svc?disco" />
+    <MetadataFile FileName="NdeService1.xsd" MetadataType="Schema" ID="f5bd4afe-ad6e-4959-8426-aaf07d486318" SourceId="1" SourceUrl="http://localhost:2246/NdeService.svc?xsd=xsd1" />
+    <MetadataFile FileName="NdeService2.xsd" MetadataType="Schema" ID="cfd27cca-9e98-4a79-ab19-4593e6ddcd94" SourceId="1" SourceUrl="http://localhost:2246/NdeService.svc?xsd=xsd0" />
+    <MetadataFile FileName="NdeService3.xsd" MetadataType="Schema" ID="32decca4-7c4c-4d14-9027-71f4fcba6d07" SourceId="1" SourceUrl="http://localhost:2246/NdeService.svc?xsd=xsd3" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

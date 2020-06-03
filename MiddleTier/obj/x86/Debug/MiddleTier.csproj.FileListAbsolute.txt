@@ -1,0 +1,9 @@
+D:\Work\NemanDataEx\MiddleTier\bin\x86\Debug\BCh.Ktc.Nde.MiddleTier.dll
+D:\Work\NemanDataEx\MiddleTier\bin\x86\Debug\BCh.Ktc.Nde.MiddleTier.pdb
+D:\Work\NemanDataEx\MiddleTier\bin\x86\Debug\NdeDataClasses.dll
+D:\Work\NemanDataEx\MiddleTier\bin\x86\Debug\NdeInterfses.dll
+D:\Work\NemanDataEx\MiddleTier\bin\x86\Debug\NdeDataClasses.pdb
+D:\Work\NemanDataEx\MiddleTier\bin\x86\Debug\NdeInterfses.pdb
+D:\Work\NemanDataEx\MiddleTier\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\Work\NemanDataEx\MiddleTier\obj\x86\Debug\BCh.Ktc.Nde.MiddleTier.dll
+D:\Work\NemanDataEx\MiddleTier\obj\x86\Debug\BCh.Ktc.Nde.MiddleTier.pdb

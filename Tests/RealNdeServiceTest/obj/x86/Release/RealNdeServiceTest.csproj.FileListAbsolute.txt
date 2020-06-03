@@ -1,0 +1,12 @@
+D:\Work\NemanDataEx\Tests\RealNdeServiceTest\bin\Release\RealNdeServiceTest.exe.config
+D:\Work\NemanDataEx\Tests\RealNdeServiceTest\bin\Release\RealNdeServiceTest.exe
+D:\Work\NemanDataEx\Tests\RealNdeServiceTest\bin\Release\RealNdeServiceTest.pdb
+D:\Work\NemanDataEx\Tests\RealNdeServiceTest\bin\Release\NdeDataClasses.dll
+D:\Work\NemanDataEx\Tests\RealNdeServiceTest\bin\Release\NdeDataClasses.pdb
+D:\Work\NemanDataEx\Tests\RealNdeServiceTest\obj\x86\Release\RealNdeServiceTest.csprojResolveAssemblyReference.cache
+D:\Work\NemanDataEx\Tests\RealNdeServiceTest\obj\x86\Release\RealNdeServiceTest.Form1.resources
+D:\Work\NemanDataEx\Tests\RealNdeServiceTest\obj\x86\Release\RealNdeServiceTest.Properties.Resources.resources
+D:\Work\NemanDataEx\Tests\RealNdeServiceTest\obj\x86\Release\RealNdeServiceTest.csproj.GenerateResource.Cache
+D:\Work\NemanDataEx\Tests\RealNdeServiceTest\obj\x86\Release\RealNdeServiceTest.csproj.CoreCompileInputs.cache
+D:\Work\NemanDataEx\Tests\RealNdeServiceTest\obj\x86\Release\RealNdeServiceTest.exe
+D:\Work\NemanDataEx\Tests\RealNdeServiceTest\obj\x86\Release\RealNdeServiceTest.pdb

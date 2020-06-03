@@ -1,0 +1,12 @@
+D:\Work\NemanDataEx\Tests\WcfOverWinServiceTest\bin\Debug\WcfOverWinServiceTest.exe.config
+D:\Work\NemanDataEx\Tests\WcfOverWinServiceTest\bin\Debug\WcfOverWinServiceTest.exe
+D:\Work\NemanDataEx\Tests\WcfOverWinServiceTest\bin\Debug\WcfOverWinServiceTest.pdb
+D:\Work\NemanDataEx\Tests\WcfOverWinServiceTest\bin\Debug\NdeDataClasses.dll
+D:\Work\NemanDataEx\Tests\WcfOverWinServiceTest\bin\Debug\NdeDataClasses.pdb
+D:\Work\NemanDataEx\Tests\WcfOverWinServiceTest\obj\x86\Debug\WcfOverWinServiceTest.csprojResolveAssemblyReference.cache
+D:\Work\NemanDataEx\Tests\WcfOverWinServiceTest\obj\x86\Debug\WcfOverWinServiceTest.Form1.resources
+D:\Work\NemanDataEx\Tests\WcfOverWinServiceTest\obj\x86\Debug\WcfOverWinServiceTest.Properties.Resources.resources
+D:\Work\NemanDataEx\Tests\WcfOverWinServiceTest\obj\x86\Debug\WcfOverWinServiceTest.csproj.GenerateResource.Cache
+D:\Work\NemanDataEx\Tests\WcfOverWinServiceTest\obj\x86\Debug\WcfOverWinServiceTest.csproj.CoreCompileInputs.cache
+D:\Work\NemanDataEx\Tests\WcfOverWinServiceTest\obj\x86\Debug\WcfOverWinServiceTest.exe
+D:\Work\NemanDataEx\Tests\WcfOverWinServiceTest\obj\x86\Debug\WcfOverWinServiceTest.pdb
