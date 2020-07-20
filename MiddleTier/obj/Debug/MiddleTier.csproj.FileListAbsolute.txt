@@ -23,3 +23,15 @@ D:\Distributiv\NemanDataEx\MiddleTier\bin\Debug\log4net.xml
 D:\Distributiv\NemanDataEx\MiddleTier\obj\Debug\MiddleTier.csprojResolveAssemblyReference.cache
 D:\Distributiv\NemanDataEx\MiddleTier\obj\Debug\BCh.Ktc.Nde.MiddleTier.dll
 D:\Distributiv\NemanDataEx\MiddleTier\obj\Debug\BCh.Ktc.Nde.MiddleTier.pdb
+D:\Distributiv\NemanDataEx\NemanDataEx\MiddleTier\bin\Debug\log4netUpdater.xml
+D:\Distributiv\NemanDataEx\NemanDataEx\MiddleTier\bin\Debug\BCh.Ktc.Nde.MiddleTier.dll
+D:\Distributiv\NemanDataEx\NemanDataEx\MiddleTier\bin\Debug\BCh.Ktc.Nde.MiddleTier.pdb
+D:\Distributiv\NemanDataEx\NemanDataEx\MiddleTier\bin\Debug\log4net.dll
+D:\Distributiv\NemanDataEx\NemanDataEx\MiddleTier\bin\Debug\NdeDataClasses.dll
+D:\Distributiv\NemanDataEx\NemanDataEx\MiddleTier\bin\Debug\NdeInterfses.dll
+D:\Distributiv\NemanDataEx\NemanDataEx\MiddleTier\bin\Debug\NdeDataClasses.pdb
+D:\Distributiv\NemanDataEx\NemanDataEx\MiddleTier\bin\Debug\NdeInterfses.pdb
+D:\Distributiv\NemanDataEx\NemanDataEx\MiddleTier\bin\Debug\log4net.xml
+D:\Distributiv\NemanDataEx\NemanDataEx\MiddleTier\obj\Debug\MiddleTier.csprojResolveAssemblyReference.cache
+D:\Distributiv\NemanDataEx\NemanDataEx\MiddleTier\obj\Debug\BCh.Ktc.Nde.MiddleTier.dll
+D:\Distributiv\NemanDataEx\NemanDataEx\MiddleTier\obj\Debug\BCh.Ktc.Nde.MiddleTier.pdb

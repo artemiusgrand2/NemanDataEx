@@ -86,6 +86,7 @@
     <Compile Include="CnfRepository.cs" />
     <Compile Include="GidRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RepositoryUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NdeDataClasses\NdeDataClasses.csproj">
