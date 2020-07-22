@@ -16,4 +16,3 @@ D:\Distributiv\NemanDataEx\NemanDataEx\NdeDataClasses\bin\Debug\NdeDataClasses.d
 D:\Distributiv\NemanDataEx\NemanDataEx\NdeDataClasses\bin\Debug\NdeDataClasses.pdb
 D:\Distributiv\NemanDataEx\NemanDataEx\NdeDataClasses\obj\Debug\NdeDataClasses.dll
 D:\Distributiv\NemanDataEx\NemanDataEx\NdeDataClasses\obj\Debug\NdeDataClasses.pdb
-D:\Distributiv\NemanDataEx\NemanDataEx\NdeDataClasses\obj\Debug\NdeDataClasses.csprojResolveAssemblyReference.cache

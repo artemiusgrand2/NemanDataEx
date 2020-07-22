@@ -89,6 +89,7 @@
     <Compile Include="Commands\BindTrainThreadsCommnand.cs" />
     <Compile Include="Commands\BindingCommand.cs" />
     <Compile Include="Commands\Buh2DataCommand.cs" />
+    <Compile Include="Commands\CleanPlanCommand.cs" />
     <Compile Include="Commands\DelPlanWireCommand.cs" />
     <Compile Include="Commands\MarkMessageCommand.cs" />
     <Compile Include="Commands\MarkTrainCommand.cs" />

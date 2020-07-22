@@ -109,6 +109,10 @@ namespace NdeDataAccessFb
         private FbCommand _command84;
         private FbCommand _command85;
         private FbCommand _command86;
+        private FbCommand _command87;
+        private FbCommand _command88;
+        private FbCommand _command89;
+        private FbCommand _command90;
         //Параметры
         private readonly FbParameter _parEvTime1;
         private readonly FbParameter _parTrainId2;
@@ -372,6 +376,7 @@ namespace NdeDataAccessFb
         private readonly FbParameter _parTrainIdn84;
         private readonly FbParameter _parTrainNum85;
         private readonly FbParameter _parTrainIdn86;
+        private readonly FbParameter _parTrainIdn90;
         //Тексты запросов для команд
         //Времена последних событий для всех ниток (поездов)
         private const string CommandText1 = "SELECT TG.Train_Idn, MAX(TG.Ev_Time)"
@@ -801,10 +806,10 @@ namespace NdeDataAccessFb
           + " WHERE Fl_Snd <> 4";
         //
         //Получить расписание плановой нитки
-        private const string CommandText84 = "SELECT  Ev_Type, Ev_Time_P, Ev_Station, Ev_Rec_Idn"
+        private const string CommandText84 = "SELECT  Ev_Type, Ev_Time_P, Ev_Station, Ev_Rec_Idn, EV_CNFM"
           + " FROM TGraphicPl"
           + " WHERE Train_Idn = @TrainIdn"
-          + " ORDER by Ev_Time";
+          + " ORDER by Ev_Rec_Idn";
         //Получить события по плановым ниткам
         private const string CommandText85 = "SELECT TTrainHeaders.Fl_Sost, TGraphicPl.Train_Idn, TGraphicPl.Ev_Station, TGraphicPl.Ev_Time From TGraphicPl, TTrainHeaders,"
             + " (SELECT  Pl.Train_Idn, MIN(Ev_Rec_Idn) as Ev_Rec_Idn From TGraphicPl Pl,"
@@ -815,7 +820,18 @@ namespace NdeDataAccessFb
         private const string CommandText86 = "SELECT Train_Idn"
         + " FROM TTrainHeaders"
         + " WHERE Norm_Idn = @TrainIdn";
-
+        //Удалить не переданные команды
+        private const string CommandText87 = "DELETE FROM TCOMDEFINITIONS WHERE Fl_Snd != 4";
+        //Cбросить ссылки на все плановые нитки
+        private const string CommandText88 = "UPDATE TTrainHeaders"
+          + " SET Norm_Idn = 0"
+          + " WHERE Norm_Idn in (SELECT Train_Idn From TGraphicPl GROUP BY Train_Idn)";
+        //Удалить плановые нитки
+        private const string CommandText89 = "DELETE FROM TGraphicPl";
+        //Сбросить ссылку на плановую нитку
+        private const string CommandText90 = "UPDATE TTrainHeaders"
+          + " SET Norm_Idn = 0"
+          + " WHERE Norm_Idn = @TrainIdn";
         //Конструктор----------------------------------------------------------------------------------
         public GidRepository(string connectionString, bool flPlay
                         , int deltaTimeStart, int deltaTimeStop
@@ -1174,6 +1190,7 @@ namespace NdeDataAccessFb
             _parTrainIdn84 = new FbParameter("@TrainIdn", FbDbType.Integer);
             _parTrainNum85 = new FbParameter("@TrainNumber", FbDbType.Integer);
             _parTrainIdn86 = new FbParameter("@TrainIdn", FbDbType.Integer);
+            _parTrainIdn90 = new FbParameter("@TrainIdn", FbDbType.Integer);
             //
             _parRecIdn64.Direction = ParameterDirection.Output;
             //Добавляем параметры в команду(ы)
@@ -2234,15 +2251,22 @@ namespace NdeDataAccessFb
                 connection.Open();
                 _command62 = new FbCommand(CommandText62);
                 _command62.Parameters.Add(_parTrainIdn62);
+                //
+                _command90 = new FbCommand(CommandText90);
+                _command90.Parameters.Add(_parTrainIdn90);
                 using (var transaction = connection.BeginTransaction())
                 {
                     AssignConnectionAndTransactionToCommand(_command62, connection, transaction);
+                    AssignConnectionAndTransactionToCommand(_command90, connection, transaction);
                     _parTrainIdn62.Value = trainIdn;
+                    _parTrainIdn90.Value = trainIdn;
                     _command62.ExecuteNonQuery();
+                    _command90.ExecuteNonQuery();
                     transaction.Commit();
                     retString = "Плановая нитка удалена.";
                 }
                 _command62.Dispose();
+                _command90.Dispose();
                 connection.Close();
             }
             return retString;
@@ -3168,10 +3192,11 @@ namespace NdeDataAccessFb
         public string BindPlanToTrain(IList<GIDMessage> planEvents, int trainIdn)
         {
             string retString = "";
-            if (trainIdn != 0)
-                DelLinkedPlWire(trainIdn);
-            else
-                trainIdn = DeleteRepeatPlanToTrain(planEvents);
+            var trainIdnBuffer = DeleteRepeatPlanToTrain(planEvents);
+            if (trainIdn == 0)
+            //    DelLinkedPlWire(trainIdn);
+            //else
+                trainIdn = trainIdnBuffer;
             //
             int planIdn = WritePlanWire(planEvents);
             using (var connection = new FbConnection(_connectionString))
@@ -3295,6 +3320,38 @@ namespace NdeDataAccessFb
             }
             return retString;
         }
+        /// <summary>
+        /// очищаем плановый график и команды
+        /// </summary>
+        /// <returns></returns>
+        public string CleanPlan()
+        {
+            string retString = "";
+            using (var connection = new FbConnection(_connectionString))
+            {
+                connection.Open();
+                _command87 = new FbCommand(CommandText87);
+                _command88 = new FbCommand(CommandText88);
+                _command89 = new FbCommand(CommandText89);
+                using (var transaction = connection.BeginTransaction())
+                {
+                    AssignConnectionAndTransactionToCommand(_command87, connection, transaction);
+                    AssignConnectionAndTransactionToCommand(_command88, connection, transaction);
+                    AssignConnectionAndTransactionToCommand(_command89, connection, transaction);
+                    _command87.ExecuteNonQuery();
+                    _command88.ExecuteNonQuery();
+                    _command89.ExecuteNonQuery();
+                    retString = "Удален плановый график";
+                    transaction.Commit();
+                }
+                _command87.Dispose();
+                _command88.Dispose();
+                _command89.Dispose();
+                connection.Close();
+            }
+            return retString;
+        }
+
         //Записать ответы от ИАС
         public string SetReplys(IList<string> replys)
         {

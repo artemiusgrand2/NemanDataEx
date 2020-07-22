@@ -36,6 +36,7 @@ namespace NdeInterfases
     string SetDefSendFlag(int defIdn, int sendFlag,DateTime tmDefC);
     string SetReplys(IList<string> replys);
     string WriteBuh2Data(Buh2DataCommand buh2DataCommand);
+    string CleanPlan();
     //Внутренние функции
     void WriteAllSaipsDataToGid();
     IList<ActualTrain> GetActualTrains();
