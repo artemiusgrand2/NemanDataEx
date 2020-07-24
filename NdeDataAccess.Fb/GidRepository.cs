@@ -15,6 +15,7 @@ namespace NdeDataAccessFb
     //Реализация функций, определяемых интерфейсом IGidRepository
     public class GidRepository : IGidRepository
     {
+        private readonly TimeSpan _maxBindDelta;
         //Переменные-----------------------------------------------------------------------------------
         private readonly string _connectionString;
         private readonly bool _flPlay;
@@ -113,6 +114,7 @@ namespace NdeDataAccessFb
         private FbCommand _command88;
         private FbCommand _command89;
         private FbCommand _command90;
+        private readonly FbCommand _command91;
         //Параметры
         private readonly FbParameter _parEvTime1;
         private readonly FbParameter _parTrainId2;
@@ -377,6 +379,7 @@ namespace NdeDataAccessFb
         private readonly FbParameter _parTrainNum85;
         private readonly FbParameter _parTrainIdn86;
         private readonly FbParameter _parTrainIdn90;
+        private readonly FbParameter _parTrainNum91;
         //Тексты запросов для команд
         //Времена последних событий для всех ниток (поездов)
         private const string CommandText1 = "SELECT TG.Train_Idn, MAX(TG.Ev_Time)"
@@ -832,6 +835,9 @@ namespace NdeDataAccessFb
         private const string CommandText90 = "UPDATE TTrainHeaders"
           + " SET Norm_Idn = 0"
           + " WHERE Norm_Idn = @TrainIdn";
+        //Найти события исполненной нитки по имени
+        private const string CommandText91 = "SELECT Train_Idn, EV_TYPE, EV_TIME, EV_STATION, EV_NDO FROM TGraphicId"
+        + " WHERE Train_Idn in (SELECT Train_Idn FROM TTrainHeaders WHERE Train_Num = @TrainNumber AND Norm_Idn IS NOT NULL AND Fl_Sost IS NULL)";
         //Конструктор----------------------------------------------------------------------------------
         public GidRepository(string connectionString, bool flPlay
                         , int deltaTimeStart, int deltaTimeStop
@@ -844,6 +850,7 @@ namespace NdeDataAccessFb
             _deltaTimeStop = deltaTimeStop;
             _connectionStringBuh = connectionStringBuh;
             _buhSections = buhSections;
+            _maxBindDelta = new TimeSpan(1, 0, 0);
             //Создаем команды (с текстами)
             //_command1  = new FbCommand(CommandText1);
             //_command2  = new FbCommand(CommandText2);
@@ -928,6 +935,7 @@ namespace NdeDataAccessFb
             //_command81 = new SqlCommand(CommandText81);
             //_command82 = new SqlCommand(CommandText82);
             //_command83 = new FbCommand(CommandText83);
+            _command91 = new FbCommand(CommandText91);
             //Создаем параметры
             _parEvTime1 = new FbParameter("@EvTime", FbDbType.TimeStamp);
             _parTrainId2 = new FbParameter("@TrainId", FbDbType.Integer);
@@ -1188,9 +1196,10 @@ namespace NdeDataAccessFb
             _parTrainNumber82 = new SqlParameter("@TrainNumber", SqlDbType.VarChar);
             _parFlags82 = new SqlParameter("@Flags", SqlDbType.VarChar);
             _parTrainIdn84 = new FbParameter("@TrainIdn", FbDbType.Integer);
-            _parTrainNum85 = new FbParameter("@TrainNumber", FbDbType.Integer);
+            _parTrainNum85 = new FbParameter("@TrainNumber", FbDbType.VarChar);
             _parTrainIdn86 = new FbParameter("@TrainIdn", FbDbType.Integer);
             _parTrainIdn90 = new FbParameter("@TrainIdn", FbDbType.Integer);
+            _parTrainNum91 = new FbParameter("@TrainNumber", FbDbType.VarChar);
             //
             _parRecIdn64.Direction = ParameterDirection.Output;
             //Добавляем параметры в команду(ы)
@@ -1452,6 +1461,7 @@ namespace NdeDataAccessFb
             //_command82.Parameters.Add(_parTrainIndex82);
             //_command82.Parameters.Add(_parTrainNumber82);
             //_command82.Parameters.Add(_parFlags82);
+            _command91.Parameters.Add(_parTrainNum91);
         }
 
 
@@ -1808,6 +1818,7 @@ namespace NdeDataAccessFb
                                                 planEvent.EventTimeP = dbReader4.GetDateTime(1);
                                                 planEvent.EventStation = dbReader4.GetString(2).Remove(0, 2);
                                                 planEvent.EvIdn = dbReader4.GetInt32(3);
+                                                planEvent.AckEventFlag = dbReader4.GetInt16Safely(4);
                                                 trainEvent.PlanEvents.Add(planEvent);
                                             }
                                         }
@@ -3199,6 +3210,10 @@ namespace NdeDataAccessFb
                 trainIdn = trainIdnBuffer;
             //
             int planIdn = WritePlanWire(planEvents);
+            //пробуем найти исполненную нитку
+            if(trainIdn == 0)
+                trainIdn = FindExecutedId(planEvents);
+            //
             using (var connection = new FbConnection(_connectionString))
             {
                 connection.Open();
@@ -3222,6 +3237,62 @@ namespace NdeDataAccessFb
             return retString;
         }
 
+        private List<GIDMessage> GetExecutedRecords(string trainNumber)
+        {
+            var records = new List<GIDMessage>();
+            using (var con = new FbConnection(_connectionString))
+            {
+                _command91.Connection = con;
+                _parTrainNum91.Value = trainNumber;
+                con.Open();
+                using (var dbReader = _command91.ExecuteReader())
+                {
+                    // SELECT EV_TYPE, EV_TIME, EV_STATION, EV_NDO FROM tgraphicid
+                    while (dbReader.Read())
+                    {
+                        var record = new GIDMessage
+                        {
+                            TrainIdn = dbReader.GetInt32Safely(0),
+                            MsType = dbReader.GetInt16Safely(1),
+                            MsTime = dbReader.GetMinDateTimeIfNull(2),
+                            MsStation = dbReader.GetStringSafely(3),
+                            MsFlags = dbReader.GetStringSafely(4)
+                        };
+                        records.Add(record);
+                    }
+                }
+            }
+            return records;
+        }
+
+        private int FindExecutedId(IList<GIDMessage> planEvents)
+        {
+            var executedRecords = GetExecutedRecords(planEvents.First().TrainNum.Substring(0, 4));
+            foreach (var executed in executedRecords)
+            {
+                foreach (var planned in planEvents)
+                {
+                    if (executed.MsStation == planned.MsStation
+                        && (((executed.MsType == 1 || executed.MsType == 2) && planned.MsType == 2)
+                          || executed.MsType == 3 && planned.MsType == 3)
+                        && executed.MsFlags == planned.MsFlags
+                        && IsTimeDiffWithinDelta(executed.MsTime, planned.MsTime))
+                    {
+                        return executed.TrainIdn;
+                    }
+                }
+            }
+
+            return 0;
+        }
+
+        private bool IsTimeDiffWithinDelta(DateTime time1, DateTime time2)
+        {
+            TimeSpan delta = (time1 > time2) ? time1 - time2 : time2 - time1;
+            return delta <= _maxBindDelta;
+        }
+
+
         //Поиск и удаление повторных плановых ниток схожих с искомой 
         public int DeleteRepeatPlanToTrain(IList<GIDMessage> planEvents)
         {
@@ -3237,7 +3308,7 @@ namespace NdeDataAccessFb
                     //
                     _command85 = new FbCommand(CommandText85);
                     AddParametrsToCommand85(planEvents.Select(x => x.MsStation));
-                    _parTrainNum85.Value = planEvents.First().TrainNum;
+                    _parTrainNum85.Value = planEvents.First().TrainNum.Substring(0, 4);
                     //
                     _command86 = new FbCommand(CommandText86);
                     _command86.Parameters.Add(_parTrainIdn86);
@@ -3260,7 +3331,7 @@ namespace NdeDataAccessFb
                                 var fl_sost = dbReader1.GetInt16SafelyOr0(0);
                                 var train_Idn = dbReader1.GetInt32(1);
                                 var eventTimePlan = planEvents.Where(x => x.MsStation == eventStation).FirstOrDefault().MsTime;
-                                if((eventTime >= eventTimePlan && (eventTime - eventTimePlan).TotalHours <=1) || (eventTimePlan >= eventTime && (eventTimePlan - eventTime).TotalHours <= 1))
+                                if(IsTimeDiffWithinDelta(eventTime, eventTimePlan))
                                 {
                                     //удаляем плановую нитку
                                     _parTrainIdn62.Value = train_Idn;
@@ -3780,7 +3851,7 @@ namespace NdeDataAccessFb
             int planIdn = 0;
             string planNum = "";
             if (planEvents.Count == 0) { return planIdn; }
-            GIDMessage planEventT = planEvents[0]; planNum = planEventT.TrainNum;
+            planNum = planEvents[0].TrainNum.Substring(0,4);
             using (var connection = new FbConnection(_connectionString))
             {
                 connection.Open();

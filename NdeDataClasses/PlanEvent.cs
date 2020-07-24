@@ -20,5 +20,7 @@ namespace NdeDataClasses
         public string EventStation { get; set; }
         [DataMember]
         public int EventType { get; set; }
+        [DataMember]
+        public int AckEventFlag { get; set; }
     }
 }
