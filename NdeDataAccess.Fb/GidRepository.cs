@@ -3267,7 +3267,7 @@ namespace NdeDataAccessFb
 
         private int FindExecutedId(IList<GIDMessage> planEvents)
         {
-            var executedRecords = GetExecutedRecords(planEvents.First().TrainNum.Substring(0, 4));
+            var executedRecords = GetExecutedRecords(planEvents.First().TrainNum.GetFromString(4));
             foreach (var executed in executedRecords)
             {
                 foreach (var planned in planEvents)
@@ -3308,7 +3308,7 @@ namespace NdeDataAccessFb
                     //
                     _command85 = new FbCommand(CommandText85);
                     AddParametrsToCommand85(planEvents.Select(x => x.MsStation));
-                    _parTrainNum85.Value = planEvents.First().TrainNum.Substring(0, 4);
+                    _parTrainNum85.Value = planEvents.First().TrainNum.GetFromString(4);
                     //
                     _command86 = new FbCommand(CommandText86);
                     _command86.Parameters.Add(_parTrainIdn86);
@@ -3851,7 +3851,7 @@ namespace NdeDataAccessFb
             int planIdn = 0;
             string planNum = "";
             if (planEvents.Count == 0) { return planIdn; }
-            planNum = planEvents[0].TrainNum.Substring(0,4);
+            planNum = planEvents[0].TrainNum.GetFromString(4);
             using (var connection = new FbConnection(_connectionString))
             {
                 connection.Open();

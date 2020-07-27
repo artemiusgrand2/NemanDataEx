@@ -82,5 +82,10 @@ namespace NdeDataAccessFb
             }
             return dataReader.GetDateTime(columnIndex);
         }
+
+        public static string GetFromString(this string data,  int lenght)
+        {
+            return data.Substring(0, (data.Length < lenght) ? data.Length : lenght);
+        }
     }
 }
