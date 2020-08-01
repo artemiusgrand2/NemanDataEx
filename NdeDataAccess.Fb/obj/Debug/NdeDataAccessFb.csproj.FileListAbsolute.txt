@@ -31,6 +31,7 @@ D:\work\NemanDataEx\NemanDataEx\NdeDataAccess.Fb\obj\Debug\NdeDataAccessFb.cspro
 D:\work\NemanDataEx\NemanDataEx\NdeDataAccess.Fb\obj\Debug\NdeDataAccessFb.csproj.CopyComplete
 D:\work\NemanDataEx\NemanDataEx\NdeDataAccess.Fb\obj\Debug\NdeDataAccessFb.dll
 D:\work\NemanDataEx\NemanDataEx\NdeDataAccess.Fb\obj\Debug\NdeDataAccessFb.pdb
+D:\Distributiv\NemanDataEx\NemanDataEx\NdeDataAccess.Fb\obj\Debug\NdeDataAccessFb.csprojResolveAssemblyReference.cache
 D:\Distributiv\NemanDataEx\NemanDataEx\NdeDataAccess.Fb\bin\Debug\NdeDataAccessFb.dll
 D:\Distributiv\NemanDataEx\NemanDataEx\NdeDataAccess.Fb\bin\Debug\NdeDataAccessFb.pdb
 D:\Distributiv\NemanDataEx\NemanDataEx\NdeDataAccess.Fb\bin\Debug\FirebirdSql.Data.FirebirdClient.dll
@@ -38,6 +39,5 @@ D:\Distributiv\NemanDataEx\NemanDataEx\NdeDataAccess.Fb\bin\Debug\NdeDataClasses
 D:\Distributiv\NemanDataEx\NemanDataEx\NdeDataAccess.Fb\bin\Debug\NdeInterfses.dll
 D:\Distributiv\NemanDataEx\NemanDataEx\NdeDataAccess.Fb\bin\Debug\NdeDataClasses.pdb
 D:\Distributiv\NemanDataEx\NemanDataEx\NdeDataAccess.Fb\bin\Debug\NdeInterfses.pdb
-D:\Distributiv\NemanDataEx\NemanDataEx\NdeDataAccess.Fb\obj\Debug\NdeDataAccessFb.csprojResolveAssemblyReference.cache
 D:\Distributiv\NemanDataEx\NemanDataEx\NdeDataAccess.Fb\obj\Debug\NdeDataAccessFb.dll
 D:\Distributiv\NemanDataEx\NemanDataEx\NdeDataAccess.Fb\obj\Debug\NdeDataAccessFb.pdb

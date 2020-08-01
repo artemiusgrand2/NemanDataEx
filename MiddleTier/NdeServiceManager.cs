@@ -26,6 +26,11 @@ namespace BCh.Ktc.Nde.MiddleTier
         {
             return _gidRepo.GetLastTrainEvents();
         }
+        //Перечень id   плановых ниток, которые в работе
+        public IList<int> GetPlanTrainIdns()
+        {
+            return _gidRepo.GetPlanTrainIdns();
+        }
         //Дуйствующие вектора обработки
         public IList<TrainWorking> GetWorkVectors()
         {

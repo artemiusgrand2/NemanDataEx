@@ -41,6 +41,7 @@ namespace NdeDataClasses
         /// </summary>
         public int PlnEvIdn { get; set; }
         public int StdForm { get; set; }
+        [DataMember]
         public int FlSnd { get; set; }
 
         public ComDefAppendix Appendix { get; set; }

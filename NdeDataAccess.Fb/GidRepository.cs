@@ -115,6 +115,7 @@ namespace NdeDataAccessFb
         private FbCommand _command89;
         private FbCommand _command90;
         private readonly FbCommand _command91;
+        private readonly FbCommand _command92;
         //Параметры
         private readonly FbParameter _parEvTime1;
         private readonly FbParameter _parTrainId2;
@@ -723,12 +724,12 @@ namespace NdeDataAccessFb
         private const string CommandText67 = "UPDATE TComDefinitions"
           + " SET Fl_Snd = @FlSnd,Tm_Def_Creat = @TmDefC"
           + " WHERE Def_Idn = @DefIdn";
-        //Получить задания на команды с указанными флагами
+        //Получить задания на команды для выдачи на выполнения с указанными флагами (0 - команда на выполнение , 6 - технологическая ошибка - не выполнена команда при прибытия по плану)
         private const string CommandText68 = "SELECT Def_Idn,St_Code,Tr_Num"
           + ",Ob_Stt_Type,Ob_Stt_Name,Ob_End_Type,Ob_End_Name"
-          + ",Lnk_Def_Idn_N,Lnk_Def_Idn_E,Tm_Def_Start,Stay_Fnd,Ev_Idn_Pln"
+          + ",Lnk_Def_Idn_N,Lnk_Def_Idn_E,Tm_Def_Start,Stay_Fnd,Ev_Idn_Pln, Fl_Snd"
           + " FROM TComDefinitions"
-          + " WHERE Std_Form = @StdForm AND Fl_Snd = @FlSnd";
+          + " WHERE Std_Form = @StdForm AND (Fl_Snd = 0 OR Fl_Snd = 6)";
         //Получить задание по идентификатору
         private const string CommandText69 = "SELECT Std_Form,Ev_Idn_Pln,Tm_Def_Start,Fl_Snd"
           + " FROM TComDefinitions"
@@ -838,6 +839,8 @@ namespace NdeDataAccessFb
         //Найти события исполненной нитки по имени
         private const string CommandText91 = "SELECT Train_Idn, EV_TYPE, EV_TIME, EV_STATION, EV_NDO FROM TGraphicId"
         + " WHERE Train_Idn in (SELECT Train_Idn FROM TTrainHeaders WHERE Train_Num = @TrainNumber AND Norm_Idn IS NOT NULL AND Fl_Sost IS NULL)";
+        //Найти перень id плановых ниток которые в работе
+        private const string CommandText92 = "SELECT Train_Idn FROM TGraphicPl GROUP BY Train_Idn";
         //Конструктор----------------------------------------------------------------------------------
         public GidRepository(string connectionString, bool flPlay
                         , int deltaTimeStart, int deltaTimeStop
@@ -936,6 +939,7 @@ namespace NdeDataAccessFb
             //_command82 = new SqlCommand(CommandText82);
             //_command83 = new FbCommand(CommandText83);
             _command91 = new FbCommand(CommandText91);
+            _command92 = new FbCommand(CommandText92);
             //Создаем параметры
             _parEvTime1 = new FbParameter("@EvTime", FbDbType.TimeStamp);
             _parTrainId2 = new FbParameter("@TrainId", FbDbType.Integer);
@@ -2100,7 +2104,8 @@ namespace NdeDataAccessFb
                                     //Lnk_Def_Idn_E (8)
                                     ComStartTime = dbReader1.GetDateTime(9),
                                     CollStartTime = DateTime.MinValue,
-                                    PlnEvIdn = dbReader1.GetInt32(11)
+                                    PlnEvIdn = dbReader1.GetInt32(11),
+                                    FlSnd = dbReader1.GetInt32(12)
                                 };
                                 //ищем Id плановой нитки
                                 _parPlnEvIdn70.Value = comDefinition.PlnEvIdn;
@@ -3259,6 +3264,24 @@ namespace NdeDataAccessFb
                             MsFlags = dbReader.GetStringSafely(4)
                         };
                         records.Add(record);
+                    }
+                }
+            }
+            return records;
+        }
+
+        public IList<int> GetPlanTrainIdns()
+        {
+            var records = new List<int>();
+            using (var con = new FbConnection(_connectionString))
+            {
+                _command92.Connection = con;
+                con.Open();
+                using (var dbReader = _command92.ExecuteReader())
+                {
+                    while (dbReader.Read())
+                    {
+                        records.Add(dbReader.GetInt32(0));
                     }
                 }
             }

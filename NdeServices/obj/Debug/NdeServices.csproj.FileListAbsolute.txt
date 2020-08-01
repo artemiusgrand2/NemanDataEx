@@ -39,6 +39,7 @@ D:\Distributiv\NemanDataEx\NdeServices\bin\log4net.xml
 D:\Distributiv\NemanDataEx\NdeServices\obj\Debug\NdeServices.csprojResolveAssemblyReference.cache
 D:\Distributiv\NemanDataEx\NdeServices\obj\Debug\NdeServices.dll
 D:\Distributiv\NemanDataEx\NdeServices\obj\Debug\NdeServices.pdb
+D:\Distributiv\NemanDataEx\NemanDataEx\NdeServices\obj\Debug\NdeServices.csprojResolveAssemblyReference.cache
 D:\Distributiv\NemanDataEx\NemanDataEx\NdeServices\bin\log4netUpdater.xml
 D:\Distributiv\NemanDataEx\NemanDataEx\NdeServices\bin\NdeServices.dll.config
 D:\Distributiv\NemanDataEx\NemanDataEx\NdeServices\bin\NdeServices.dll
@@ -56,6 +57,5 @@ D:\Distributiv\NemanDataEx\NemanDataEx\NdeServices\bin\NdeDataAccessSql.pdb
 D:\Distributiv\NemanDataEx\NemanDataEx\NdeServices\bin\NdeDataClasses.pdb
 D:\Distributiv\NemanDataEx\NemanDataEx\NdeServices\bin\NdeInterfses.pdb
 D:\Distributiv\NemanDataEx\NemanDataEx\NdeServices\bin\log4net.xml
-D:\Distributiv\NemanDataEx\NemanDataEx\NdeServices\obj\Debug\NdeServices.csprojResolveAssemblyReference.cache
 D:\Distributiv\NemanDataEx\NemanDataEx\NdeServices\obj\Debug\NdeServices.dll
 D:\Distributiv\NemanDataEx\NemanDataEx\NdeServices\obj\Debug\NdeServices.pdb

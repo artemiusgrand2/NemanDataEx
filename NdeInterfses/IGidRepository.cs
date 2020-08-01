@@ -17,6 +17,7 @@ namespace NdeInterfases
     IList<GIDMessage> GetGIDMessages();
     IList<ComDefinition> GetComDefinitions();
     IList<ComDefinition> GetComDefinitionsNoRun();
+        IList<int> GetPlanTrainIdns();
     IList<string> GetRequests();
     //Внешние команды
     string DelPlanWire(int trainIdn);

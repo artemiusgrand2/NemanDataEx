@@ -15,62 +15,78 @@ using NdeInterfases;
 
 namespace NdeServices
 {
-  // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "NdeService" in code, svc and config file together.
-  public class NdeService : INdeService
-  {
-    private readonly INdeServiceManager _serviceManager;
-
-    public NdeService()
+    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "NdeService" in code, svc and config file together.
+    public class NdeService : INdeService
     {
-      var conString    = WebConfigurationManager.ConnectionStrings["gidDb"].ConnectionString;
-      var conStringBuh = WebConfigurationManager.ConnectionStrings["buhDb"].ConnectionString;
+        private readonly INdeServiceManager _serviceManager;
+
+        public NdeService()
+        {
+            var conString = WebConfigurationManager.ConnectionStrings["gidDb"].ConnectionString;
+            var conStringBuh = WebConfigurationManager.ConnectionStrings["buhDb"].ConnectionString;
             var conStringIas = string.Empty;// WebConfigurationManager.ConnectionStrings["iasDb"].ConnectionString;
 
-      bool flPlay;
-      try {
-        flPlay = bool.Parse(WebConfigurationManager.AppSettings["GidPlay"]);
-      } catch (Exception e) {
-        var err = e.ToString();
-        flPlay = false;
-      }
+            bool flPlay;
+            try
+            {
+                flPlay = bool.Parse(WebConfigurationManager.AppSettings["GidPlay"]);
+            }
+            catch (Exception e)
+            {
+                var err = e.ToString();
+                flPlay = false;
+            }
 
-      int deltaTimeStart = int.Parse(WebConfigurationManager.AppSettings["deltaTimeStart"]);
-      int deltaTimeStop  = int.Parse(WebConfigurationManager.AppSettings["deltaTimeStop"]);
+            int deltaTimeStart = int.Parse(WebConfigurationManager.AppSettings["deltaTimeStart"]);
+            int deltaTimeStop = int.Parse(WebConfigurationManager.AppSettings["deltaTimeStop"]);
 
-      BuhSection[] buhSections = NdeConfigurationHelper.RetrieveBuhSectionsFromConfiguration("engine");
+            BuhSection[] buhSections = NdeConfigurationHelper.RetrieveBuhSectionsFromConfiguration("engine");
 
-      //Репозиторий для работы с данными ГИД
-      var gidRepo = new GidRepository(conString, flPlay,
-        deltaTimeStart, deltaTimeStop, conStringBuh, buhSections);
-      //
-      var iasRepo = new IaspurgpRepository(conStringIas);
-      _serviceManager = new NdeServiceManager(gidRepo, iasRepo);
-    }
-    //Дублируем функции (но делаем их контрактными).......................................................
-    public IList<TrainEvent> GetLastTrainEvents(){
-      return _serviceManager.GetLastTrainEvents();
-    }
-    public IList<TrainWorking> GetWorkVectors(){
-      return _serviceManager.GetWorkVectors();
-    }
-    public IList<WorkMessage> GetWorkMessages(){
-      return _serviceManager.GetWorkMessages();
-    }
-    public IList<GIDMessage> GetGIDMessages() {
-      return _serviceManager.GetGIDMessages();
-    }
-    public IList<ComDefinition> GetComDefinitions(){
-      return _serviceManager.GetComDefinitions();
-    }
-    public IList<ComDefinition> GetComDefinitionsNoRun() {
-      return _serviceManager.GetComDefinitionsNoRun();
-    }
-    public IList<string> GetRequests(){
-      return _serviceManager.GetRequests();
-    }
+            //Репозиторий для работы с данными ГИД
+            var gidRepo = new GidRepository(conString, flPlay,
+              deltaTimeStart, deltaTimeStop, conStringBuh, buhSections);
+            //
+            var iasRepo = new IaspurgpRepository(conStringIas);
+            _serviceManager = new NdeServiceManager(gidRepo, iasRepo);
+        }
+        //Дублируем функции (но делаем их контрактными).......................................................
+        public IList<TrainEvent> GetLastTrainEvents()
+        {
+            return _serviceManager.GetLastTrainEvents();
+        }
+        public IList<TrainWorking> GetWorkVectors()
+        {
+            return _serviceManager.GetWorkVectors();
+        }
+        public IList<WorkMessage> GetWorkMessages()
+        {
+            return _serviceManager.GetWorkMessages();
+        }
+        public IList<GIDMessage> GetGIDMessages()
+        {
+            return _serviceManager.GetGIDMessages();
+        }
+        public IList<ComDefinition> GetComDefinitions()
+        {
+            return _serviceManager.GetComDefinitions();
+        }
+        public IList<int> GetPlanTrainIdns()
+        {
+            return _serviceManager.GetPlanTrainIdns();
+        }
 
-    public string ExecuteBindingCommand(BindingCommand command){
-      return _serviceManager.ExecuteBindingCommand(command);
+
+        //public IList<ComDefinition> GetComDefinitionsNoRun() {
+        //  return _serviceManager.GetComDefinitionsNoRun();
+        //}
+        public IList<string> GetRequests()
+        {
+            return _serviceManager.GetRequests();
+        }
+
+        public string ExecuteBindingCommand(BindingCommand command)
+        {
+            return _serviceManager.ExecuteBindingCommand(command);
+        }
     }
-  }
 }

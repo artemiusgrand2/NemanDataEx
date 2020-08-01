@@ -62,6 +62,9 @@ D:\work\NemanDataEx\NemanDataEx\NdeWcfOverWinService\obj\x86\Debug\NdeWcfOverWin
 D:\work\NemanDataEx\NemanDataEx\NdeWcfOverWinService\obj\x86\Debug\NdeWcfOverWinService.csproj.CoreCompileInputs.cache
 D:\work\NemanDataEx\NemanDataEx\NdeWcfOverWinService\obj\x86\Debug\NdeWcfOverWinService.exe
 D:\work\NemanDataEx\NemanDataEx\NdeWcfOverWinService\obj\x86\Debug\NdeWcfOverWinService.pdb
+D:\Distributiv\NemanDataEx\NemanDataEx\NdeWcfOverWinService\obj\x86\Debug\NdeWcfOverWinService.csprojResolveAssemblyReference.cache
+D:\Distributiv\NemanDataEx\NemanDataEx\NdeWcfOverWinService\obj\x86\Debug\NdeWcfOverWinService.ProjectInstaller.resources
+D:\Distributiv\NemanDataEx\NemanDataEx\NdeWcfOverWinService\obj\x86\Debug\NdeWcfOverWinService.csproj.GenerateResource.Cache
 D:\Distributiv\NemanDataEx\NemanDataEx\NdeWcfOverWinService\bin\Debug\log4netUpdater.xml
 D:\Distributiv\NemanDataEx\NemanDataEx\NdeWcfOverWinService\bin\Debug\NdeWcfOverWinService.exe.config
 D:\Distributiv\NemanDataEx\NemanDataEx\NdeWcfOverWinService\bin\Debug\NdeWcfOverWinService.exe.manifest
@@ -83,9 +86,6 @@ D:\Distributiv\NemanDataEx\NemanDataEx\NdeWcfOverWinService\bin\Debug\NdeDataAcc
 D:\Distributiv\NemanDataEx\NemanDataEx\NdeWcfOverWinService\bin\Debug\NdeDataAccessSql.pdb
 D:\Distributiv\NemanDataEx\NemanDataEx\NdeWcfOverWinService\bin\Debug\BCh.Ktc.Nde.MiddleTier.pdb
 D:\Distributiv\NemanDataEx\NemanDataEx\NdeWcfOverWinService\bin\Debug\log4net.xml
-D:\Distributiv\NemanDataEx\NemanDataEx\NdeWcfOverWinService\obj\x86\Debug\NdeWcfOverWinService.csprojResolveAssemblyReference.cache
-D:\Distributiv\NemanDataEx\NemanDataEx\NdeWcfOverWinService\obj\x86\Debug\NdeWcfOverWinService.ProjectInstaller.resources
-D:\Distributiv\NemanDataEx\NemanDataEx\NdeWcfOverWinService\obj\x86\Debug\NdeWcfOverWinService.csproj.GenerateResource.Cache
 D:\Distributiv\NemanDataEx\NemanDataEx\NdeWcfOverWinService\obj\x86\Debug\NdeWcfOverWinService.exe.manifest
 D:\Distributiv\NemanDataEx\NemanDataEx\NdeWcfOverWinService\obj\x86\Debug\NdeWcfOverWinService.application
 D:\Distributiv\NemanDataEx\NemanDataEx\NdeWcfOverWinService\obj\x86\Debug\NdeWcfOverWinService.exe
