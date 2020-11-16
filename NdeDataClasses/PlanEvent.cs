@@ -21,6 +21,10 @@ namespace NdeDataClasses
         [DataMember]
         public int EventType { get; set; }
         [DataMember]
+        public string Axis { get; set; }
+        [DataMember]
+        public string Ndo { get; set; }
+        [DataMember]
         public int AckEventFlag { get; set; }
     }
 }

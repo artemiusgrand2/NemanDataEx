@@ -100,6 +100,7 @@
     <Compile Include="Commands\StopMessForTrainCommand.cs" />
     <Compile Include="Commands\TrackPointMessagesCommand.cs" />
     <Compile Include="Commands\TrainProcessCommand.cs" />
+    <Compile Include="Commands\WriteEnterExecutedPlanCommand.cs" />
     <Compile Include="Commands\WriteTrainInputCommand.cs" />
     <Compile Include="Commands\WriteTrainOutputCommand.cs" />
     <Compile Include="Configuration\BuhSection.cs" />

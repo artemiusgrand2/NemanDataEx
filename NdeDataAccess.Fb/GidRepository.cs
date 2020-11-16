@@ -116,6 +116,8 @@ namespace NdeDataAccessFb
         private FbCommand _command90;
         private readonly FbCommand _command91;
         private readonly FbCommand _command92;
+        private FbCommand _command93;
+
         //Параметры
         private readonly FbParameter _parEvTime1;
         private readonly FbParameter _parTrainId2;
@@ -381,6 +383,7 @@ namespace NdeDataAccessFb
         private readonly FbParameter _parTrainIdn86;
         private readonly FbParameter _parTrainIdn90;
         private readonly FbParameter _parTrainNum91;
+        private readonly FbParameter _parEV_REC_IDN93;
         //Тексты запросов для команд
         //Времена последних событий для всех ниток (поездов)
         private const string CommandText1 = "SELECT TG.Train_Idn, MAX(TG.Ev_Time)"
@@ -810,7 +813,7 @@ namespace NdeDataAccessFb
           + " WHERE Fl_Snd <> 4";
         //
         //Получить расписание плановой нитки
-        private const string CommandText84 = "SELECT  Ev_Type, Ev_Time_P, Ev_Station, Ev_Rec_Idn, EV_CNFM"
+        private const string CommandText84 = "SELECT  Ev_Type, Ev_Time_P, Ev_Station, Ev_Rec_Idn, EV_CNFM, EV_AXIS, EV_NDO"
           + " FROM TGraphicPl"
           + " WHERE Train_Idn = @TrainIdn"
           + " ORDER by Ev_Rec_Idn";
@@ -838,9 +841,13 @@ namespace NdeDataAccessFb
           + " WHERE Norm_Idn = @TrainIdn";
         //Найти события исполненной нитки по имени
         private const string CommandText91 = "SELECT Train_Idn, EV_TYPE, EV_TIME, EV_STATION, EV_NDO FROM TGraphicId"
-        + " WHERE Train_Idn in (SELECT Train_Idn FROM TTrainHeaders WHERE Train_Num = @TrainNumber AND Norm_Idn IS NOT NULL AND Fl_Sost IS NULL)";
+        + " WHERE Train_Idn in (SELECT Train_Idn FROM TTrainHeaders WHERE Train_Num = @TrainNumber AND Norm_Idn IS NOT NULL AND Fl_Sost IS NULL) order by EV_TIME desc";
         //Найти перень id плановых ниток которые в работе
         private const string CommandText92 = "SELECT Train_Idn FROM TGraphicPl GROUP BY Train_Idn";
+        //Подтверждаем событие планового графика
+        private const string CommandText93 = "UPDATE TGraphicPl"
+        + " SET EV_Cnfm = 2"
+        + " WHERE Ev_Rec_Idn = @EvRecIdn";
         //Конструктор----------------------------------------------------------------------------------
         public GidRepository(string connectionString, bool flPlay
                         , int deltaTimeStart, int deltaTimeStop
@@ -853,7 +860,7 @@ namespace NdeDataAccessFb
             _deltaTimeStop = deltaTimeStop;
             _connectionStringBuh = connectionStringBuh;
             _buhSections = buhSections;
-            _maxBindDelta = new TimeSpan(1, 0, 0);
+            _maxBindDelta = new TimeSpan(6, 0, 0);
             //Создаем команды (с текстами)
             //_command1  = new FbCommand(CommandText1);
             //_command2  = new FbCommand(CommandText2);
@@ -1204,6 +1211,7 @@ namespace NdeDataAccessFb
             _parTrainIdn86 = new FbParameter("@TrainIdn", FbDbType.Integer);
             _parTrainIdn90 = new FbParameter("@TrainIdn", FbDbType.Integer);
             _parTrainNum91 = new FbParameter("@TrainNumber", FbDbType.VarChar);
+            _parEV_REC_IDN93 = new FbParameter("@EvRecIdn", FbDbType.Integer);
             //
             _parRecIdn64.Direction = ParameterDirection.Output;
             //Добавляем параметры в команду(ы)
@@ -1823,6 +1831,8 @@ namespace NdeDataAccessFb
                                                 planEvent.EventStation = dbReader4.GetString(2).Remove(0, 2);
                                                 planEvent.EvIdn = dbReader4.GetInt32(3);
                                                 planEvent.AckEventFlag = dbReader4.GetInt16Safely(4);
+                                                planEvent.Axis = dbReader4.GetString(5);
+                                                planEvent.Ndo = dbReader4.GetString(6);
                                                 trainEvent.PlanEvents.Add(planEvent);
                                             }
                                         }
@@ -2261,7 +2271,6 @@ namespace NdeDataAccessFb
         //Удалить плановую нитку
         public string DelPlanWire(int trainIdn)
         {
-            string retString = "";
             using (var connection = new FbConnection(_connectionString))
             {
                 connection.Open();
@@ -2279,18 +2288,19 @@ namespace NdeDataAccessFb
                     _command62.ExecuteNonQuery();
                     _command90.ExecuteNonQuery();
                     transaction.Commit();
-                    retString = "Плановая нитка удалена.";
+                   // retString = "Плановая нитка удалена.";
                 }
                 _command62.Dispose();
                 _command90.Dispose();
                 connection.Close();
             }
-            return retString;
+            return $"Плановая нитка удалена c id - {trainIdn}";
         }
         //Соединить нитки (безусловно)
         public string BindTrainThreads(int sourceThreadId, int targetThreadId)
         {
-            string retString = "";
+            var strBuiderResult = new StringBuilder();
+            strBuiderResult.Append($"Получена команда на связывание исполненных ниток с id = {sourceThreadId} и {targetThreadId}.");
             using (var connection = new FbConnection(_connectionString))
             {
                 connection.Open();
@@ -2369,17 +2379,13 @@ namespace NdeDataAccessFb
                             _parTrainIdnT32.Value = targetThreadId;
                             _command32.ExecuteNonQuery();
                             transaction.Commit();
-                            retString = "Нитки связаны.";
+                            strBuiderResult.Append(" Нитки связаны.");
                         }
                         else
-                        {
-                            retString = "Эти нитки не могут быть связаны.";
-                        }
+                            strBuiderResult.Append(" Эти нитки не могут быть связаны.");
                     }
                     else
-                    {
-                        retString = "Не все параметры определены.";
-                    }
+                        strBuiderResult.Append(" Не все параметры определены.");
                 }
                 _command24.Dispose();
                 _command31.Dispose();
@@ -2388,7 +2394,7 @@ namespace NdeDataAccessFb
                 _command37.Dispose();
                 connection.Close();
             }
-            return retString;
+            return strBuiderResult.ToString();
         }
 
         //Дать номер поезду
@@ -2417,7 +2423,7 @@ namespace NdeDataAccessFb
                 _command25.Dispose();
                 connection.Close();
             }
-            return "Команда передана в ГИД.";
+            return $"Команда по установке номера поезда {trainNumberPrefix} {trainNumber} {trainNumberSuffix} передана в ГИД.";
         }
         //Связать справку с поездом
         /*
@@ -2450,7 +2456,8 @@ namespace NdeDataAccessFb
         */
         public string AssignMessageForTrain(int messageIdn, int trainIdn)
         {
-            var retString = "";
+            var strBuilderResult = new StringBuilder();
+            strBuilderResult.Append($"Получена команда на связывание справки с id = {messageIdn} и исполненной ниткой c id = {trainIdn}.");
             TrainMessage trainMessage = null;
             TrainIndex trainIndex = null;
             var actualTrain = new ActualTrain();
@@ -2506,13 +2513,13 @@ namespace NdeDataAccessFb
                 {//если до этого справка не была указана
                  //записываем новую
                     WriteNewMessForTrain(trainMessage, actualTrain);
-                    retString = "Записана новая связанная справка.";
+                    strBuilderResult.Append(" Записана новая связанная справка.");
                 }
                 else
                 {//если была
                  //заменяем
                     ChangeNewMessForTrain(trainMessage, actualTrain);
-                    retString = "Связанная справка заменена.";
+                    strBuilderResult.Append(" Связанная справка заменена.");
                 }
                 //Если у поезда отсутствует номер, присвоить
                 using (var connection = new FbConnection(_connectionString))
@@ -2541,15 +2548,15 @@ namespace NdeDataAccessFb
                 }
             }
             else
-            {
-                retString = "Справка не найдена.";
-            }
-            return retString;
+                strBuilderResult.Append(" Справка не найдена.");
+            //
+            return strBuilderResult.ToString(); ;
         }
         //Сообщить о переезде с пути на путь в ГИД
         public string RunTrackIoTrack(int trainIdn, string trackName, string stationCode)
         {
-            string retString = "";
+            var strBuilderResult = new StringBuilder();
+            strBuilderResult.Append($"Получена команда о переезде с пути на путь. Для исполненной нитки с id = {trackName} на путь {trackName} по станции {stationCode}.");
             using (var connection = new FbConnection(_connectionString))
             {
                 connection.Open();
@@ -2691,22 +2698,16 @@ namespace NdeDataAccessFb
                                     _parDOName41.Value = evTrack;
                                     _parDopIdn41.Value = -1;
                                     _command41.ExecuteNonQuery();
-                                    retString = "Сообщения о переезде с пути на путь отосланы в ГИД.";
+                                    strBuilderResult.Append(" Сообщения о переезде с пути на путь отосланы в ГИД.");
                                 }
                                 else
-                                {
-                                    retString = "Не определено время занятия пути переезда.";
-                                }
+                                    strBuilderResult.Append(" Не определено время занятия пути переезда.");
                             }
                             else
-                            {
-                                retString = "Последнее событие поезда не является прибытием на путь указанной станции.";
-                            }
+                                strBuilderResult.Append(" Последнее событие поезда не является прибытием на путь указанной станции.");
                         }
                         else
-                        {
-                            retString = "Не найдено последнее событие поезда.";
-                        }
+                            strBuilderResult.Append(" Не найдено последнее событие поезда.");
                     }
                     transaction.Commit();
                 }
@@ -2716,7 +2717,7 @@ namespace NdeDataAccessFb
                 _command41.Dispose();
                 connection.Close();
             }
-            return retString;
+            return strBuilderResult.ToString();
         }
         //Управление векторами обработки поездов
         public string TrainProcess(TrainProcessCommand trainProcessCommand)
@@ -3207,14 +3208,15 @@ namespace NdeDataAccessFb
         //Записать плановую нитку и связать ее с исполненной
         public string BindPlanToTrain(IList<GIDMessage> planEvents, int trainIdn)
         {
-            string retString = "";
-            var trainIdnBuffer = DeleteRepeatPlanToTrain(planEvents);
+            var strBuiderResult = new StringBuilder();
+            var trainBuffer = DeleteRepeatPlanToTrain(planEvents);
+            strBuiderResult.Append(trainBuffer.Item2);
             if (trainIdn == 0)
             //    DelLinkedPlWire(trainIdn);
             //else
-                trainIdn = trainIdnBuffer;
+                trainIdn = trainBuffer.Item1;
             //
-            int planIdn = WritePlanWire(planEvents);
+            var planIdn = WritePlanWire(planEvents);
             //пробуем найти исполненную нитку
             if(trainIdn == 0)
                 trainIdn = FindExecutedId(planEvents);
@@ -3228,18 +3230,21 @@ namespace NdeDataAccessFb
                 {
                     AssignConnectionAndTransactionToCommand(_command25, connection, transaction);
                     _parCommand25.Value = 35;
-                    _parTrain_IdnH125.Value = planIdn;
+                    _parTrain_IdnH125.Value = planIdn.Item1;
                     _parTrain_IdnH225.Value = trainIdn;
                     _command25.ExecuteNonQuery();
                     //_parCommand25.Value = 38;
                     //_command25.ExecuteNonQuery();//!!!
                     transaction.Commit();
-                    retString = planIdn.ToString();
+                    //retString = planIdn.ToString();
                 }
                 _command25.Dispose();
                 connection.Close();
             }
-            return retString;
+            //
+            strBuiderResult.Append($"Записана плановая нитка под номером {planIdn.Item2} с id - {planIdn.Item1}. Отдана команда на связывание с исполненной ниткой с id - {trainIdn}.");
+
+            return strBuiderResult.ToString();
         }
 
         private List<GIDMessage> GetExecutedRecords(string trainNumber)
@@ -3317,10 +3322,11 @@ namespace NdeDataAccessFb
 
 
         //Поиск и удаление повторных плановых ниток схожих с искомой 
-        public int DeleteRepeatPlanToTrain(IList<GIDMessage> planEvents)
+        public  Tuple<int, string>   DeleteRepeatPlanToTrain(IList<GIDMessage> planEvents)
         {
             int executedTrainId = 0;
-            if(planEvents != null && planEvents.Count > 0)
+            var strBuilderResult = new StringBuilder();
+            if (planEvents != null && planEvents.Count > 0)
             {
                 using (var connection = new FbConnection(_connectionString))
                 {
@@ -3359,6 +3365,7 @@ namespace NdeDataAccessFb
                                     //удаляем плановую нитку
                                     _parTrainIdn62.Value = train_Idn;
                                     _command62.ExecuteNonQuery();
+                                    strBuilderResult.Append($"Удалена плановая нитка с Id - {train_Idn}. ");
                                     //если нитка связана с исполненной находим ее Id
                                     if (fl_sost == 2)
                                     {
@@ -3372,7 +3379,10 @@ namespace NdeDataAccessFb
                                             _parNormIdn63.Value = 0;
                                             _command63.ExecuteNonQuery();
                                         }
+                                        //
+                                        strBuilderResult.Append($"Она была связана с исполненной ниткой Id - {trainIdExecuted}. Ссылка обнулена. ");
                                     }
+                                   
                                 }
                             }
                         }
@@ -3387,7 +3397,7 @@ namespace NdeDataAccessFb
                 }
             }
             //
-            return executedTrainId;
+            return new Tuple<int, string>(executedTrainId, strBuilderResult.ToString());
         }
         //Установить флаг исполнения задания
         public string SetDefSendFlag(int defIdn, int sendFlag, DateTime tmDefC)
@@ -3869,11 +3879,11 @@ namespace NdeDataAccessFb
             return comDefinition;
         }
         //Записать плановую нитку
-        public int WritePlanWire(IList<GIDMessage> planEvents)
+        public Tuple< int, string> WritePlanWire(IList<GIDMessage> planEvents)
         {
             int planIdn = 0;
             string planNum = "";
-            if (planEvents.Count == 0) { return planIdn; }
+            if (planEvents.Count == 0) { return new Tuple<int, string>(planIdn, planNum); }
             planNum = planEvents[0].TrainNum.GetFromString(4);
             using (var connection = new FbConnection(_connectionString))
             {
@@ -3915,7 +3925,7 @@ namespace NdeDataAccessFb
                 _command65.Dispose();
                 _command66.Dispose();
             }
-            return planIdn;
+            return  new Tuple<int, string>(planIdn, planNum);
         }
         //Удалить плановую нитку, ранее связанную с указанной исполненной
         public void DelLinkedPlWire(int trainIdn)
@@ -4894,6 +4904,27 @@ namespace NdeDataAccessFb
             }
             return retTime;
         }
+
+        public string WriteEnterExecutedPlan(string trainNumber, int planEvId, string station, string axis, string ndo)
+        {
+            using (var connection = new FbConnection(_connectionString))
+            {
+                connection.Open();
+                _command93 = new FbCommand(CommandText93);
+                _command93.Parameters.Add(_parEV_REC_IDN93);
+                using (var transaction = connection.BeginTransaction())
+                {
+                    AssignConnectionAndTransactionToCommand(_command93, connection, transaction);
+                    _parEV_REC_IDN93.Value = planEvId;
+                    _command93.ExecuteNonQuery();
+                    transaction.Commit();
+                }
+                _command93.Dispose();
+                connection.Close();
+            }
+            return $"Для поезда {trainNumber} записано подтверждение в плановый график для события с Id = {planEvId}, станция  - {station}, направление - {ndo}, путь - {axis}.";
+        }
+
         //Ассоциировать команду с соединением и транзакцией
         private static void AssignConnectionAndTransactionToCommand(FbCommand command
                                         , FbConnection connection, FbTransaction transaction)

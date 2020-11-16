@@ -35,3 +35,17 @@ D:\Distributiv\NemanDataEx\NemanDataEx\MiddleTier\bin\Debug\log4net.xml
 D:\Distributiv\NemanDataEx\NemanDataEx\MiddleTier\obj\Debug\MiddleTier.csprojResolveAssemblyReference.cache
 D:\Distributiv\NemanDataEx\NemanDataEx\MiddleTier\obj\Debug\BCh.Ktc.Nde.MiddleTier.dll
 D:\Distributiv\NemanDataEx\NemanDataEx\MiddleTier\obj\Debug\BCh.Ktc.Nde.MiddleTier.pdb
+d:\Distr\NemanDataEx\NemanDataEx\MiddleTier\bin\Debug\log4netUpdater.xml
+d:\Distr\NemanDataEx\NemanDataEx\MiddleTier\bin\Debug\BCh.Ktc.Nde.MiddleTier.dll
+d:\Distr\NemanDataEx\NemanDataEx\MiddleTier\bin\Debug\BCh.Ktc.Nde.MiddleTier.pdb
+d:\Distr\NemanDataEx\NemanDataEx\MiddleTier\bin\Debug\log4net.dll
+d:\Distr\NemanDataEx\NemanDataEx\MiddleTier\bin\Debug\NdeDataClasses.dll
+d:\Distr\NemanDataEx\NemanDataEx\MiddleTier\bin\Debug\NdeInterfses.dll
+d:\Distr\NemanDataEx\NemanDataEx\MiddleTier\bin\Debug\NdeDataClasses.pdb
+d:\Distr\NemanDataEx\NemanDataEx\MiddleTier\bin\Debug\NdeInterfses.pdb
+d:\Distr\NemanDataEx\NemanDataEx\MiddleTier\bin\Debug\log4net.xml
+d:\Distr\NemanDataEx\NemanDataEx\MiddleTier\obj\Debug\MiddleTier.csprojAssemblyReference.cache
+d:\Distr\NemanDataEx\NemanDataEx\MiddleTier\obj\Debug\MiddleTier.csproj.CoreCompileInputs.cache
+d:\Distr\NemanDataEx\NemanDataEx\MiddleTier\obj\Debug\MiddleTier.csproj.CopyComplete
+d:\Distr\NemanDataEx\NemanDataEx\MiddleTier\obj\Debug\BCh.Ktc.Nde.MiddleTier.dll
+d:\Distr\NemanDataEx\NemanDataEx\MiddleTier\obj\Debug\BCh.Ktc.Nde.MiddleTier.pdb

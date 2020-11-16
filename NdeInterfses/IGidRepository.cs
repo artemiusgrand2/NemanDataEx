@@ -38,6 +38,7 @@ namespace NdeInterfases
     string SetReplys(IList<string> replys);
     string WriteBuh2Data(Buh2DataCommand buh2DataCommand);
     string CleanPlan();
+    string WriteEnterExecutedPlan(string trainNumber, int planEvId, string station, string axis, string ndo);
     //Внутренние функции
     void WriteAllSaipsDataToGid();
     IList<ActualTrain> GetActualTrains();

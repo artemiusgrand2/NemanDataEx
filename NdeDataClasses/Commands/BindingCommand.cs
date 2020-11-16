@@ -22,7 +22,8 @@ namespace NdeDataClasses.Commands
   [KnownType(typeof(SetReplysCommand))]
   [KnownType(typeof(Buh2DataCommand))]
   [KnownType(typeof(CleanPlanCommand))]
-  public abstract class BindingCommand
+  [KnownType(typeof(WriteEnterExecutedPlanCommand))]  
+    public abstract class BindingCommand
   {
   }
 }

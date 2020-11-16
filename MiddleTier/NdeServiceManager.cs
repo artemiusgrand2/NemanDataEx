@@ -6,11 +6,13 @@ using System.Text;
 using NdeDataClasses;
 using NdeDataClasses.Commands;
 using NdeInterfases;
+using log4net;
 
 namespace BCh.Ktc.Nde.MiddleTier
 {
     public class NdeServiceManager : INdeServiceManager
     {
+        private static readonly ILog _logger = LogManager.GetLogger(typeof(NdeServiceManager));
         //Команды только по ГИДу (репозиторий ГИДа)
         private readonly IGidRepository _gidRepo;
         private readonly IiaspurgpRepository _iasRepo;
@@ -76,6 +78,7 @@ namespace BCh.Ktc.Nde.MiddleTier
                   bindTrainTheadsCommand.SourceId,
                   bindTrainTheadsCommand.TargetId
                   );
+                _logger.Info(retString);
                 return retString;
             }
             var assignTrainNumberCommand = command as AssignTrainNumberCommand;
@@ -89,6 +92,7 @@ namespace BCh.Ktc.Nde.MiddleTier
                   assignTrainNumberCommand.TrainNumberSuffix,
                   assignTrainNumberCommand.StationCode
                   );
+                _logger.Info(retString);
                 return retString;
             }
             var assignMessForTrainCommand = command as AssignMessForTrainCommand;
@@ -99,6 +103,7 @@ namespace BCh.Ktc.Nde.MiddleTier
                   assignMessForTrainCommand.messageIdn,
                   assignMessForTrainCommand.trainIdn
                   );
+                _logger.Info(retString);
                 return retString;
             }
             var runTrackIoTrackCommand = command as RunTrackIoTrackCommand;
@@ -110,6 +115,7 @@ namespace BCh.Ktc.Nde.MiddleTier
                   runTrackIoTrackCommand.trackName,
                   runTrackIoTrackCommand.stationCode
                   );
+                _logger.Info(retString);
                 return retString;
             }
             var trainProcessCommand = command as TrainProcessCommand;
@@ -203,6 +209,7 @@ namespace BCh.Ktc.Nde.MiddleTier
                   bindPlanToTrainCommand.planEvents,
                   bindPlanToTrainCommand.trainIdn
                  );
+                _logger.Info(retString);
                 return retString;
             }
             var delPlanWireCommand = command as DelPlanWireCommand;
@@ -212,6 +219,7 @@ namespace BCh.Ktc.Nde.MiddleTier
                 retString = _gidRepo.DelPlanWire(
                   delPlanWireCommand.trainIdn
                  );
+                _logger.Info(retString);
                 return retString;
             }
             //установить флаг команды
@@ -242,6 +250,15 @@ namespace BCh.Ktc.Nde.MiddleTier
             {
                 //
                 retString = _gidRepo.CleanPlan();
+                _logger.Info(retString);
+                return retString;
+            }
+            //записать  подтверждение события в прогнозный график
+            var writeEnterExecutedPlanCommand = command as WriteEnterExecutedPlanCommand;
+            if (writeEnterExecutedPlanCommand != null)
+            {
+                retString = _gidRepo.WriteEnterExecutedPlan(writeEnterExecutedPlanCommand.TrainNumber, writeEnterExecutedPlanCommand.PlanEvId, writeEnterExecutedPlanCommand.Station, writeEnterExecutedPlanCommand.Axis, writeEnterExecutedPlanCommand.NDO);
+                _logger.Info(retString);
                 return retString;
             }
             //не понял!!
