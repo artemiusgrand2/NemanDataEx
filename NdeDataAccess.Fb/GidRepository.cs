@@ -3242,7 +3242,7 @@ namespace NdeDataAccessFb
                 connection.Close();
             }
             //
-            strBuiderResult.Append($"Записана плановая нитка под номером {planIdn.Item2} с id - {planIdn.Item1}. Отдана команда на связывание с исполненной ниткой с id - {trainIdn}.");
+            strBuiderResult.Append($"{planIdn.Item2}. Отдана команда на связывание с исполненной ниткой с id - {trainIdn}.");
 
             return strBuiderResult.ToString();
         }
@@ -3293,7 +3293,7 @@ namespace NdeDataAccessFb
             return records;
         }
 
-        private int FindExecutedId(IList<GIDMessage> planEvents)
+        private  int FindExecutedId(IList<GIDMessage> planEvents)
         {
             var executedRecords = GetExecutedRecords(planEvents.First().TrainNum.GetFromString(4));
             foreach (var executed in executedRecords)
@@ -3925,7 +3925,13 @@ namespace NdeDataAccessFb
                 _command65.Dispose();
                 _command66.Dispose();
             }
-            return  new Tuple<int, string>(planIdn, planNum);
+            //
+            var strBuilder = new StringBuilder();
+            strBuilder.Append($"Записана плановая нитка под номером {planNum} с id - {planIdn}. Расписание:{Environment.NewLine}");
+            foreach (var planEvent in planEvents)
+                strBuilder.AppendLine($"station {planEvent.MsStation}, time {planEvent.MsTime}, axis {planEvent.MsAxis}, typeEvent {planEvent.MsType}, msFlags {planEvent.MsFlags}, trainNumber {planEvent.TrainNum}");
+            //
+            return  new Tuple<int, string>(planIdn, strBuilder.ToString());
         }
         //Удалить плановую нитку, ранее связанную с указанной исполненной
         public void DelLinkedPlWire(int trainIdn)

@@ -25,23 +25,38 @@ namespace BCh.Ktc.Nde.MiddleTier
         //........................................................
         //Последние события по поездам
         public IList<TrainEvent> GetLastTrainEvents()
-        {
-            return _gidRepo.GetLastTrainEvents();
+        { 
+            _logger.Info("Запрос получения последних исполненных событий. Начало !!!");
+            var trains =  _gidRepo.GetLastTrainEvents();
+            _logger.Info("Запрос получения последних исполненных событий. Окончание !!!");
+            //
+            return trains;
         }
         //Перечень id   плановых ниток, которые в работе
         public IList<int> GetPlanTrainIdns()
         {
-            return _gidRepo.GetPlanTrainIdns();
+            _logger.Info("Запрос получения Id плановых ниток. Начало !!!");
+            var plans = _gidRepo.GetPlanTrainIdns();
+            _logger.Info("Запрос получения Id плановых ниток. Окончание !!!");
+            return plans;
         }
         //Дуйствующие вектора обработки
         public IList<TrainWorking> GetWorkVectors()
         {
-            return _gidRepo.GetWorkVectors();
+            _logger.Info("Запрос получения векторов. Начало !!!");
+            var vectors = _gidRepo.GetWorkVectors();
+            _logger.Info("Запрос получения векторов Окончание !!!");
+            //
+            return vectors;
         }
         //История справок
         public IList<WorkMessage> GetWorkMessages()
         {
-            return _gidRepo.GetWorkMessages();
+            _logger.Info("Запрос получения сообщений. Начало !!!");
+            var messages = _gidRepo.GetWorkMessages();
+            _logger.Info("Запрос получения сообщений. Окончание !!!");
+            //
+            return messages;
         }
         //Сообщения ГИД
         public IList<GIDMessage> GetGIDMessages()
@@ -51,7 +66,9 @@ namespace BCh.Ktc.Nde.MiddleTier
         //Задания на исполнение команд
         public IList<ComDefinition> GetComDefinitions()
         {
+            _logger.Info("Запрос получения комманд. Начало !!!");
             var commands = _gidRepo.GetComDefinitions();
+            _logger.Info("Запрос получения комманд. Окончание !!!");
             //_iasRepo.AssignAppendexes(commands);
             return commands;
         }
