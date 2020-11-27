@@ -3927,9 +3927,9 @@ namespace NdeDataAccessFb
             }
             //
             var strBuilder = new StringBuilder();
-            strBuilder.Append($"Записана плановая нитка под номером {planNum} с id - {planIdn}. Расписание:{Environment.NewLine}");
+            strBuilder.Append($"Записана плановая нитка под номером {planNum} с id - {planIdn}. Расписание: ");
             foreach (var planEvent in planEvents)
-                strBuilder.AppendLine($"station {planEvent.MsStation}, time {planEvent.MsTime}, axis {planEvent.MsAxis}, typeEvent {planEvent.MsType}, msFlags {planEvent.MsFlags}, trainNumber {planEvent.TrainNum}");
+                strBuilder.Append($"station {planEvent.MsStation}, time {planEvent.MsTime}, axis {planEvent.MsAxis}, typeEvent {planEvent.MsType}, msFlags {planEvent.MsFlags}, trainNumber {planEvent.TrainNum}; ");
             //
             return  new Tuple<int, string>(planIdn, strBuilder.ToString());
         }
