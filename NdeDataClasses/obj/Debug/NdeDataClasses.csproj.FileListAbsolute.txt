@@ -22,3 +22,4 @@ d:\Distr\NemanDataEx\NemanDataEx\NdeDataClasses\obj\Debug\NdeDataClasses.csproj.
 d:\Distr\NemanDataEx\NemanDataEx\NdeDataClasses\obj\Debug\NdeDataClasses.dll
 d:\Distr\NemanDataEx\NemanDataEx\NdeDataClasses\obj\Debug\NdeDataClasses.pdb
 D:\Distr\NemanDataEx\NemanDataEx\NdeDataClasses\obj\Debug\NdeDataClasses.csprojAssemblyReference.cache
+D:\Distributiv\NemanDataEx\NemanDataEx\NdeDataClasses\obj\Debug\NdeDataClasses.csprojResolveAssemblyReference.cache

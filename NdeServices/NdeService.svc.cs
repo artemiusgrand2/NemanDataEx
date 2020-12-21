@@ -12,6 +12,7 @@ using NdeDataClasses;
 using NdeDataClasses.Commands;
 using NdeDataClasses.Configuration;
 using NdeInterfases;
+using System.ServiceModel.Channels;
 
 namespace NdeServices
 {
@@ -19,6 +20,19 @@ namespace NdeServices
     public class NdeService : INdeService
     {
         private readonly INdeServiceManager _serviceManager;
+
+
+        RemoteEndpointMessageProperty GetIpUserConnect
+        {
+            get
+            {
+                OperationContext oOperationContext = OperationContext.Current;
+                var oMessageProperties = oOperationContext.IncomingMessageProperties;
+                var oRemoteEndpointMessageProperty = (RemoteEndpointMessageProperty)oMessageProperties[RemoteEndpointMessageProperty.Name];
+
+                return oRemoteEndpointMessageProperty;
+            }
+        }
 
         public NdeService()
         {
@@ -47,7 +61,7 @@ namespace NdeServices
               deltaTimeStart, deltaTimeStop, conStringBuh, buhSections);
             //
             var iasRepo = new IaspurgpRepository(conStringIas);
-            _serviceManager = new NdeServiceManager(gidRepo, iasRepo);
+            _serviceManager = new NdeServiceManager(gidRepo, iasRepo, GetIpUserConnect.Address, $"{GetIpUserConnect.Address}:{GetIpUserConnect.Port}", WebConfigurationManager.AppSettings.AllKeys.Contains("IpCommand") ? WebConfigurationManager.AppSettings["IpCommand"] : string.Empty);
         }
         //Дублируем функции (но делаем их контрактными).......................................................
         public IList<TrainEvent> GetLastTrainEvents()

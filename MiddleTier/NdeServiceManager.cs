@@ -16,59 +16,73 @@ namespace BCh.Ktc.Nde.MiddleTier
         //Команды только по ГИДу (репозиторий ГИДа)
         private readonly IGidRepository _gidRepo;
         private readonly IiaspurgpRepository _iasRepo;
+        private readonly string _ipUser;
+        private readonly string _ipUserFull;
+        private readonly string _ipCommandReceiving = string.Empty;
         //
-        public NdeServiceManager(IGidRepository gidRepository, IiaspurgpRepository iasRepo)
+        public NdeServiceManager(IGidRepository gidRepository, IiaspurgpRepository iasRepo, string ipUser, string ipUserFull, string ipCommandReceiving)
         {
             _gidRepo = gidRepository;
             _iasRepo = iasRepo;
+            _ipUser = ipUser;
+            _ipUserFull = ipUserFull;
+            _ipCommandReceiving = ipCommandReceiving;
         }
         //........................................................
         //Последние события по поездам
         public IList<TrainEvent> GetLastTrainEvents()
-        { 
-            _logger.Info("Запрос получения последних исполненных событий. Начало !!!");
-            var trains =  _gidRepo.GetLastTrainEvents();
-            _logger.Info("Запрос получения последних исполненных событий. Окончание !!!");
+        {
+            _logger.Info($"Запрос получения последних исполненных событий. Начало !!! IP - {_ipUserFull}.");
+            var trains = _gidRepo.GetLastTrainEvents();
+            _logger.Info($"Запрос получения последних исполненных событий. Окончание !!! IP - {_ipUserFull}.");
             //
             return trains;
         }
         //Перечень id   плановых ниток, которые в работе
         public IList<int> GetPlanTrainIdns()
         {
-            _logger.Info("Запрос получения Id плановых ниток. Начало !!!");
+            _logger.Info($"Запрос получения Id плановых ниток. Начало !!! IP - {_ipUserFull}.");
             var plans = _gidRepo.GetPlanTrainIdns();
-            _logger.Info("Запрос получения Id плановых ниток. Окончание !!!");
+            _logger.Info($"Запрос получения Id плановых ниток. Окончание !!! IP - {_ipUserFull}.");
             return plans;
         }
         //Дуйствующие вектора обработки
         public IList<TrainWorking> GetWorkVectors()
         {
-            _logger.Info("Запрос получения векторов. Начало !!!");
+            _logger.Info($"Запрос получения векторов. Начало !!! IP - {_ipUserFull}.");
             var vectors = _gidRepo.GetWorkVectors();
-            _logger.Info("Запрос получения векторов Окончание !!!");
+            _logger.Info($"Запрос получения векторов Окончание !!! IP - {_ipUserFull}.");
             //
             return vectors;
         }
         //История справок
         public IList<WorkMessage> GetWorkMessages()
         {
-            _logger.Info("Запрос получения сообщений. Начало !!!");
+            _logger.Info($"Запрос получения сообщений Начало !!! IP - {_ipUserFull}.");
             var messages = _gidRepo.GetWorkMessages();
-            _logger.Info("Запрос получения сообщений. Окончание !!!");
+            _logger.Info($"Запрос получения сообщений. Окончание !!! IP - {_ipUserFull}.");
             //
             return messages;
         }
         //Сообщения ГИД
         public IList<GIDMessage> GetGIDMessages()
         {
-            return _gidRepo.GetGIDMessages();
+            _logger.Info($"Запрос получения gid сообщений Начало !!! IP - {_ipUserFull}.");
+            var messages = _gidRepo.GetGIDMessages();
+            _logger.Info($"Запрос получения gid сообщений. Окончание !!! IP - {_ipUserFull}.");
+            //
+            return messages;
         }
         //Задания на исполнение команд
         public IList<ComDefinition> GetComDefinitions()
         {
-            _logger.Info("Запрос получения комманд. Начало !!!");
-            var commands = _gidRepo.GetComDefinitions();
-            _logger.Info("Запрос получения комманд. Окончание !!!");
+            _logger.Info($"Запрос получения комманд. Начало !!! IP - {_ipUserFull}.");
+            IList<ComDefinition> commands = new List<ComDefinition>();
+            if (string.IsNullOrEmpty(_ipCommandReceiving) || (_ipCommandReceiving == _ipUser))
+                commands = _gidRepo.GetComDefinitions();
+            else
+                _logger.Info($"Нет доступа на получение получение комманд. Для IP - {_ipUser}.");
+            _logger.Info($"Запрос получения комманд. Окончание !!! IP - {_ipUserFull}.");
             //_iasRepo.AssignAppendexes(commands);
             return commands;
         }
@@ -95,7 +109,7 @@ namespace BCh.Ktc.Nde.MiddleTier
                   bindTrainTheadsCommand.SourceId,
                   bindTrainTheadsCommand.TargetId
                   );
-                _logger.Info(retString);
+                _logger.Info($"IP - {_ipUserFull}. " + retString);
                 return retString;
             }
             var assignTrainNumberCommand = command as AssignTrainNumberCommand;
@@ -109,7 +123,7 @@ namespace BCh.Ktc.Nde.MiddleTier
                   assignTrainNumberCommand.TrainNumberSuffix,
                   assignTrainNumberCommand.StationCode
                   );
-                _logger.Info(retString);
+                _logger.Info($"IP - {_ipUserFull}. " + retString);
                 return retString;
             }
             var assignMessForTrainCommand = command as AssignMessForTrainCommand;
@@ -120,7 +134,7 @@ namespace BCh.Ktc.Nde.MiddleTier
                   assignMessForTrainCommand.messageIdn,
                   assignMessForTrainCommand.trainIdn
                   );
-                _logger.Info(retString);
+                _logger.Info($"IP - {_ipUserFull}. " + retString);
                 return retString;
             }
             var runTrackIoTrackCommand = command as RunTrackIoTrackCommand;
@@ -132,7 +146,7 @@ namespace BCh.Ktc.Nde.MiddleTier
                   runTrackIoTrackCommand.trackName,
                   runTrackIoTrackCommand.stationCode
                   );
-                _logger.Info(retString);
+                _logger.Info($"IP - {_ipUserFull}. " + retString);
                 return retString;
             }
             var trainProcessCommand = command as TrainProcessCommand;
@@ -226,7 +240,7 @@ namespace BCh.Ktc.Nde.MiddleTier
                   bindPlanToTrainCommand.planEvents,
                   bindPlanToTrainCommand.trainIdn
                  );
-                _logger.Info(retString);
+                _logger.Info($"IP - {_ipUserFull}. " + retString);
                 return retString;
             }
             var delPlanWireCommand = command as DelPlanWireCommand;
@@ -236,19 +250,27 @@ namespace BCh.Ktc.Nde.MiddleTier
                 retString = _gidRepo.DelPlanWire(
                   delPlanWireCommand.trainIdn
                  );
-                _logger.Info(retString);
+                _logger.Info($"IP - {_ipUserFull}. " + retString);
                 return retString;
             }
             //установить флаг команды
             var setDefSendFlagCommand = command as SetDefSendFlagCommand;
             if (setDefSendFlagCommand != null)
             {
+                if (string.IsNullOrEmpty(_ipCommandReceiving) || (_ipCommandReceiving == _ipUser))
+                {
+                    retString = _gidRepo.SetDefSendFlag(
+               setDefSendFlagCommand.defIdn,
+               setDefSendFlagCommand.sendFlag,
+               setDefSendFlagCommand.tmDefC
+               );
+                }
+                else
+                {
+                    retString = $"Нет доступа на установку флага для комманды. Для IP - {_ipUser}.";
+                    _logger.Info($"IP - {_ipUserFull}. " + retString);
+                }
                 //
-                retString = _gidRepo.SetDefSendFlag(
-                  setDefSendFlagCommand.defIdn,
-                  setDefSendFlagCommand.sendFlag,
-                  setDefSendFlagCommand.tmDefC
-                 );
                 return retString;
             }
             //
@@ -265,17 +287,23 @@ namespace BCh.Ktc.Nde.MiddleTier
             var cleanPlanCommand = command as CleanPlanCommand;
             if (cleanPlanCommand != null)
             {
+                if (string.IsNullOrEmpty(_ipCommandReceiving) || (_ipCommandReceiving == _ipUser))
+                    retString = _gidRepo.CleanPlan();
+                else
+                    retString = $"Нет доступа на очистку планового графика. Для IP - {_ipUser}.";
+                _logger.Info($"IP - {_ipUserFull}. " + retString);
                 //
-                retString = _gidRepo.CleanPlan();
-                _logger.Info(retString);
                 return retString;
             }
             //записать  подтверждение события в прогнозный график
             var writeEnterExecutedPlanCommand = command as WriteEnterExecutedPlanCommand;
             if (writeEnterExecutedPlanCommand != null)
             {
-                retString = _gidRepo.WriteEnterExecutedPlan(writeEnterExecutedPlanCommand.TrainNumber, writeEnterExecutedPlanCommand.PlanEvId, writeEnterExecutedPlanCommand.Station, writeEnterExecutedPlanCommand.Axis, writeEnterExecutedPlanCommand.NDO);
-                _logger.Info(retString);
+                if (string.IsNullOrEmpty(_ipCommandReceiving) || (_ipCommandReceiving == _ipUser))
+                    retString = _gidRepo.WriteEnterExecutedPlan(writeEnterExecutedPlanCommand.TrainNumber, writeEnterExecutedPlanCommand.PlanEvId, writeEnterExecutedPlanCommand.Station, writeEnterExecutedPlanCommand.Axis, writeEnterExecutedPlanCommand.NDO);
+                else
+                    retString = $"Нет доступа на запись подтверждение события в плановый график. Для IP - {_ipUser}.";
+                _logger.Info($"IP - {_ipUserFull}. " + retString);
                 return retString;
             }
             //не понял!!

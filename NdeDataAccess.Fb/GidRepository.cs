@@ -3884,7 +3884,9 @@ namespace NdeDataAccessFb
             int planIdn = 0;
             string planNum = "";
             if (planEvents.Count == 0) { return new Tuple<int, string>(planIdn, planNum); }
-            planNum = planEvents[0].TrainNum.GetFromString(4);
+            var groupTrain = planEvents.GroupBy(x => x.TrainNum.GetFromString(4));
+            var maxEvent = groupTrain.Max(x => x.Count());
+            planNum = groupTrain.Where(x => x.Count() == maxEvent).Select(x => x.Key).FirstOrDefault(); // planEvents[0].TrainNum.GetFromString(4);
             using (var connection = new FbConnection(_connectionString))
             {
                 connection.Open();

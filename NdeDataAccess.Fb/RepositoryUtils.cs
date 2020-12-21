@@ -87,5 +87,6 @@ namespace NdeDataAccessFb
         {
             return data.Substring(0, (data.Length < lenght) ? data.Length : lenght);
         }
+
     }
 }
