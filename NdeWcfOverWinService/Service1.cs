@@ -19,19 +19,26 @@ namespace NdeWcfOverWinService
       InitializeComponent();
     }
 
-    protected override void OnStart(string[] args){
-      if(_serviceHost != null){
-        _serviceHost.Close();
-      }
-      _serviceHost = new ServiceHost(typeof(NdeService));
-      _serviceHost.Open();
-    }
+        protected override void OnStart(string[] args)
+        {
+            if (_serviceHost != null)
+            {
+                _serviceHost.Close();
+            }
+            _serviceHost = new ServiceHost(typeof(NdeService));
+         
+            _serviceHost.Open();
+            NdeService.Start();
+        }
 
-    protected override void OnStop(){
-      if(_serviceHost != null){
-        _serviceHost.Close();
-        _serviceHost = null;
-      }
-    }
+        protected override void OnStop()
+        {
+            if (_serviceHost != null)
+            {
+                _serviceHost.Close();
+                NdeService.Stop();
+                _serviceHost = null;
+            }
+        }
   }
 }

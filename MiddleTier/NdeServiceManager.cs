@@ -28,13 +28,24 @@ namespace BCh.Ktc.Nde.MiddleTier
             _ipUserFull = ipUserFull;
             _ipCommandReceiving = ipCommandReceiving;
         }
+
+        public static void Start()
+        {
+            _logger.Info($"Запуск службы.");
+        }
+
+        public static void Stop()
+        {
+            _logger.Info($"Остановка службы.");
+        }
+
         //........................................................
         //Последние события по поездам
         public IList<TrainEvent> GetLastTrainEvents()
         {
-            _logger.Info($"Запрос получения последних исполненных событий. Начало !!! IP - {_ipUserFull}.");
+            _logger.Info($"Запрос получения последних исполненных событий. Начало !!! IP - {_ipUserFull}. {GetDiagnosticInfo()}");
             var trains = _gidRepo.GetLastTrainEvents();
-            _logger.Info($"Запрос получения последних исполненных событий. Окончание !!! IP - {_ipUserFull}.");
+            _logger.Info($"Запрос получения последних исполненных событий. Окончание !!! IP - {_ipUserFull}. {GetDiagnosticInfo()}");
             //
             return trains;
         }
@@ -58,9 +69,9 @@ namespace BCh.Ktc.Nde.MiddleTier
         //История справок
         public IList<WorkMessage> GetWorkMessages()
         {
-            _logger.Info($"Запрос получения сообщений Начало !!! IP - {_ipUserFull}.");
+            _logger.Info($"Запрос получения сообщений Начало !!! IP - {_ipUserFull}. {GetDiagnosticInfo()}");
             var messages = _gidRepo.GetWorkMessages();
-            _logger.Info($"Запрос получения сообщений. Окончание !!! IP - {_ipUserFull}.");
+            _logger.Info($"Запрос получения сообщений. Окончание !!! IP - {_ipUserFull}. {GetDiagnosticInfo()}");
             //
             return messages;
         }
@@ -96,6 +107,14 @@ namespace BCh.Ktc.Nde.MiddleTier
         {
             return _gidRepo.GetRequests();
         }
+
+        private string GetDiagnosticInfo()
+        {
+           // var firebirdPro = System.Diagnostics.Process.GetProcesses().Where(x => x.ProcessName.IndexOf("fb_inet_server.exe") != -1).FirstOrDefault();
+           // return $"{System.Diagnostics.Process.GetCurrentProcess().PrivateMemorySize64 / 1000000}MB {((firebirdPro != null)? (firebirdPro.PrivateMemorySize64/1000):0)}MB";
+            return $"{System.Diagnostics.Process.GetCurrentProcess().PrivateMemorySize64 / 1000000}MB";
+        }
+
         //Распознаем внешнюю команду..............................
         public string ExecuteBindingCommand(BindingCommand command)
         {
