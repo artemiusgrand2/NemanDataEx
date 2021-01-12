@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
+using System.Xml.Serialization;
 using NdeDataClasses;
 using NdeDataClasses.Commands;
 using NdeInterfases;
@@ -255,12 +257,13 @@ namespace BCh.Ktc.Nde.MiddleTier
             if (bindPlanToTrainCommand != null)
             {
                 //
-                retString = _gidRepo.BindPlanToTrain(
+                var answer = _gidRepo.BindPlanToTrain(
                   bindPlanToTrainCommand.planEvents,
                   bindPlanToTrainCommand.trainIdn
                  );
-                _logger.Info($"IP - {_ipUserFull}. " + retString);
-                return retString;
+                //
+                _logger.Info($"IP - {_ipUserFull}. " + answer.LogMessage);
+                return SerializerToStr(typeof(BindPlanToTrainAnswer), answer);
             }
             var delPlanWireCommand = command as DelPlanWireCommand;
             if (delPlanWireCommand != null)
@@ -328,5 +331,21 @@ namespace BCh.Ktc.Nde.MiddleTier
             //не понял!!
             throw new NotImplementedException();
         }
+
+        public string SerializerToStr(Type type, object o)
+        {
+            var result = string.Empty;
+            using (var stream = new MemoryStream())
+            {
+                var serializer = new XmlSerializer(type);
+                serializer.Serialize(stream, o);
+                stream.Position = 0;
+                var reader = new StreamReader(stream);
+                result = reader.ReadToEnd();
+            }
+            //
+            return result;
+        }
+
     }
 }

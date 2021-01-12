@@ -22,13 +22,6 @@ D:\work\NemanDataEx\NemanDataEx\NdeInterfses\obj\Debug\NdeInterfases.csproj.Core
 D:\work\NemanDataEx\NemanDataEx\NdeInterfses\obj\Debug\NdeInterfases.csproj.CopyComplete
 D:\work\NemanDataEx\NemanDataEx\NdeInterfses\obj\Debug\NdeInterfses.dll
 D:\work\NemanDataEx\NemanDataEx\NdeInterfses\obj\Debug\NdeInterfses.pdb
-D:\Distributiv\NemanDataEx\NemanDataEx\NdeInterfses\bin\Debug\NdeInterfses.dll
-D:\Distributiv\NemanDataEx\NemanDataEx\NdeInterfses\bin\Debug\NdeInterfses.pdb
-D:\Distributiv\NemanDataEx\NemanDataEx\NdeInterfses\bin\Debug\NdeDataClasses.dll
-D:\Distributiv\NemanDataEx\NemanDataEx\NdeInterfses\bin\Debug\NdeDataClasses.pdb
-D:\Distributiv\NemanDataEx\NemanDataEx\NdeInterfses\obj\Debug\NdeInterfases.csprojResolveAssemblyReference.cache
-D:\Distributiv\NemanDataEx\NemanDataEx\NdeInterfses\obj\Debug\NdeInterfses.dll
-D:\Distributiv\NemanDataEx\NemanDataEx\NdeInterfses\obj\Debug\NdeInterfses.pdb
 d:\Distr\NemanDataEx\NemanDataEx\NdeInterfses\bin\Debug\NdeInterfses.dll
 d:\Distr\NemanDataEx\NemanDataEx\NdeInterfses\bin\Debug\NdeInterfses.pdb
 d:\Distr\NemanDataEx\NemanDataEx\NdeInterfses\bin\Debug\NdeDataClasses.dll
@@ -38,3 +31,10 @@ d:\Distr\NemanDataEx\NemanDataEx\NdeInterfses\obj\Debug\NdeInterfases.csproj.Cor
 d:\Distr\NemanDataEx\NemanDataEx\NdeInterfses\obj\Debug\NdeInterfases.csproj.CopyComplete
 d:\Distr\NemanDataEx\NemanDataEx\NdeInterfses\obj\Debug\NdeInterfses.dll
 d:\Distr\NemanDataEx\NemanDataEx\NdeInterfses\obj\Debug\NdeInterfses.pdb
+D:\Distributiv\NemanDataEx\NemanDataEx\NdeInterfses\bin\Debug\NdeInterfses.dll
+D:\Distributiv\NemanDataEx\NemanDataEx\NdeInterfses\bin\Debug\NdeInterfses.pdb
+D:\Distributiv\NemanDataEx\NemanDataEx\NdeInterfses\bin\Debug\NdeDataClasses.dll
+D:\Distributiv\NemanDataEx\NemanDataEx\NdeInterfses\bin\Debug\NdeDataClasses.pdb
+D:\Distributiv\NemanDataEx\NemanDataEx\NdeInterfses\obj\Debug\NdeInterfases.csprojResolveAssemblyReference.cache
+D:\Distributiv\NemanDataEx\NemanDataEx\NdeInterfses\obj\Debug\NdeInterfses.dll
+D:\Distributiv\NemanDataEx\NemanDataEx\NdeInterfses\obj\Debug\NdeInterfses.pdb

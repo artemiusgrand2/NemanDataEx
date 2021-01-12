@@ -33,7 +33,7 @@ namespace NdeInterfases
     string WriteTrainInput(string stationCode, string trackName, string destName);
     string WriteTrainOutput(string stationCode, string trackName, string destName);
     string TrackPointMessages(IList<TrackPointMessage> trackPointMessages);
-    string BindPlanToTrain(IList<GIDMessage> planEvents, int trainIdn);
+    BaseCommandAnswer BindPlanToTrain(IList<GIDMessage> planEvents, int trainIdn);
     string SetDefSendFlag(int defIdn, int sendFlag,DateTime tmDefC);
     string SetReplys(IList<string> replys);
     string WriteBuh2Data(Buh2DataCommand buh2DataCommand);

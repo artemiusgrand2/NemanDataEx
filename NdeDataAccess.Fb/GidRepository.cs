@@ -3206,11 +3206,12 @@ namespace NdeDataAccessFb
             return retString;
         }
         //Записать плановую нитку и связать ее с исполненной
-        public string BindPlanToTrain(IList<GIDMessage> planEvents, int trainIdn)
+        public BaseCommandAnswer BindPlanToTrain(IList<GIDMessage> planEvents, int trainIdn)
         {
-            var strBuiderResult = new StringBuilder();
+            var result = new BindPlanToTrainAnswer();
+            var logMessage = new StringBuilder();
             var trainBuffer = DeleteRepeatPlanToTrain(planEvents);
-            strBuiderResult.Append(trainBuffer.Item2);
+            logMessage.Append(trainBuffer.Item2);
             if (trainIdn == 0)
             //    DelLinkedPlWire(trainIdn);
             //else
@@ -3242,9 +3243,13 @@ namespace NdeDataAccessFb
                 connection.Close();
             }
             //
-            strBuiderResult.Append($"{planIdn.Item2}. Отдана команда на связывание с исполненной ниткой с id - {trainIdn}.");
-
-            return strBuiderResult.ToString();
+            logMessage.Append($"{planIdn.Item2}. Отдана команда на связывание с исполненной ниткой с id - {trainIdn}.");
+            //
+            result.PlanIdn = planIdn.Item1;
+            result.TrainIdn = trainIdn;
+            result.LogMessage = logMessage.ToString();
+            //
+            return result;
         }
 
         private List<GIDMessage> GetExecutedRecords(string trainNumber)

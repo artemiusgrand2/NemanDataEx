@@ -47,14 +47,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="BCh.Ktc.Nde.MiddleTier.dll" size="16384">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="BCh.Ktc.Nde.MiddleTier.dll" size="16896">
       <assemblyIdentity name="BCh.Ktc.Nde.MiddleTier" version="1.0.0.1" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>AOVpmf5K43e+9UJiYira2G1cTEb7rJYt2ggjHHvw0pg=</dsig:DigestValue>
+        <dsig:DigestValue>H2hGUi+xAn9Ht9Xce4qGQQJtZq4FhnEA+MAb28S9Y+g=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -90,7 +90,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>IHsinOamEnMKt/LhJvlNIF52msDdMJxQsQfduigroe0=</dsig:DigestValue>
+        <dsig:DigestValue>HVBsissQqiOpcvKf88KuZf3QMM6gABDaBsKRiHJ4f+0=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -102,19 +102,19 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>E6hTI++xAToJq+28yAf+xcwwz0CbDa9rxTbOR0IFKfs=</dsig:DigestValue>
+        <dsig:DigestValue>Droq3yeS2WzIb6jFR/YxlYNXnQT66E0yhZqmXogKfm4=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="NdeDataClasses.dll" size="39936">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="NdeDataClasses.dll" size="40448">
       <assemblyIdentity name="NdeDataClasses" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>lt+xq9Vmj025tRNeMouvvLcZAFzJxDkEXh0pwO3ja/4=</dsig:DigestValue>
+        <dsig:DigestValue>zqywl2Pk6fsdpnJFTA2UHEG8lXM4BomicTj6GdmB5pU=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -126,7 +126,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>f7hwfBz3CChygYyoqoH3FDsEfobUems626I8MO7XugY=</dsig:DigestValue>
+        <dsig:DigestValue>bP5FTpD4VAQWQwLNc+99UFp6qC8jnRXjirdrab+zxCg=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -138,7 +138,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>LpVixWgcv5lPwGpRB/eNmWqIrg/LIZKzONA0a0gW9RA=</dsig:DigestValue>
+        <dsig:DigestValue>BsmhgQwBTZjb5pxcq5H4E8DAfSeHaPipt1zGAV4ogVc=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -150,7 +150,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>XXGvQwALBDLZ6IlsKQxhd+cjWnyeIddXu9TfokQV05I=</dsig:DigestValue>
+        <dsig:DigestValue>87DFWyGnvZgy8XnQMipUO4P1KgmnPAeXHPdGHOISFaw=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
