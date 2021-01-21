@@ -6,5 +6,6 @@ namespace NdeDataClasses
     {
         public int PlanIdn { get; set; }
         public int TrainIdn { get; set; }
+        public int DelPlanIdn { get; set; }
     }
 }

@@ -3215,7 +3215,7 @@ namespace NdeDataAccessFb
             if (trainIdn == 0)
             //    DelLinkedPlWire(trainIdn);
             //else
-                trainIdn = trainBuffer.Item1;
+                trainIdn = trainBuffer.Item1.Key;
             //
             var planIdn = WritePlanWire(planEvents);
             //пробуем найти исполненную нитку
@@ -3247,6 +3247,7 @@ namespace NdeDataAccessFb
             //
             result.PlanIdn = planIdn.Item1;
             result.TrainIdn = trainIdn;
+            result.DelPlanIdn = trainBuffer.Item1.Value;
             result.LogMessage = logMessage.ToString();
             //
             return result;
@@ -3300,7 +3301,7 @@ namespace NdeDataAccessFb
 
         private  int FindExecutedId(IList<GIDMessage> planEvents)
         {
-            var executedRecords = GetExecutedRecords(planEvents.First().TrainNum.GetFromString(4));
+            var executedRecords = GetExecutedRecords(GetTrainNumberFromPlanEvents(planEvents));
             foreach (var executed in executedRecords)
             {
                 foreach (var planned in planEvents)
@@ -3326,10 +3327,23 @@ namespace NdeDataAccessFb
         }
 
 
+        private string GetTrainNumberFromPlanEvents(IList<GIDMessage> planEvents)
+        {
+            if(planEvents.Count > 0)
+            {
+                var groupTrain = planEvents.GroupBy(x => x.TrainNum.GetFromString(4));
+                var maxEvent = groupTrain.Max(x => x.Count());
+                return groupTrain.Where(x => x.Count() == maxEvent).Select(x => x.Key).FirstOrDefault();
+            }
+            //
+            return string.Empty;
+        }
+
         //Поиск и удаление повторных плановых ниток схожих с искомой 
-        public  Tuple<int, string>   DeleteRepeatPlanToTrain(IList<GIDMessage> planEvents)
+        public  Tuple<KeyValuePair<int, int>, string>  DeleteRepeatPlanToTrain(IList<GIDMessage> planEvents)
         {
             int executedTrainId = 0;
+            var delPlanId = 0;
             var strBuilderResult = new StringBuilder();
             if (planEvents != null && planEvents.Count > 0)
             {
@@ -3342,7 +3356,7 @@ namespace NdeDataAccessFb
                     //
                     _command85 = new FbCommand(CommandText85);
                     AddParametrsToCommand85(planEvents.Select(x => x.MsStation));
-                    _parTrainNum85.Value = planEvents.First().TrainNum.GetFromString(4);
+                    _parTrainNum85.Value = GetTrainNumberFromPlanEvents(planEvents);
                     //
                     _command86 = new FbCommand(CommandText86);
                     _command86.Parameters.Add(_parTrainIdn86);
@@ -3363,18 +3377,19 @@ namespace NdeDataAccessFb
                                 var eventTime = dbReader1.GetDateTime(3);
                                 var eventStation = dbReader1.GetString(2);
                                 var fl_sost = dbReader1.GetInt16SafelyOr0(0);
-                                var train_Idn = dbReader1.GetInt32(1);
+                                delPlanId = dbReader1.GetInt32(1);
                                 var eventTimePlan = planEvents.Where(x => x.MsStation == eventStation).FirstOrDefault().MsTime;
                                 if(IsTimeDiffWithinDelta(eventTime, eventTimePlan))
                                 {
                                     //удаляем плановую нитку
-                                    _parTrainIdn62.Value = train_Idn;
+                                    _parTrainIdn62.Value = delPlanId;
                                     _command62.ExecuteNonQuery();
-                                    strBuilderResult.Append($"Удалена плановая нитка с Id - {train_Idn}. ");
+
+                                    strBuilderResult.Append($"Удалена плановая нитка с Id - {delPlanId}. ");
                                     //если нитка связана с исполненной находим ее Id
                                     if (fl_sost == 2)
                                     {
-                                        _parTrainIdn86.Value = train_Idn;
+                                        _parTrainIdn86.Value = delPlanId;
                                        var trainIdExecuted =  _command86.ExecuteScalar();
                                         if(trainIdExecuted != null)
                                         {
@@ -3387,7 +3402,6 @@ namespace NdeDataAccessFb
                                         //
                                         strBuilderResult.Append($"Она была связана с исполненной ниткой Id - {trainIdExecuted}. Ссылка обнулена. ");
                                     }
-                                   
                                 }
                             }
                         }
@@ -3402,63 +3416,84 @@ namespace NdeDataAccessFb
                 }
             }
             //
-            return new Tuple<int, string>(executedTrainId, strBuilderResult.ToString());
+            return new Tuple<KeyValuePair<int, int>, string>(new KeyValuePair<int, int>(executedTrainId, delPlanId), strBuilderResult.ToString());
         }
+
         //Установить флаг исполнения задания
-        public string SetDefSendFlag(int defIdn, int sendFlag, DateTime tmDefC)
+        public BaseCommandAnswer SetDefSendFlag(int defIdn, int sendFlag, DateTime tmDefC)
         {
-            string retString = "";
-            using (var connection = new FbConnection(_connectionString))
+            var result = new SetDefSendFlagAnswer();
+            try
             {
-                connection.Open();
-                _command67 = new FbCommand(CommandText67);
-                _command67.Parameters.Add(_parDefIdn67);
-                _command67.Parameters.Add(_parSndFlag67);
-                _command67.Parameters.Add(_parTmDefC67);
-                using (var transaction = connection.BeginTransaction())
+                using (var connection = new FbConnection(_connectionString))
                 {
-                    AssignConnectionAndTransactionToCommand(_command67, connection, transaction);
-                    _parDefIdn67.Value = defIdn;
-                    _parSndFlag67.Value = sendFlag;
-                    _parTmDefC67.Value = tmDefC;
-                    _command67.ExecuteNonQuery();
-                    transaction.Commit();
+                    connection.Open();
+                    _command67 = new FbCommand(CommandText67);
+                    _command67.Parameters.Add(_parDefIdn67);
+                    _command67.Parameters.Add(_parSndFlag67);
+                    _command67.Parameters.Add(_parTmDefC67);
+                    using (var transaction = connection.BeginTransaction())
+                    {
+                        AssignConnectionAndTransactionToCommand(_command67, connection, transaction);
+                        _parDefIdn67.Value = defIdn;
+                        _parSndFlag67.Value = sendFlag;
+                        _parTmDefC67.Value = tmDefC;
+                        _command67.ExecuteNonQuery();
+                        transaction.Commit();
+                    }
+                    _command67.Dispose();
+                    connection.Close();
                 }
-                _command67.Dispose();
-                connection.Close();
+                //
+                result.LogMessage = $"Записан флаг - {sendFlag} для задания с id - {defIdn}";
+                result.IsWrite = true;
             }
-            return retString;
+            catch(Exception error)
+            {
+                result.LogMessage = $"Записан флаг - {sendFlag} для задания с id - {defIdn}"; error.ToString();
+            }
+            //
+            return result;
         }
+
         /// <summary>
         /// очищаем плановый график и команды
         /// </summary>
         /// <returns></returns>
-        public string CleanPlan()
+        public BaseCommandAnswer CleanPlan()
         {
-            string retString = "";
-            using (var connection = new FbConnection(_connectionString))
+            var result = new CleanPlanAnswer();
+            try
             {
-                connection.Open();
-                _command87 = new FbCommand(CommandText87);
-                _command88 = new FbCommand(CommandText88);
-                _command89 = new FbCommand(CommandText89);
-                using (var transaction = connection.BeginTransaction())
+                using (var connection = new FbConnection(_connectionString))
                 {
-                    AssignConnectionAndTransactionToCommand(_command87, connection, transaction);
-                    AssignConnectionAndTransactionToCommand(_command88, connection, transaction);
-                    AssignConnectionAndTransactionToCommand(_command89, connection, transaction);
-                    _command87.ExecuteNonQuery();
-                    _command88.ExecuteNonQuery();
-                    _command89.ExecuteNonQuery();
-                    retString = "Удален плановый график";
-                    transaction.Commit();
+                    connection.Open();
+                    _command87 = new FbCommand(CommandText87);
+                    _command88 = new FbCommand(CommandText88);
+                    _command89 = new FbCommand(CommandText89);
+                    using (var transaction = connection.BeginTransaction())
+                    {
+                        AssignConnectionAndTransactionToCommand(_command87, connection, transaction);
+                        AssignConnectionAndTransactionToCommand(_command88, connection, transaction);
+                        AssignConnectionAndTransactionToCommand(_command89, connection, transaction);
+                        _command87.ExecuteNonQuery();
+                        _command88.ExecuteNonQuery();
+                        _command89.ExecuteNonQuery();
+                        result.LogMessage = "Удален плановый график";
+                        result.IsClean = true;
+                        transaction.Commit();
+                    }
+                    _command87.Dispose();
+                    _command88.Dispose();
+                    _command89.Dispose();
+                    connection.Close();
                 }
-                _command87.Dispose();
-                _command88.Dispose();
-                _command89.Dispose();
-                connection.Close();
             }
-            return retString;
+            catch(Exception error)
+            {
+                result.LogMessage = $"Плановый график не удален. Произошла ошибка - {error.ToString()}";
+            }
+            return result;
         }
 
         //Записать ответы от ИАС
@@ -3889,9 +3924,7 @@ namespace NdeDataAccessFb
             int planIdn = 0;
             string planNum = "";
             if (planEvents.Count == 0) { return new Tuple<int, string>(planIdn, planNum); }
-            var groupTrain = planEvents.GroupBy(x => x.TrainNum.GetFromString(4));
-            var maxEvent = groupTrain.Max(x => x.Count());
-            planNum = groupTrain.Where(x => x.Count() == maxEvent).Select(x => x.Key).FirstOrDefault(); // planEvents[0].TrainNum.GetFromString(4);
+            planNum = GetTrainNumberFromPlanEvents(planEvents); // planEvents[0].TrainNum.GetFromString(4);
             using (var connection = new FbConnection(_connectionString))
             {
                 connection.Open();

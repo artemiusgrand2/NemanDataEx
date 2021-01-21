@@ -82,6 +82,7 @@
   <ItemGroup>
     <Compile Include="ActualTrain.cs" />
     <Compile Include="BindPlanToTrainAnswer.cs" />
+    <Compile Include="CleanPlanAnswer.cs" />
     <Compile Include="ComDefAppendix.cs" />
     <Compile Include="ComDefinition.cs" />
     <Compile Include="Commands\AssignMessForTrainCommand.cs" />
@@ -112,6 +113,7 @@
     <Compile Include="Configuration\EngineConfigurationSection.cs" />
     <Compile Include="GIDMessage.cs" />
     <Compile Include="PlanEvent.cs" />
+    <Compile Include="SetDefSendFlagAnswer.cs" />
     <Compile Include="TrackPointMessage.cs" />
     <Compile Include="TrainEvent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

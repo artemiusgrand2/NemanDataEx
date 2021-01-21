@@ -121,6 +121,10 @@ namespace BCh.Ktc.Nde.MiddleTier
         public string ExecuteBindingCommand(BindingCommand command)
         {
             string retString = "";
+
+            if (!(string.IsNullOrEmpty(_ipCommandReceiving) || (_ipCommandReceiving == _ipUser)))
+                return $"Для пользователя с IP - {_ipUser} нет доступа выполнения комманды.";
+
             //TODO: rewrite this!!!
             var bindTrainTheadsCommand = command as BindTrainThreadsCommnand;
             if (bindTrainTheadsCommand != null)
@@ -263,7 +267,7 @@ namespace BCh.Ktc.Nde.MiddleTier
                  );
                 //
                 _logger.Info($"IP - {_ipUserFull}. " + answer.LogMessage);
-                return SerializerToStr(typeof(BindPlanToTrainAnswer), answer);
+                return answer.LogMessage;// SerializerToStr(typeof(BindPlanToTrainAnswer), answer); //
             }
             var delPlanWireCommand = command as DelPlanWireCommand;
             if (delPlanWireCommand != null)
@@ -279,21 +283,15 @@ namespace BCh.Ktc.Nde.MiddleTier
             var setDefSendFlagCommand = command as SetDefSendFlagCommand;
             if (setDefSendFlagCommand != null)
             {
-                if (string.IsNullOrEmpty(_ipCommandReceiving) || (_ipCommandReceiving == _ipUser))
-                {
-                    retString = _gidRepo.SetDefSendFlag(
+                var answer = _gidRepo.SetDefSendFlag(
                setDefSendFlagCommand.defIdn,
                setDefSendFlagCommand.sendFlag,
                setDefSendFlagCommand.tmDefC
                );
-                }
-                else
-                {
-                    retString = $"Нет доступа на установку флага для комманды. Для IP - {_ipUser}.";
-                    _logger.Info($"IP - {_ipUserFull}. " + retString);
-                }
                 //
-                return retString;
+                _logger.Info($"IP - {_ipUserFull}. " + answer.LogMessage);
+                //
+                return (answer as SetDefSendFlagAnswer).IsWrite.ToString();
             }
             //
             var setReplysCommand = command as SetReplysCommand;
@@ -309,22 +307,16 @@ namespace BCh.Ktc.Nde.MiddleTier
             var cleanPlanCommand = command as CleanPlanCommand;
             if (cleanPlanCommand != null)
             {
-                if (string.IsNullOrEmpty(_ipCommandReceiving) || (_ipCommandReceiving == _ipUser))
-                    retString = _gidRepo.CleanPlan();
-                else
-                    retString = $"Нет доступа на очистку планового графика. Для IP - {_ipUser}.";
-                _logger.Info($"IP - {_ipUserFull}. " + retString);
+                var answer = _gidRepo.CleanPlan();
+                _logger.Info($"IP - {_ipUserFull}. " + answer.LogMessage);
                 //
-                return retString;
+                return (answer as CleanPlanAnswer).IsClean.ToString();
             }
             //записать  подтверждение события в прогнозный график
             var writeEnterExecutedPlanCommand = command as WriteEnterExecutedPlanCommand;
             if (writeEnterExecutedPlanCommand != null)
             {
-                if (string.IsNullOrEmpty(_ipCommandReceiving) || (_ipCommandReceiving == _ipUser))
-                    retString = _gidRepo.WriteEnterExecutedPlan(writeEnterExecutedPlanCommand.TrainNumber, writeEnterExecutedPlanCommand.PlanEvId, writeEnterExecutedPlanCommand.Station, writeEnterExecutedPlanCommand.Axis, writeEnterExecutedPlanCommand.NDO);
-                else
-                    retString = $"Нет доступа на запись подтверждение события в плановый график. Для IP - {_ipUser}.";
+                retString = _gidRepo.WriteEnterExecutedPlan(writeEnterExecutedPlanCommand.TrainNumber, writeEnterExecutedPlanCommand.PlanEvId, writeEnterExecutedPlanCommand.Station, writeEnterExecutedPlanCommand.Axis, writeEnterExecutedPlanCommand.NDO);
                 _logger.Info($"IP - {_ipUserFull}. " + retString);
                 return retString;
             }

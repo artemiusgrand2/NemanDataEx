@@ -34,10 +34,10 @@ namespace NdeInterfases
     string WriteTrainOutput(string stationCode, string trackName, string destName);
     string TrackPointMessages(IList<TrackPointMessage> trackPointMessages);
     BaseCommandAnswer BindPlanToTrain(IList<GIDMessage> planEvents, int trainIdn);
-    string SetDefSendFlag(int defIdn, int sendFlag,DateTime tmDefC);
+    BaseCommandAnswer SetDefSendFlag(int defIdn, int sendFlag,DateTime tmDefC);
     string SetReplys(IList<string> replys);
     string WriteBuh2Data(Buh2DataCommand buh2DataCommand);
-    string CleanPlan();
+    BaseCommandAnswer CleanPlan();
     string WriteEnterExecutedPlan(string trainNumber, int planEvId, string station, string axis, string ndo);
     //Внутренние функции
     void WriteAllSaipsDataToGid();

@@ -33,5 +33,7 @@ namespace NdeDataClasses
     public int      FlColSt   { get; set; }
     [DataMember]
     public int      FlColSp   { get; set; }
-  }
+    [DataMember]
+    public string   TechStop { get; set; }
+    }
 }
