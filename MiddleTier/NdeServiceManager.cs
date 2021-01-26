@@ -45,8 +45,17 @@ namespace BCh.Ktc.Nde.MiddleTier
         //Последние события по поездам
         public IList<TrainEvent> GetLastTrainEvents()
         {
+            IList<TrainEvent> trains = new List<TrainEvent>();
             _logger.Info($"Запрос получения последних исполненных событий. Начало !!! IP - {_ipUserFull}. {GetDiagnosticInfo()}");
-            var trains = _gidRepo.GetLastTrainEvents();
+            try
+            {
+                trains = _gidRepo.GetLastTrainEvents();
+                AnalisPlan(trains);
+            }
+            catch (Exception error)
+            {
+                _logger.Error(error);
+            }
             _logger.Info($"Запрос получения последних исполненных событий. Окончание !!! IP - {_ipUserFull}. {GetDiagnosticInfo()}");
             //
             return trains;
@@ -337,6 +346,37 @@ namespace BCh.Ktc.Nde.MiddleTier
             }
             //
             return result;
+        }
+
+        private void AnalisPlan(IList<TrainEvent> trains)
+        {
+            try
+            {
+                foreach (var train in trains)
+                {
+                    if (train.PlanEvents != null)
+                    {
+                        var index = 0;
+                        foreach (var planEvent in train.PlanEvents)
+                        {
+                            if (index > 0 && planEvent.EventStation != train.PlanEvents[index - 1].EventStation && planEvent.AckEventFlag != 2 && train.PlanEvents[index - 1].AckEventFlag == 2)
+                            {
+                                var deltaPl = (planEvent.EventTimeP - train.PlanEvents[index - 1].EventTimeP).TotalMinutes;
+                                var deltaProg = (planEvent.EventTime - train.PlanEvents[index - 1].EventTime).TotalMinutes;
+                                //
+                                var delta = Math.Abs(deltaProg - deltaPl);
+                                if (delta > 1)
+                                {
+                                    _logger.Info($"IP - {_ipUserFull}. " + $"У поезда {train.TrainNumber} нитки - {train.NormIdn} расхождение перегонного времени хода на {delta} мин., на пергоне - {train.PlanEvents[index - 1].EventStation} - {planEvent.EventStation}. " + 
+                                                 $"В плане {train.PlanEvents[index - 1].EventTimeP.ToString()} - {planEvent.EventTimeP.ToString()} в прогнозе - {train.PlanEvents[index - 1].EventTime.ToString()} - {planEvent.EventTime.ToString()}");
+                                }
+                            }
+                            index++;
+                        }
+                    }
+                }
+            }
+            catch { }
         }
 
     }

@@ -17,6 +17,8 @@ namespace NdeDataClasses
         [DataMember]
         public DateTime EventTimeP { get; set; }
         [DataMember]
+        public DateTime EventTime { get; set; }
+        [DataMember]
         public string EventStation { get; set; }
         [DataMember]
         public int EventType { get; set; }

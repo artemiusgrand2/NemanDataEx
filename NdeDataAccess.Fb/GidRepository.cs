@@ -393,24 +393,50 @@ namespace NdeDataAccessFb
       + " WHERE TG.Ev_Time > @EvTime"
       + " GROUP BY TG.Train_Idn"
       + " ORDER BY TG.Train_Idn";
+
+        //private const string CommandText1 = "SELECT TG.Train_Idn, MAX(TG.Ev_Time)"
+        //+ " FROM TGraphicID TG"
+        //+ " INNER JOIN (Select Train_Idn from TTrainHeaders where Norm_Idn IS NOT NULL AND Fl_Sost IS NULL) TH"
+        //+ " ON TG.Train_Idn = TH.Train_Idn"
+        //+ " WHERE TG.Ev_Time > @EvTime"
+        //+ " GROUP BY TG.Train_Idn"
+        //+ " ORDER BY TG.Train_Idn";
         //Последние ссобытия ниток (поездов)
+        //private const string CommandText2 =
+        //  "SELECT g.Ev_Station, g.Ev_Type, g.Ev_Axis, g.Ev_Dop, g.Ev_NDO, g.Ev_NE_Station"
+        //  + ", h.Train_Num"
+        //  + ", n.Train_Num_P, n.Train_Num_S"
+        //  + ", m.Ms_Idn,m.St_Dest,m.Stt_TimeH,m.Stt_TimeM,m.Machinist,m.Wag_Coun,m.Nt_Weight,m.Gr_Weight"
+        //  + ", h.St_Out_Zone,w.Bad_Code,h.Id_Wr_Prior,h.Id_Wr_Next,h.Norm_Idn,g.RO_Time,g.BZ_Time, m.Train_Attr"
+        //  + " FROM TGraphicID g"
+        //  + " LEFT OUTER JOIN TTrainHeaders h"
+        //  + " ON g.Train_Idn = h.Train_Idn"
+        //  + " LEFT OUTER JOIN TTrainNumbers n"
+        //  + " ON h.Train_Idn = n.Train_Idn AND h.Train_Num = n.Train_Num"
+        //  + " LEFT OUTER JOIN TTrainMessages m"
+        //  + " ON g.Train_Idn = m.Train_Idn"
+        //  + " LEFT OUTER JOIN TWorkMessages w"
+        //  + " ON w.Ms_Idn = m.Ms_Idn"
+        //  + " WHERE g.Train_Idn = @TrainId"
+        //  + " AND g.Ev_Time = @EventTime";
+
         private const string CommandText2 =
-          "SELECT g.Ev_Station, g.Ev_Type, g.Ev_Axis, g.Ev_Dop, g.Ev_NDO, g.Ev_NE_Station"
-          + ", h.Train_Num"
-          + ", n.Train_Num_P, n.Train_Num_S"
-          + ", m.Ms_Idn,m.St_Dest,m.Stt_TimeH,m.Stt_TimeM,m.Machinist,m.Wag_Coun,m.Nt_Weight,m.Gr_Weight"
-          + ", h.St_Out_Zone,w.Bad_Code,h.Id_Wr_Prior,h.Id_Wr_Next,h.Norm_Idn,g.RO_Time,g.BZ_Time, m.Train_Attr"
-          + " FROM TGraphicID g"
-          + " LEFT OUTER JOIN TTrainHeaders h"
-          + " ON g.Train_Idn = h.Train_Idn"
-          + " LEFT OUTER JOIN TTrainNumbers n"
-          + " ON h.Train_Idn = n.Train_Idn AND h.Train_Num = n.Train_Num"
-          + " LEFT OUTER JOIN TTrainMessages m"
-          + " ON g.Train_Idn = m.Train_Idn"
-          + " LEFT OUTER JOIN TWorkMessages w"
-          + " ON w.Ms_Idn = m.Ms_Idn"
-          + " WHERE g.Train_Idn = @TrainId"
-          + " AND g.Ev_Time = @EventTime";
+           "SELECT g.Ev_Station, g.Ev_Type, g.Ev_Axis, g.Ev_Dop, g.Ev_NDO, g.Ev_NE_Station"
+           + ", h.Train_Num"
+           + ", n.Train_Num_P, n.Train_Num_S"
+           + ", m.Ms_Idn,m.St_Dest,m.Stt_TimeH,m.Stt_TimeM,m.Machinist,m.Wag_Coun,m.Nt_Weight,m.Gr_Weight"
+           + ", h.St_Out_Zone,h.Norm_Idn,g.RO_Time,g.BZ_Time, m.Train_Attr"
+           + " FROM TGraphicID g"
+           + " LEFT OUTER JOIN TTrainHeaders h"
+           + " ON g.Train_Idn = h.Train_Idn"
+           + " LEFT OUTER JOIN TTrainNumbers n"
+           + " ON h.Train_Idn = n.Train_Idn AND h.Train_Num = n.Train_Num"
+           + " LEFT OUTER JOIN TTrainMessages m"
+           + " ON g.Train_Idn = m.Train_Idn"
+           //+ " LEFT OUTER JOIN TWorkMessages w"
+           //+ " ON w.Ms_Idn = m.Ms_Idn"
+           + " WHERE g.Train_Idn = @TrainId"
+           + " AND g.Ev_Time = @EventTime";
         //Вектора обработки поездов
         private const string CommandText3 = "SELECT Ms_Type,Station,BO_Name,Train_Num_P,Train_Num,Train_Num_S"
           + ",Ne_Station,Remark,Ev_Time_S,Ev_Time_E"
@@ -813,7 +839,7 @@ namespace NdeDataAccessFb
           + " WHERE Fl_Snd <> 4";
         //
         //Получить расписание плановой нитки
-        private const string CommandText84 = "SELECT  Ev_Type, Ev_Time_P, Ev_Station, Ev_Rec_Idn, EV_CNFM, EV_AXIS, EV_NDO"
+        private const string CommandText84 = "SELECT  Ev_Type, Ev_Time_P, Ev_Time, Ev_Station, Ev_Rec_Idn, EV_CNFM, EV_AXIS, EV_NDO"
           + " FROM TGraphicPl"
           + " WHERE Train_Idn = @TrainIdn"
           + " ORDER by Ev_Rec_Idn";
@@ -1750,24 +1776,24 @@ namespace NdeDataAccessFb
                                         //NtWeight          = dbReader2.GetInt32(15),
                                         //GrWeight          = dbReader2.GetInt32(16),
                                         Marker = dbReader2.GetString(17),
-                                        BadCode = dbReader2.GetString(18),
+                                     //   BadCode = dbReader2.GetString(18),
                                         //IdWrPrior         = dbReader2.GetInt32(19),
                                         //IdWrNext          = dbReader2.GetInt32(20),
                                         //NormIdn           = dbReader2.GetInt32(21),
                                         //RoTime            = dbReader2.GetDateTime(22),
                                         //BzTime            = dbReader2.GetDateTime(23),
-                                        TrainAttr = dbReader2.GetString(24),
+                                        TrainAttr = dbReader2.GetString(21),
                                         EventTime = eventTime
                                     };
                                     trainEvent.RoTime = new DateTime(1899, 12, 30);
                                     trainEvent.BzTime = new DateTime(1899, 12, 30);
-                                    if (!String.IsNullOrEmpty(dbReader2.GetString(22)))
+                                    if (!String.IsNullOrEmpty(dbReader2.GetString(19)))
                                     {
-                                        trainEvent.RoTime = dbReader2.GetDateTime(22);
+                                        trainEvent.RoTime = dbReader2.GetDateTime(19);
                                     }
-                                    if (!String.IsNullOrEmpty(dbReader2.GetString(23)))
+                                    if (!String.IsNullOrEmpty(dbReader2.GetString(20)))
                                     {
-                                        trainEvent.BzTime = dbReader2.GetDateTime(23);
+                                        trainEvent.BzTime = dbReader2.GetDateTime(20);
                                     }
                                     int tmI;
                                     if (!Int32.TryParse(dbReader2.GetString(3), out tmI)) { tmI = -1; }
@@ -1784,7 +1810,7 @@ namespace NdeDataAccessFb
                                     trainEvent.NtWeight = tmI;
                                     if (!Int32.TryParse(dbReader2.GetString(16), out tmI)) { tmI = 0; }
                                     trainEvent.GrWeight = tmI;
-                                    if (!Int32.TryParse(dbReader2.GetString(21), out tmI)) { tmI = 0; }
+                                    if (!Int32.TryParse(dbReader2.GetString(18), out tmI)) { tmI = 0; }
                                     trainEvent.NormIdn = tmI;
                                     //
                                     if (trainEvent.Marker != "")
@@ -1805,11 +1831,11 @@ namespace NdeDataAccessFb
                                         _parStation10.Value = "TE" + trainEvent.EventStation;
                                         _parTrack10.Value = trainEvent.EventAxis;
                                         _parTime10.Value = trainEvent.EventTime + new TimeSpan(0, 0, 1);
-                                        using (var dbReader3 = _command10.ExecuteReader())
-                                        {
-                                            if (!dbReader3.Read()) { trainEvent.DestType = 0; }
-                                            else { trainEvent.DestType = 1; }
-                                        }
+                                        //using (var dbReader3 = _command10.ExecuteReader())
+                                        //{
+                                        //    if (!dbReader3.Read()) { trainEvent.DestType = 0; }
+                                        //    else { trainEvent.DestType = 1; }
+                                        //}
                                     }
                                     else
                                     {
@@ -1828,11 +1854,12 @@ namespace NdeDataAccessFb
                                                 var planEvent = new PlanEvent();
                                                 planEvent.EventType = dbReader4.GetInt16(0);
                                                 planEvent.EventTimeP = dbReader4.GetDateTime(1);
-                                                planEvent.EventStation = dbReader4.GetString(2).Remove(0, 2);
-                                                planEvent.EvIdn = dbReader4.GetInt32(3);
-                                                planEvent.AckEventFlag = dbReader4.GetInt16Safely(4);
-                                                planEvent.Axis = dbReader4.GetString(5);
-                                                planEvent.Ndo = dbReader4.GetString(6);
+                                                planEvent.EventTime = dbReader4.GetDateTime(2);
+                                                planEvent.EventStation = dbReader4.GetString(3).Remove(0, 2);
+                                                planEvent.EvIdn = dbReader4.GetInt32(4);
+                                                planEvent.AckEventFlag = dbReader4.GetInt16Safely(5);
+                                                planEvent.Axis = dbReader4.GetString(6);
+                                                planEvent.Ndo = dbReader4.GetString(7);
                                                 trainEvent.PlanEvents.Add(planEvent);
                                             }
                                         }
