@@ -48,7 +48,7 @@ namespace LocalNdeTest
       var ndeDataGid = new GidRepository(_connectionStringGid,flPlay
                                         , deltaTimeStart, deltaTimeStop
                                         , _connectionStringBuh
-                                        , _buhSections);
+                                        , _buhSections, null);
       var ndeDataMes = new AsoupRepository(_connectionStringMes);
       //var ndeDataMes = new IaspurgpRepository(_connectionStringMes);
       

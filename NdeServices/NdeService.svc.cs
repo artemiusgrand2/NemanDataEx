@@ -55,13 +55,15 @@ namespace NdeServices
             int deltaTimeStop = int.Parse(WebConfigurationManager.AppSettings["deltaTimeStop"]);
 
             BuhSection[] buhSections = NdeConfigurationHelper.RetrieveBuhSectionsFromConfiguration("engine");
-
+            var nodeEsr = NdeConfigurationHelper.ParseNodeEsr(WebConfigurationManager.AppSettings.AllKeys.Contains("nodeEsr") ? WebConfigurationManager.AppSettings["nodeEsr"] : string.Empty);
             //Репозиторий для работы с данными ГИД
             var gidRepo = new GidRepository(conString, flPlay,
-              deltaTimeStart, deltaTimeStop, conStringBuh, buhSections);
+              deltaTimeStart, deltaTimeStop, conStringBuh, buhSections,
+               nodeEsr);
             //
             var iasRepo = new IaspurgpRepository(conStringIas);
-            _serviceManager = new NdeServiceManager(gidRepo, iasRepo, GetIpUserConnect.Address, $"{GetIpUserConnect.Address}:{GetIpUserConnect.Port}", WebConfigurationManager.AppSettings.AllKeys.Contains("IpCommand") ? WebConfigurationManager.AppSettings["IpCommand"] : string.Empty);
+            _serviceManager = new NdeServiceManager(gidRepo, iasRepo, GetIpUserConnect.Address, $"{GetIpUserConnect.Address}:{GetIpUserConnect.Port}",
+                WebConfigurationManager.AppSettings.AllKeys.Contains("IpCommand") ? WebConfigurationManager.AppSettings["IpCommand"] : string.Empty);
         }
 
         public static void Start()

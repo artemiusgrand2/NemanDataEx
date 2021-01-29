@@ -43,13 +43,13 @@
   </dependency>
   <dependency>
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="BCh.Ktc.Nde.MiddleTier.dll" size="18432">
-      <assemblyIdentity name="BCh.Ktc.Nde.MiddleTier" version="1.0.0.3" language="neutral" processorArchitecture="msil" />
+      <assemblyIdentity name="BCh.Ktc.Nde.MiddleTier" version="1.0.0.4" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>GeColSMYiwdNvoYRHQVe5KngBl9427t3HhjE3iomIwo=</dsig:DigestValue>
+        <dsig:DigestValue>QvgJp77brf3N3Fxa0oFzh/PzIN06LLf5v1JVaZ0N9Hw=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -85,7 +85,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>WW2S6gLE2QmdeI89D6XckUmY/gVgyEpTDYZorn7Zszo=</dsig:DigestValue>
+        <dsig:DigestValue>ARrGnuzz09akvvquNkuKHJwQyuANr9UGWHi44pmnOqU=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -97,19 +97,19 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>/ZjL4lufFfW6ro0komH84X0tQJYNv89FMFxDKYLMLJg=</dsig:DigestValue>
+        <dsig:DigestValue>8AejqH60oj9z0J8UYEvvpMMcj8mqSPw5Nc+GXOc+wqY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="NdeDataClasses.dll" size="40960">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="NdeDataClasses.dll" size="41472">
       <assemblyIdentity name="NdeDataClasses" version="1.0.0.2" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>UGiGOOfymTmSER/sttNdkNhElNj74ancfz7hZhIyzis=</dsig:DigestValue>
+        <dsig:DigestValue>Gsh1kJtJ3YlvhM48NNwZnIbRKDyComLh/j3331PgzM8=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -121,7 +121,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>l12PYmiOtZUugM+auVqf9pG2/ZfBNtajyK6MS6dOGxA=</dsig:DigestValue>
+        <dsig:DigestValue>BrpF2jGJcxDfpD0XVz/3fwS+Fx2rbLUl9rfcV62xNjM=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -133,7 +133,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>4Naj9Wi9n/Od4b7ki1Mv5vDmQtx5yt2f9Ic8Tl0gnd4=</dsig:DigestValue>
+        <dsig:DigestValue>6MUJKORc2tXXsU+1x7db5dhgEhG02bUiNTn0ltOvO3Q=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -145,17 +145,17 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>1hDuRTJq4nIUi0k/OuuIQIwZigOu9jr6H+PAFMtLyo4=</dsig:DigestValue>
+        <dsig:DigestValue>Wz9DFuEDmK9stLDd9jvJLzPW8PynILAN3Ffne0pgs20=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="NdeWcfOverWinService.exe.config" size="3347">
+  <file name="NdeWcfOverWinService.exe.config" size="3473">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>FG/V0wUmEhyrq1u8kZmrGTYNbQBqnAIywmUTp51HYXI=</dsig:DigestValue>
+      <dsig:DigestValue>VeUjVWhqFg+j6qd44+e4Ac1lN0jFLEfgPBY9tqC19Oc=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

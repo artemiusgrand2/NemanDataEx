@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Configuration;
 using System.ServiceProcess;
 using BCh.Ktc.Nde.MiddleTier;
@@ -32,7 +33,7 @@ namespace BCh.Ktc.Nde.NdeUpdateService
       var gidRepository   = new GidRepository(ConfigurationManager.ConnectionStrings["gidDb"].ConnectionString,flPlay
                                              , deltaTimeStart, deltaTimeStop
                                              ,ConfigurationManager.ConnectionStrings["buhDb"].ConnectionString
-                                             ,buhSections);
+                                             ,buhSections, NdeConfigurationHelper.ParseNodeEsr(ConfigurationManager.AppSettings.AllKeys.Contains("nodeEsr") ? ConfigurationManager.AppSettings["nodeEsr"] : string.Empty));
       var asoupRepository = new AsoupRepository(ConfigurationManager.ConnectionStrings["mesDb"].ConnectionString);
       //var asoupRepository = new IaspurgpRepository(ConfigurationManager.ConnectionStrings["mesDb"].ConnectionString);
       //Функции для работы со справками по поездам

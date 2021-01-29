@@ -16,6 +16,8 @@ namespace NdeDataAccessFb
     public class GidRepository : IGidRepository
     {
         private readonly TimeSpan _maxBindDelta;
+        private readonly IList<string> _nodeEsr;
+        private readonly string _nodeEsrString;
         //Переменные-----------------------------------------------------------------------------------
         private readonly string _connectionString;
         private readonly bool _flPlay;
@@ -878,7 +880,7 @@ namespace NdeDataAccessFb
         public GidRepository(string connectionString, bool flPlay
                         , int deltaTimeStart, int deltaTimeStop
                         , string connectionStringBuh
-                        , BuhSection[] buhSections)
+                        , BuhSection[] buhSections, IList<string> nodeEsr)
         {
             _connectionString = connectionString;
             _flPlay = flPlay;
@@ -887,6 +889,18 @@ namespace NdeDataAccessFb
             _connectionStringBuh = connectionStringBuh;
             _buhSections = buhSections;
             _maxBindDelta = new TimeSpan(6, 0, 0);
+            _nodeEsr = new List<string>();
+
+            var nodeEsrStrBuilder = new StringBuilder();
+            if (nodeEsr != null)
+            {
+                foreach (var esr in nodeEsr)
+                {
+                    _nodeEsr.Add($"TE{esr}");
+                    nodeEsrStrBuilder.Append($"{_nodeEsr.Last()} ");
+                }
+            }
+            _nodeEsrString = nodeEsrStrBuilder.ToString();
             //Создаем команды (с текстами)
             //_command1  = new FbCommand(CommandText1);
             //_command2  = new FbCommand(CommandText2);
@@ -3372,7 +3386,8 @@ namespace NdeDataAccessFb
             int executedTrainId = 0;
             var delPlanId = 0;
             var strBuilderResult = new StringBuilder();
-            if (planEvents != null && planEvents.Count > 0)
+            IEnumerable<string> stationCompare;
+            if (planEvents != null && (stationCompare = planEvents.Select(x => x.MsStation).Where(x => !_nodeEsr.Contains(x))).Count() > 0)
             {
                 using (var connection = new FbConnection(_connectionString))
                 {
@@ -3382,7 +3397,7 @@ namespace NdeDataAccessFb
                     _command62.Parameters.Add(_parTrainIdn62);
                     //
                     _command85 = new FbCommand(CommandText85);
-                    AddParametrsToCommand85(planEvents.Select(x => x.MsStation));
+                    AddParametrsToCommand85(stationCompare);
                     _parTrainNum85.Value = GetTrainNumberFromPlanEvents(planEvents);
                     //
                     _command86 = new FbCommand(CommandText86);
@@ -3412,10 +3427,10 @@ namespace NdeDataAccessFb
                                     _parTrainIdn62.Value = delPlanId;
                                     _command62.ExecuteNonQuery();
 
-                                    strBuilderResult.Append($"Удалена плановая нитка с Id - {delPlanId}. ");
+                                    strBuilderResult.Append($"Удалена плановая нитка с Id - {delPlanId}. Сравнение ниток кроме ст. {_nodeEsrString}. ");
                                     //если нитка связана с исполненной находим ее Id
-                                    if (fl_sost == 2)
-                                    {
+                                    //if (fl_sost == 2)
+                                    //{
                                         _parTrainIdn86.Value = delPlanId;
                                        var trainIdExecuted =  _command86.ExecuteScalar();
                                         if(trainIdExecuted != null)
@@ -3426,9 +3441,10 @@ namespace NdeDataAccessFb
                                             _parNormIdn63.Value = 0;
                                             _command63.ExecuteNonQuery();
                                         }
-                                        //
-                                        strBuilderResult.Append($"Она была связана с исполненной ниткой Id - {trainIdExecuted}. Ссылка обнулена. ");
-                                    }
+                                    //
+                                   // if (trainIdExecuted != null)
+                                        strBuilderResult.Append($"Она была связана с исполненной ниткой Id - {trainIdExecuted}, fl_sost - {fl_sost}. Ссылка обнулена. ");
+                                   // }
                                 }
                             }
                         }
@@ -4001,46 +4017,46 @@ namespace NdeDataAccessFb
             return  new Tuple<int, string>(planIdn, strBuilder.ToString());
         }
         //Удалить плановую нитку, ранее связанную с указанной исполненной
-        public void DelLinkedPlWire(int trainIdn)
-        {
-            using (var connection = new FbConnection(_connectionString))
-            {
-                connection.Open();
-                _command49 = new FbCommand(CommandText49);
-                _command49.Parameters.Add(_parTrainIdn49);
-                //
-                _command62 = new FbCommand(CommandText62);
-                _command62.Parameters.Add(_parTrainIdn62);
-                //
-                _command63 = new FbCommand(CommandText63);
-                _command63.Parameters.Add(_parTrainIdn63);
-                _command63.Parameters.Add(_parNormIdn63);
-                using (var transaction = connection.BeginTransaction())
-                {
-                    AssignConnectionAndTransactionToCommand(_command49, connection, transaction);
-                    AssignConnectionAndTransactionToCommand(_command62, connection, transaction);
-                    AssignConnectionAndTransactionToCommand(_command63, connection, transaction);
-                    _parTrainIdn49.Value = trainIdn;
-                    using (var dbReader1 = _command49.ExecuteReader())
-                    {
-                        if (dbReader1.Read())
-                        {
-                            var normIdn = dbReader1.GetInt32(1);
-                            _parTrainIdn62.Value = normIdn;
-                            _command62.ExecuteNonQuery();
-                            _parTrainIdn63.Value = trainIdn;
-                            _parNormIdn63.Value = 0;
-                            _command63.ExecuteNonQuery();
-                        }
-                    }
-                    transaction.Commit();
-                }
-                _command49.Dispose();
-                _command62.Dispose();
-                _command63.Dispose();
-                connection.Close();
-            }
-        }
+        //public void DelLinkedPlWire(int trainIdn)
+        //{
+        //    using (var connection = new FbConnection(_connectionString))
+        //    {
+        //        connection.Open();
+        //        _command49 = new FbCommand(CommandText49);
+        //        _command49.Parameters.Add(_parTrainIdn49);
+        //        //
+        //        _command62 = new FbCommand(CommandText62);
+        //        _command62.Parameters.Add(_parTrainIdn62);
+        //        //
+        //        _command63 = new FbCommand(CommandText63);
+        //        _command63.Parameters.Add(_parTrainIdn63);
+        //        _command63.Parameters.Add(_parNormIdn63);
+        //        using (var transaction = connection.BeginTransaction())
+        //        {
+        //            AssignConnectionAndTransactionToCommand(_command49, connection, transaction);
+        //            AssignConnectionAndTransactionToCommand(_command62, connection, transaction);
+        //            AssignConnectionAndTransactionToCommand(_command63, connection, transaction);
+        //            _parTrainIdn49.Value = trainIdn;
+        //            using (var dbReader1 = _command49.ExecuteReader())
+        //            {
+        //                if (dbReader1.Read())
+        //                {
+        //                    var normIdn = dbReader1.GetInt32(1);
+        //                    _parTrainIdn62.Value = normIdn;
+        //                    _command62.ExecuteNonQuery();
+        //                    _parTrainIdn63.Value = trainIdn;
+        //                    _parNormIdn63.Value = 0;
+        //                    _command63.ExecuteNonQuery();
+        //                }
+        //            }
+        //            transaction.Commit();
+        //        }
+        //        _command49.Dispose();
+        //        _command62.Dispose();
+        //        _command63.Dispose();
+        //        connection.Close();
+        //    }
+        //}
 
 
         //Установить флаг для сообщения ГИД

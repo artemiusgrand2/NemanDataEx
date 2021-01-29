@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using System.Collections.Generic;
 using System.Configuration;
 
 namespace NdeDataClasses.Configuration
@@ -21,5 +23,10 @@ namespace NdeDataClasses.Configuration
       }
       return _buhSections;
     }
-  }
+
+        public static IList<string> ParseNodeEsr(string data)
+        {
+            return data.Split(new char[] { ','}, StringSplitOptions.RemoveEmptyEntries).Select(x=>x.Trim()).ToList();
+        }
+    }
 }
