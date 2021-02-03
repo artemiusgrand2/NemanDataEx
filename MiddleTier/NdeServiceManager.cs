@@ -364,7 +364,7 @@ namespace BCh.Ktc.Nde.MiddleTier
                                 var deltaPl = (planEvent.EventTimeP - train.PlanEvents[index - 1].EventTimeP).TotalMinutes;
                                 var deltaProg = (planEvent.EventTime - train.PlanEvents[index - 1].EventTime).TotalMinutes;
                                 //
-                                var delta = Math.Abs(deltaProg - deltaPl);
+                                var delta = Math.Round(Math.Abs(deltaProg - deltaPl), 1);
                                 if (delta > 1)
                                 {
                                     _logger.Info($"IP - {_ipUserFull}. " + $"У поезда {train.TrainNumber} нитки - {train.NormIdn} расхождение перегонного времени хода на {delta} мин., на пергоне - {train.PlanEvents[index - 1].EventStation} - {planEvent.EventStation}. " + 

@@ -846,11 +846,14 @@ namespace NdeDataAccessFb
           + " WHERE Train_Idn = @TrainIdn"
           + " ORDER by Ev_Rec_Idn";
         //Получить события по плановым ниткам
-        private const string CommandText85 = "SELECT TTrainHeaders.Fl_Sost, TGraphicPl.Train_Idn, TGraphicPl.Ev_Station, TGraphicPl.Ev_Time From TGraphicPl, TTrainHeaders,"
-            + " (SELECT  Pl.Train_Idn, MIN(Ev_Rec_Idn) as Ev_Rec_Idn From TGraphicPl Pl,"
-            + " (SELECT Train_Idn, Fl_Sost FROM TTrainHeaders WHERE Train_Num = @TrainNumber AND Norm_Idn IS NULL AND Fl_Sost IS NOT NULL) TH"
-            + " WHERE TH.Train_Idn = Pl.Train_Idn AND Pl.Ev_Station in (@Stations) GROUP BY Pl.Train_Idn) bufferTable"
-            + " WHERE  TGraphicPl.Ev_Rec_Idn = bufferTable.Ev_Rec_Idn And TTrainHeaders.Train_Idn = bufferTable.Train_Idn";
+        //private const string CommandText85 = "SELECT TTrainHeaders.Fl_Sost, TGraphicPl.Train_Idn, TGraphicPl.Ev_Station, TGraphicPl.Ev_Time_P From TGraphicPl, TTrainHeaders,"
+        //    + " (SELECT  Pl.Train_Idn, MIN(Ev_Rec_Idn) as Ev_Rec_Idn From TGraphicPl Pl,"
+        //    + " (SELECT Train_Idn, Fl_Sost FROM TTrainHeaders WHERE Train_Num = @TrainNumber AND Norm_Idn IS NULL AND Fl_Sost IS NOT NULL) TH"
+        //    + " WHERE TH.Train_Idn = Pl.Train_Idn AND Pl.Ev_Station in (@Stations) GROUP BY Pl.Train_Idn) bufferTable"
+        //    + " WHERE  TGraphicPl.Ev_Rec_Idn = bufferTable.Ev_Rec_Idn And TTrainHeaders.Train_Idn = bufferTable.Train_Idn";
+        private const string CommandText85 = " SELECT TH.Fl_Sost, Pl.Train_Idn, Pl.Ev_Station, Pl.Ev_Time_P From TGraphicPl Pl,"
+           + " (SELECT Train_Idn, Fl_Sost FROM TTrainHeaders WHERE Train_Num = @TrainNumber AND Norm_Idn IS NULL AND Fl_Sost IS NOT NULL) TH"
+           + " WHERE TH.Train_Idn = Pl.Train_Idn AND Pl.Ev_Station in (@Stations)";
         //Получить id исполненной нитки по id плановой нитки
         private const string CommandText86 = "SELECT Train_Idn"
         + " FROM TTrainHeaders"
@@ -3414,37 +3417,45 @@ namespace NdeDataAccessFb
                         AssignConnectionAndTransactionToCommand(_command86, connection, transaction);
                         using (var dbReader1 = _command85.ExecuteReader())
                         {
+                            var idsPlanDelete = new List<int>();
                             while (dbReader1.Read())
                             {
-                                var eventTime = dbReader1.GetDateTime(3);
-                                var eventStation = dbReader1.GetString(2);
-                                var fl_sost = dbReader1.GetInt16SafelyOr0(0);
-                                delPlanId = dbReader1.GetInt32(1);
-                                var eventTimePlan = planEvents.Where(x => x.MsStation == eventStation).FirstOrDefault().MsTime;
-                                if(IsTimeDiffWithinDelta(eventTime, eventTimePlan))
+                                var bufferPlanId = dbReader1.GetInt32(1);
+                                if (!idsPlanDelete.Contains(bufferPlanId))
                                 {
-                                    //удаляем плановую нитку
-                                    _parTrainIdn62.Value = delPlanId;
-                                    _command62.ExecuteNonQuery();
-
-                                    strBuilderResult.Append($"Удалена плановая нитка с Id - {delPlanId}. Сравнение ниток кроме ст. {_nodeEsrString}. ");
-                                    //если нитка связана с исполненной находим ее Id
-                                    //if (fl_sost == 2)
-                                    //{
-                                        _parTrainIdn86.Value = delPlanId;
-                                       var trainIdExecuted =  _command86.ExecuteScalar();
-                                        if(trainIdExecuted != null)
-                                        {
-                                            executedTrainId = Convert.ToInt32(trainIdExecuted);
+                                    var eventTime = dbReader1.GetDateTime(3);
+                                    var eventStation = dbReader1.GetString(2);
+                                    var fl_sost = dbReader1.GetInt16SafelyOr0(0);
+                                    var eventTimePlan = planEvents.Where(x => x.MsStation == eventStation).FirstOrDefault().MsTime;
+                                    if (IsTimeDiffWithinDelta(eventTime, eventTimePlan))
+                                    {
+                                        //удаляем плановую нитку
+                                        _parTrainIdn62.Value = bufferPlanId;
+                                        var resDel = _command62.ExecuteNonQuery();
+                                        //if (resDel > 0)
+                                        //{
+                                            delPlanId = bufferPlanId;
+                                            idsPlanDelete.Add(bufferPlanId);
+                                            strBuilderResult.Append($"Удалена плановая нитка с Id - {delPlanId}. Сравнение ниток кроме ст. {_nodeEsrString}. ");
+                                            //если нитка связана с исполненной находим ее Id
+                                            //if (fl_sost == 2)
+                                            //{
+                                            _parTrainIdn86.Value = delPlanId;
+                                            var trainIdExecuted = _command86.ExecuteScalar();
+                                            if (trainIdExecuted != null)
+                                            {
+                                                executedTrainId = Convert.ToInt32(trainIdExecuted);
+                                                //
+                                                _parTrainIdn63.Value = executedTrainId;
+                                                _parNormIdn63.Value = 0;
+                                                _command63.ExecuteNonQuery();
+                                            }
                                             //
-                                            _parTrainIdn63.Value = executedTrainId;
-                                            _parNormIdn63.Value = 0;
-                                            _command63.ExecuteNonQuery();
-                                        }
-                                    //
-                                   // if (trainIdExecuted != null)
-                                        strBuilderResult.Append($"Она была связана с исполненной ниткой Id - {trainIdExecuted}, fl_sost - {fl_sost}. Ссылка обнулена. ");
-                                   // }
+                                            // if (trainIdExecuted != null)
+                                            strBuilderResult.Append($"Она была связана с исполненной ниткой Id - {trainIdExecuted}, fl_sost - {fl_sost}. Ссылка обнулена. ");
+                                            // }
+                                       // }
+                                    }
                                 }
                             }
                         }
