@@ -276,7 +276,7 @@ namespace BCh.Ktc.Nde.MiddleTier
                  );
                 //
                 _logger.Info($"IP - {_ipUserFull}. " + answer.LogMessage);
-                return answer.LogMessage;// SerializerToStr(typeof(BindPlanToTrainAnswer), answer); //
+                return SerializerToStr(typeof(BindPlanToTrainAnswer), answer); // answer.LogMessage;
             }
             var delPlanWireCommand = command as DelPlanWireCommand;
             if (delPlanWireCommand != null)

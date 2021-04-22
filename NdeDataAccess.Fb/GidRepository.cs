@@ -423,23 +423,44 @@ namespace NdeDataAccessFb
         //  + " WHERE g.Train_Idn = @TrainId"
         //  + " AND g.Ev_Time = @EventTime";
 
+
+
+
+        //private const string CommandText2 =
+        //   "SELECT g.Ev_Station, g.Ev_Type, g.Ev_Axis, g.Ev_Dop, g.Ev_NDO, g.Ev_NE_Station"
+        //   + ", h.Train_Num"
+        //   + ", n.Train_Num_P, n.Train_Num_S"
+        //   + ", m.Ms_Idn,m.St_Dest,m.Stt_TimeH,m.Stt_TimeM,m.Machinist,m.Wag_Coun,m.Nt_Weight,m.Gr_Weight"
+        //   + ", h.St_Out_Zone,h.Norm_Idn,g.RO_Time,g.BZ_Time, m.Train_Attr"
+        //   + " FROM TGraphicID g"
+        //   + " LEFT OUTER JOIN TTrainHeaders h"
+        //   + " ON g.Train_Idn = h.Train_Idn"
+        //   + " LEFT OUTER JOIN TTrainNumbers n"
+        //   + " ON h.Train_Idn = n.Train_Idn AND h.Train_Num = n.Train_Num"
+        //   + " LEFT OUTER JOIN TTrainMessages m"
+        //   + " ON g.Train_Idn = m.Train_Idn"
+        //   //+ " LEFT OUTER JOIN TWorkMessages w"
+        //   //+ " ON w.Ms_Idn = m.Ms_Idn"
+        //   + " WHERE g.Train_Idn = @TrainId"
+        //   + " AND g.Ev_Time = @EventTime";
+
         private const string CommandText2 =
-           "SELECT g.Ev_Station, g.Ev_Type, g.Ev_Axis, g.Ev_Dop, g.Ev_NDO, g.Ev_NE_Station"
-           + ", h.Train_Num"
-           + ", n.Train_Num_P, n.Train_Num_S"
-           + ", m.Ms_Idn,m.St_Dest,m.Stt_TimeH,m.Stt_TimeM,m.Machinist,m.Wag_Coun,m.Nt_Weight,m.Gr_Weight"
-           + ", h.St_Out_Zone,h.Norm_Idn,g.RO_Time,g.BZ_Time, m.Train_Attr"
-           + " FROM TGraphicID g"
-           + " LEFT OUTER JOIN TTrainHeaders h"
-           + " ON g.Train_Idn = h.Train_Idn"
-           + " LEFT OUTER JOIN TTrainNumbers n"
-           + " ON h.Train_Idn = n.Train_Idn AND h.Train_Num = n.Train_Num"
-           + " LEFT OUTER JOIN TTrainMessages m"
-           + " ON g.Train_Idn = m.Train_Idn"
-           //+ " LEFT OUTER JOIN TWorkMessages w"
-           //+ " ON w.Ms_Idn = m.Ms_Idn"
-           + " WHERE g.Train_Idn = @TrainId"
-           + " AND g.Ev_Time = @EventTime";
+"SELECT g.Ev_Station, g.Ev_Type, g.Ev_Axis, g.Ev_Dop, g.Ev_NDO, g.Ev_NE_Station"
++ ", h.Train_Num"
++ ", n.Train_Num_P, n.Train_Num_S"
++ ", m.Ms_Idn,m.St_Dest,m.Stt_TimeH,m.Stt_TimeM,m.Machinist,m.Wag_Coun,m.Nt_Weight,m.Gr_Weight"
++ ", h.St_Out_Zone,h.Norm_Idn,g.RO_Time,g.BZ_Time, m.Train_Attr"
++ " FROM TGraphicID g, (SELECT Train_Idn, MAX(Ev_Time) as MaxTime FROM TTrainNumbers GROUP BY Train_Idn) numG"
++ " LEFT OUTER JOIN TTrainHeaders h"
++ " ON g.Train_Idn = h.Train_Idn"
++ " LEFT OUTER JOIN TTrainNumbers n"
++ " ON h.Train_Idn = n.Train_Idn AND numG.Train_Idn = n.Train_Idn  AND n.Ev_Time = numG.MaxTime"
++ " LEFT OUTER JOIN TTrainMessages m"
++ " ON g.Train_Idn = m.Train_Idn"
+//+ " LEFT OUTER JOIN TWorkMessages w"
+//+ " ON w.Ms_Idn = m.Ms_Idn"
++ " WHERE g.Train_Idn = @TrainId"
++ " AND g.Ev_Time = @EventTime";
         //Вектора обработки поездов
         private const string CommandText3 = "SELECT Ms_Type,Station,BO_Name,Train_Num_P,Train_Num,Train_Num_S"
           + ",Ne_Station,Remark,Ev_Time_S,Ev_Time_E"
@@ -2469,7 +2490,7 @@ namespace NdeDataAccessFb
                 _command25.Dispose();
                 connection.Close();
             }
-            return $"Команда по установке номера поезда {trainNumberPrefix} {trainNumber} {trainNumberSuffix} передана в ГИД.";
+            return $"Команда по установке номера поезда {trainNumberPrefix} {trainNumber} {trainNumberSuffix} передана в ГИД. Id исполненной нитки {threadId}. Вводится по станции - {StationCode}";
         }
         //Связать справку с поездом
         /*
