@@ -120,10 +120,12 @@ C:\Неман\NdeWcfOverWinService\NdeWcfOverWinService.exe.manifest
 C:\Неман\NdeWcfOverWinService\NdeWcfOverWinService.application
 C:\Неман\NdeWcfOverWinService\NdeWcfOverWinService.exe
 C:\Неман\NdeWcfOverWinService\NdeWcfOverWinService.pdb
-D:\Distributiv\NemanDataEx\NemanDataEx\NdeWcfOverWinService\obj\x86\Debug\NdeWcfOverWinService.csprojResolveAssemblyReference.cache
 D:\Distributiv\NemanDataEx\NemanDataEx\NdeWcfOverWinService\obj\x86\Debug\NdeWcfOverWinService.ProjectInstaller.resources
 D:\Distributiv\NemanDataEx\NemanDataEx\NdeWcfOverWinService\obj\x86\Debug\NdeWcfOverWinService.csproj.GenerateResource.Cache
 D:\Distributiv\NemanDataEx\NemanDataEx\NdeWcfOverWinService\obj\x86\Debug\NdeWcfOverWinService.exe.manifest
 D:\Distributiv\NemanDataEx\NemanDataEx\NdeWcfOverWinService\obj\x86\Debug\NdeWcfOverWinService.application
 D:\Distributiv\NemanDataEx\NemanDataEx\NdeWcfOverWinService\obj\x86\Debug\NdeWcfOverWinService.exe
 D:\Distributiv\NemanDataEx\NemanDataEx\NdeWcfOverWinService\obj\x86\Debug\NdeWcfOverWinService.pdb
+D:\Distributiv\NemanDataEx\NemanDataEx\NdeWcfOverWinService\obj\x86\Debug\NdeWcfOverWinService.csprojAssemblyReference.cache
+D:\Distributiv\NemanDataEx\NemanDataEx\NdeWcfOverWinService\obj\x86\Debug\NdeWcfOverWinService.csproj.CoreCompileInputs.cache
+D:\Distributiv\NemanDataEx\NemanDataEx\NdeWcfOverWinService\obj\x86\Debug\NdeWcfOverWinService.csproj.CopyComplete

@@ -57,8 +57,10 @@ namespace NdeInterfases
     DateTime GetTimeGIDStop();
     IList<WorkMessage> GetActualMessages();
     int GetTrainByForm(string StForm, string NmSost,string StDest);
+
+        IList<int> GetIdComDefinitionsInWork(IList<int> idsCom);
 //    void ClearGidMessages(DateTime stpTime);
 //    void SrhTrEventsForMessages();
 //    int WritePlanWire(IList<GIDMessage> planEvents);
-  }
+    }
 }

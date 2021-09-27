@@ -95,6 +95,16 @@ namespace BCh.Ktc.Nde.MiddleTier
             //
             return messages;
         }
+
+        public IList<int> GetIdComDefinitionsInWork(IList<int> idsCom)
+        {
+            _logger.Info($"Запрос получения id комманд которые в работе. Начало !!! IP - {_ipUserFull}.");
+            var ids = _gidRepo.GetIdComDefinitionsInWork(idsCom);
+            _logger.Info($"Запрос получения id комманд которые в работе. Окончание !!! IP - {_ipUserFull}.");
+            //
+            return ids;
+        }
+
         //Задания на исполнение команд
         public IList<ComDefinition> GetComDefinitions()
         {

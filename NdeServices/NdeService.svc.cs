@@ -116,5 +116,10 @@ namespace NdeServices
         {
             return _serviceManager.ExecuteBindingCommand(command);
         }
+
+        public  IList<int> GetIdComDefinitionsInWork(IList<int> idsCom)
+        {
+            return _serviceManager.GetIdComDefinitionsInWork(idsCom);
+        }
     }
 }

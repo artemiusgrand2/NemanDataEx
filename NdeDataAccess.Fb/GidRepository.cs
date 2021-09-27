@@ -119,6 +119,7 @@ namespace NdeDataAccessFb
         private readonly FbCommand _command91;
         private readonly FbCommand _command92;
         private FbCommand _command93;
+        private FbCommand _command94;
 
         //Параметры
         private readonly FbParameter _parEvTime1;
@@ -404,7 +405,9 @@ namespace NdeDataAccessFb
         //+ " WHERE TG.Ev_Time > @EvTime"
         //+ " GROUP BY TG.Train_Idn"
         //+ " ORDER BY TG.Train_Idn";
-        //Последние ссобытия ниток (поездов)
+
+
+        //Последние ссобытия ниток (поездов) с расширенным количеством параметров
         //private const string CommandText2 =
         //  "SELECT g.Ev_Station, g.Ev_Type, g.Ev_Axis, g.Ev_Dop, g.Ev_NDO, g.Ev_NE_Station"
         //  + ", h.Train_Num"
@@ -424,43 +427,41 @@ namespace NdeDataAccessFb
         //  + " AND g.Ev_Time = @EventTime";
 
 
-
-
-        //private const string CommandText2 =
-        //   "SELECT g.Ev_Station, g.Ev_Type, g.Ev_Axis, g.Ev_Dop, g.Ev_NDO, g.Ev_NE_Station"
-        //   + ", h.Train_Num"
-        //   + ", n.Train_Num_P, n.Train_Num_S"
-        //   + ", m.Ms_Idn,m.St_Dest,m.Stt_TimeH,m.Stt_TimeM,m.Machinist,m.Wag_Coun,m.Nt_Weight,m.Gr_Weight"
-        //   + ", h.St_Out_Zone,h.Norm_Idn,g.RO_Time,g.BZ_Time, m.Train_Attr"
-        //   + " FROM TGraphicID g"
-        //   + " LEFT OUTER JOIN TTrainHeaders h"
-        //   + " ON g.Train_Idn = h.Train_Idn"
-        //   + " LEFT OUTER JOIN TTrainNumbers n"
-        //   + " ON h.Train_Idn = n.Train_Idn AND h.Train_Num = n.Train_Num"
-        //   + " LEFT OUTER JOIN TTrainMessages m"
-        //   + " ON g.Train_Idn = m.Train_Idn"
-        //   //+ " LEFT OUTER JOIN TWorkMessages w"
-        //   //+ " ON w.Ms_Idn = m.Ms_Idn"
-        //   + " WHERE g.Train_Idn = @TrainId"
-        //   + " AND g.Ev_Time = @EventTime";
-
         private const string CommandText2 =
-"SELECT g.Ev_Station, g.Ev_Type, g.Ev_Axis, g.Ev_Dop, g.Ev_NDO, g.Ev_NE_Station"
-+ ", h.Train_Num"
-+ ", n.Train_Num_P, n.Train_Num_S"
-+ ", m.Ms_Idn,m.St_Dest,m.Stt_TimeH,m.Stt_TimeM,m.Machinist,m.Wag_Coun,m.Nt_Weight,m.Gr_Weight"
-+ ", h.St_Out_Zone,h.Norm_Idn,g.RO_Time,g.BZ_Time, m.Train_Attr"
-+ " FROM TGraphicID g, (SELECT Train_Idn, MAX(Ev_Time) as MaxTime FROM TTrainNumbers GROUP BY Train_Idn) numG"
-+ " LEFT OUTER JOIN TTrainHeaders h"
-+ " ON g.Train_Idn = h.Train_Idn"
-+ " LEFT OUTER JOIN TTrainNumbers n"
-+ " ON h.Train_Idn = n.Train_Idn AND numG.Train_Idn = n.Train_Idn  AND n.Ev_Time = numG.MaxTime"
-+ " LEFT OUTER JOIN TTrainMessages m"
-+ " ON g.Train_Idn = m.Train_Idn"
-//+ " LEFT OUTER JOIN TWorkMessages w"
-//+ " ON w.Ms_Idn = m.Ms_Idn"
-+ " WHERE g.Train_Idn = @TrainId"
-+ " AND g.Ev_Time = @EventTime";
+           "SELECT g.Ev_Station, g.Ev_Type, g.Ev_Axis, g.Ev_Dop, g.Ev_NDO, g.Ev_NE_Station"
+           + ", h.Train_Num"
+           + ", n.Train_Num_P, n.Train_Num_S"
+           + ", m.Ms_Idn,m.St_Dest,m.Stt_TimeH,m.Stt_TimeM,m.Machinist,m.Wag_Coun,m.Nt_Weight,m.Gr_Weight"
+           + ", h.St_Out_Zone,h.Norm_Idn,g.RO_Time,g.BZ_Time, m.Train_Attr"
+           + " FROM TGraphicID g"
+           + " LEFT OUTER JOIN TTrainHeaders h"
+           + " ON g.Train_Idn = h.Train_Idn"
+           + " LEFT OUTER JOIN TTrainNumbers n"
+           + " ON h.Train_Idn = n.Train_Idn AND h.Train_Num = n.Train_Num"
+           + " LEFT OUTER JOIN TTrainMessages m"
+           + " ON g.Train_Idn = m.Train_Idn"
+           //+ " LEFT OUTER JOIN TWorkMessages w"
+           //+ " ON w.Ms_Idn = m.Ms_Idn"
+           + " WHERE g.Train_Idn = @TrainId"
+           + " AND g.Ev_Time = @EventTime";
+
+        //        private const string CommandText2 =
+        //"SELECT g.Ev_Station, g.Ev_Type, g.Ev_Axis, g.Ev_Dop, g.Ev_NDO, g.Ev_NE_Station"
+        //+ ", h.Train_Num"
+        //+ ", n.Train_Num_P, n.Train_Num_S"
+        //+ ", m.Ms_Idn,m.St_Dest,m.Stt_TimeH,m.Stt_TimeM,m.Machinist,m.Wag_Coun,m.Nt_Weight,m.Gr_Weight"
+        //+ ", h.St_Out_Zone,h.Norm_Idn,g.RO_Time,g.BZ_Time, m.Train_Attr"
+        //+ " FROM TGraphicID g, (SELECT Train_Idn, MAX(Ev_Time) as MaxTime FROM TTrainNumbers GROUP BY Train_Idn) numG"
+        //+ " LEFT OUTER JOIN TTrainHeaders h"
+        //+ " ON g.Train_Idn = h.Train_Idn"
+        //+ " LEFT OUTER JOIN TTrainNumbers n"
+        //+ " ON h.Train_Idn = n.Train_Idn AND numG.Train_Idn = n.Train_Idn  AND n.Ev_Time = numG.MaxTime"
+        //+ " LEFT OUTER JOIN TTrainMessages m"
+        //+ " ON g.Train_Idn = m.Train_Idn"
+        ////+ " LEFT OUTER JOIN TWorkMessages w"
+        ////+ " ON w.Ms_Idn = m.Ms_Idn"
+        //+ " WHERE g.Train_Idn = @TrainId"
+        //+ " AND g.Ev_Time = @EventTime";
         //Вектора обработки поездов
         private const string CommandText3 = "SELECT Ms_Type,Station,BO_Name,Train_Num_P,Train_Num,Train_Num_S"
           + ",Ne_Station,Remark,Ev_Time_S,Ev_Time_E"
@@ -901,6 +902,11 @@ namespace NdeDataAccessFb
         private const string CommandText93 = "UPDATE TGraphicPl"
         + " SET EV_Cnfm = 2, EV_AXIS = @EvAxis"
         + " WHERE Ev_Rec_Idn = @EvRecIdn";
+
+        //Получение id комманд
+        private const string CommandText94 = "SELECT Def_Idn"
+          + " FROM TComDefinitions"
+          + " WHERE Def_Idn in (@IDS)";
         //Конструктор----------------------------------------------------------------------------------
         public GidRepository(string connectionString, bool flPlay
                         , int deltaTimeStart, int deltaTimeStop
@@ -5028,6 +5034,35 @@ namespace NdeDataAccessFb
             return retTime;
         }
 
+
+        public IList<int> GetIdComDefinitionsInWork(IList<int> idsCom)
+        {
+            var result = new List<int>();
+            if (idsCom != null && idsCom.Count > 0)
+            {
+                using (var connection = new FbConnection(_connectionString))
+                {
+                    connection.Open();
+                    _command94 = new FbCommand(CommandText94);
+                    _command94.CommandType = CommandType.Text;
+                    _command94.AddArrayParameters("IDS", idsCom);
+                    using (var transaction = connection.BeginTransaction())
+                    {
+                        AssignConnectionAndTransactionToCommand(_command94, connection, transaction);
+                        using (var dbReader1 = _command94.ExecuteReader())
+                        {
+                            while (dbReader1.Read())
+                                result.Add(dbReader1.GetInt32(0));
+                        }
+                    }
+                    _command94.Dispose();
+                    connection.Close();
+                }
+            }
+            //
+            return result;
+        }
+
         public string WriteEnterExecutedPlan(string trainNumber, int planEvId, string station, string axis, string ndo)
         {
             using (var connection = new FbConnection(_connectionString))
@@ -5079,4 +5114,19 @@ namespace NdeDataAccessFb
         }
 
     }
+
+    public static class Extensions
+    {
+        public static void AddArrayParameters<T>(this SqlCommand cmd, string name, IEnumerable<T> values)
+        {
+            name = name.StartsWith("@") ? name : "@" + name;
+            var names = string.Join(", ", values.Select((value, i) => {
+                var paramName = name + i;
+                cmd.Parameters.AddWithValue(paramName, value);
+                return paramName;
+            }));
+            cmd.CommandText = cmd.CommandText.Replace(name, names);
+        }
+    }
+
 }

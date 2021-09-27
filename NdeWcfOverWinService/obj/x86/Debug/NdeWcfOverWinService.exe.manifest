@@ -14,16 +14,16 @@
       </applicationRequestMinimum>
       <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
         <!--
-          UAC Manifest Options
-          If you want to change the Windows User Account Control level replace the 
-          requestedExecutionLevel node with one of the following.
+          Параметры манифеста UAC
+          Если нужно изменить уровень контроля учетных записей Windows, замените 
+          узел requestedExecutionLevel одним из следующих значений.
 
         <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
         <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
         <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
 
-         If you want to utilize File and Registry Virtualization for backward 
-         compatibility then delete the requestedExecutionLevel node.
+        Если нужно использовать виртуализацию файлов и реестра для обратной
+             совместимости, удалите узел requestedExecutionLevel.
     -->
         <requestedExecutionLevel level="asInvoker" uiAccess="false" />
       </requestedPrivileges>
@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="BCh.Ktc.Nde.MiddleTier.dll" size="18432">
-      <assemblyIdentity name="BCh.Ktc.Nde.MiddleTier" version="1.0.0.4" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="BCh.Ktc.Nde.MiddleTier.dll" size="18944">
+      <assemblyIdentity name="BCh.Ktc.Nde.MiddleTier" version="1.0.0.5" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>oCzQBjiKof17uUWqtacgs1kjGH3WRn4Otq92t0nmEFc=</dsig:DigestValue>
+        <dsig:DigestValue>s/cuBjmgp9fEt3lM6KugajIYUWUTLrCS1xgssO477Ig=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -78,14 +78,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="NdeDataAccessFb.dll" size="135680">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="NdeDataAccessFb.dll" size="136192">
       <assemblyIdentity name="NdeDataAccessFb" version="1.0.0.3" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>nTRuzDLI6Ucn+cvUWbBZqQdSAzlgnr8EaUvgBA9QA+8=</dsig:DigestValue>
+        <dsig:DigestValue>WCNF2wNF4VwXOZui3f1vu8gahpctAGM1MbIb/uxnGcU=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -97,7 +97,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>+JtYoTUoBEIyKyoLxi2/v/4RrBH8Elts7WNOLqPhNp4=</dsig:DigestValue>
+        <dsig:DigestValue>HNdc2GMz40tGtH8WlFN6Ch/fMyi6MEx6CzHFsYH7ltI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -109,7 +109,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>cZ2uiDKDm5r6LQIJjYEY8ZrdmxrfL/SJ5TnGJrKFPZ8=</dsig:DigestValue>
+        <dsig:DigestValue>WLwpYxR/tQLCU78MIwcconCtsvkxI4DV5KOGDyOX/LY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -121,7 +121,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>Vmd7tPSKJkUkx0TkDf8wiCcwOm4nwXgKKZG/SkTAsDk=</dsig:DigestValue>
+        <dsig:DigestValue>QQkE3x/bk/eSEfoU2aa5OGAfCGN9hf6RunlNRaWhjsg=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -133,29 +133,29 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>3l6VFOdvlZ3aGJ8bHtakP7wrIwebpdi7BrGDEVUEIJo=</dsig:DigestValue>
+        <dsig:DigestValue>T/Mpech3aY4Gq9p/zF/gzegaxEvqZnN4wFzsOANZx0c=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="NdeWcfOverWinService.exe" size="7576">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="NdeWcfOverWinService.exe" size="6656">
       <assemblyIdentity name="NdeWcfOverWinService" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>x3lZiWPqFjfPnh9BfrLEkR4jC5hKzoxA8C/ZoKLsiNs=</dsig:DigestValue>
+        <dsig:DigestValue>poKkrs3VGg3cdJJvRRVHv5vdMmTWgm7/l9PHATvr4F0=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="NdeWcfOverWinService.exe.config" size="3473">
+  <file name="NdeWcfOverWinService.exe.config" size="4111">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>noT65He2eOZ7UE3ug5NnRUqINw3SJfM2jhzeT/CIpfs=</dsig:DigestValue>
+      <dsig:DigestValue>551JhHArWgyQBdeCqjXzfIUanM4oh8bfl9/e3x+Rpgc=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

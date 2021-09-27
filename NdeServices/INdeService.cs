@@ -27,5 +27,7 @@ namespace NdeServices
         IList<string> GetRequests();
         [OperationContract]
         string ExecuteBindingCommand(BindingCommand command);
+        [OperationContract]
+        IList<int> GetIdComDefinitionsInWork(IList<int> idsCom);
     }
 }

@@ -12,6 +12,8 @@ namespace NdeInterfases
         IList<GIDMessage> GetGIDMessages();
         IList<ComDefinition> GetComDefinitions();
         IList<ComDefinition> GetComDefinitionsNoRun();
+
+        IList<int> GetIdComDefinitionsInWork(IList<int> idsCom);
         IList<string> GetRequests();
         IList<int> GetPlanTrainIdns();
         string ExecuteBindingCommand(BindingCommand command);
