@@ -43,13 +43,13 @@
   </dependency>
   <dependency>
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="BCh.Ktc.Nde.MiddleTier.dll" size="18944">
-      <assemblyIdentity name="BCh.Ktc.Nde.MiddleTier" version="1.0.0.5" language="neutral" processorArchitecture="msil" />
+      <assemblyIdentity name="BCh.Ktc.Nde.MiddleTier" version="1.0.0.6" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>s/cuBjmgp9fEt3lM6KugajIYUWUTLrCS1xgssO477Ig=</dsig:DigestValue>
+        <dsig:DigestValue>vk4JQS1539inUXeJ1Oj6Y+aXxbpdLFo0H2fDiRgSFjQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -78,14 +78,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="NdeDataAccessFb.dll" size="136192">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="NdeDataAccessFb.dll" size="137728">
       <assemblyIdentity name="NdeDataAccessFb" version="1.0.0.3" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>WCNF2wNF4VwXOZui3f1vu8gahpctAGM1MbIb/uxnGcU=</dsig:DigestValue>
+        <dsig:DigestValue>pOTVf8HH9zJm5Yz2iM6An92JMJO/yO2+wxJ7WtR/Qzs=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -97,19 +97,19 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>HNdc2GMz40tGtH8WlFN6Ch/fMyi6MEx6CzHFsYH7ltI=</dsig:DigestValue>
+        <dsig:DigestValue>S5ch33kVBs5ZhkuUBXUuNQuadGrpFgGMr5bfTfiKRzc=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="NdeDataClasses.dll" size="41472">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="NdeDataClasses.dll" size="42496">
       <assemblyIdentity name="NdeDataClasses" version="1.0.0.2" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>WLwpYxR/tQLCU78MIwcconCtsvkxI4DV5KOGDyOX/LY=</dsig:DigestValue>
+        <dsig:DigestValue>3N01AuE4pRxylTegIwpnbkm8uNA7jjXcPIYVigSuxy4=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -121,7 +121,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>QQkE3x/bk/eSEfoU2aa5OGAfCGN9hf6RunlNRaWhjsg=</dsig:DigestValue>
+        <dsig:DigestValue>UkNz74qhwWwslR2aRl6qTjIctE3Hx/jl2sejAzbgI2Y=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -133,7 +133,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>T/Mpech3aY4Gq9p/zF/gzegaxEvqZnN4wFzsOANZx0c=</dsig:DigestValue>
+        <dsig:DigestValue>1Y14mIHOGnJCUitz0AOP/GnI6nG/gMCfIICmdOKP1kI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -145,7 +145,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>poKkrs3VGg3cdJJvRRVHv5vdMmTWgm7/l9PHATvr4F0=</dsig:DigestValue>
+        <dsig:DigestValue>FpBK4ahAje4CHnwc8HV0yzqupxNOakEDarfIYSyzbb8=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

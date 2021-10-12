@@ -339,6 +339,14 @@ namespace BCh.Ktc.Nde.MiddleTier
                 _logger.Info($"IP - {_ipUserFull}. " + retString);
                 return retString;
             }
+            //изменить путь прибытия у удалить команду прибытия
+            var updatePathInPlanDefCommand = command as UpdatePathInPlanDefCommand;
+            if (updatePathInPlanDefCommand != null)
+            {
+                retString = _gidRepo.UpdatePathInPlanDefCommand(updatePathInPlanDefCommand.TrainNumber, updatePathInPlanDefCommand.PlanEvId, updatePathInPlanDefCommand.DefIdn, updatePathInPlanDefCommand.Station, updatePathInPlanDefCommand.Axis, updatePathInPlanDefCommand.NDO);
+                _logger.Info($"IP - {_ipUserFull}. " + retString);
+                return retString;
+            }
             //не понял!!
             throw new NotImplementedException();
         }

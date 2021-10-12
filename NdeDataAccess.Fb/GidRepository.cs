@@ -120,6 +120,8 @@ namespace NdeDataAccessFb
         private readonly FbCommand _command92;
         private FbCommand _command93;
         private FbCommand _command94;
+        private FbCommand _command95;
+        private FbCommand _command96;
 
         //Параметры
         private readonly FbParameter _parEvTime1;
@@ -388,6 +390,9 @@ namespace NdeDataAccessFb
         private readonly FbParameter _parTrainNum91;
         private readonly FbParameter _parEV_REC_IDN93;
         private readonly FbParameter _parEvAxis93;
+        private readonly FbParameter _parEvAxis95;
+        private readonly FbParameter _parEvRecIdn95;
+        private readonly FbParameter _parTaskId96;
         //Тексты запросов для команд
         //Времена последних событий для всех ниток (поездов)
         private const string CommandText1 = "SELECT TG.Train_Idn, MAX(TG.Ev_Time)"
@@ -907,6 +912,18 @@ namespace NdeDataAccessFb
         private const string CommandText94 = "SELECT Def_Idn"
           + " FROM TComDefinitions"
           + " WHERE Def_Idn in (@IDS)";
+
+        //Изменение пути приема
+        private const string CommandText95 = "UPDATE TGraphicPl"
+        + " SET EV_AXIS = @EvAxis"
+        + " WHERE Ev_Rec_Idn = @EvRecIdn";
+
+        //удаление команды по id
+        private const string CommandText96 = "DELETE"
+        + " FROM TCOMDEFINITIONS"
+        + " WHERE DEF_IDN = @taskId";
+
+
         //Конструктор----------------------------------------------------------------------------------
         public GidRepository(string connectionString, bool flPlay
                         , int deltaTimeStart, int deltaTimeStop
@@ -1284,6 +1301,10 @@ namespace NdeDataAccessFb
             _parTrainNum91 = new FbParameter("@TrainNumber", FbDbType.VarChar);
             _parEV_REC_IDN93 = new FbParameter("@EvRecIdn", FbDbType.Integer);
             _parEvAxis93 = new FbParameter("@EvAxis", FbDbType.VarChar);
+
+            _parEvAxis95 = new FbParameter("@EvAxis", FbDbType.VarChar);
+            _parEvRecIdn95 = new FbParameter("@EvRecIdn", FbDbType.Integer);
+            _parTaskId96 = new FbParameter("@taskId", FbDbType.Integer);
             //
             _parRecIdn64.Direction = ParameterDirection.Output;
             //Добавляем параметры в команду(ы)
@@ -5083,6 +5104,36 @@ namespace NdeDataAccessFb
                 connection.Close();
             }
             return $"Для поезда {trainNumber} записано подтверждение в плановый график для события с Id = {planEvId}, станция  - {station}, направление - {ndo}, путь - {axis}.";
+        }
+
+
+        public string UpdatePathInPlanDefCommand(string trainNumber, int planEvId, int defId, string station, string axis, string ndo)
+        {
+            using (var connection = new FbConnection(_connectionString))
+            {
+                connection.Open();
+                _command95 = new FbCommand(CommandText95);
+                _command95.Parameters.Add(_parEvAxis95);
+                _command95.Parameters.Add(_parEvRecIdn95);
+                //
+                _command96 = new FbCommand(CommandText96);
+                _command96.Parameters.Add(_parTaskId96);
+                using (var transaction = connection.BeginTransaction())
+                {
+                    AssignConnectionAndTransactionToCommand(_command95, connection, transaction);
+                    AssignConnectionAndTransactionToCommand(_command96, connection, transaction);
+                    _parEvAxis95.Value = axis;
+                    _parEvRecIdn95.Value = planEvId;
+                    _parTaskId96.Value = defId;
+                    _command95.ExecuteNonQuery();
+                    _command96.ExecuteNonQuery();
+                    transaction.Commit();
+                }
+                _command95.Dispose();
+                _command96.Dispose();
+                connection.Close();
+            }
+            return $"Для поезда {trainNumber} по станции {station} изменен путь на {axis} для событя с id = {planEvId}. Удалена команда с id - {defId}.";
         }
 
         //Ассоциировать команду с соединением и транзакцией
