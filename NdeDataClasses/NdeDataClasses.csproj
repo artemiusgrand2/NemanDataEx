@@ -92,6 +92,7 @@
     <Compile Include="Commands\BindingCommand.cs" />
     <Compile Include="Commands\Buh2DataCommand.cs" />
     <Compile Include="Commands\CleanPlanCommand.cs" />
+    <Compile Include="Commands\DelDefCommands.cs" />
     <Compile Include="Commands\DelPlanWireCommand.cs" />
     <Compile Include="Commands\MarkMessageCommand.cs" />
     <Compile Include="Commands\MarkTrainCommand.cs" />
@@ -112,6 +113,7 @@
     <Compile Include="Configuration\BuhSectionElement.cs" />
     <Compile Include="Configuration\NdeConfigurationHelper.cs" />
     <Compile Include="Configuration\EngineConfigurationSection.cs" />
+    <Compile Include="DelDefCommandsAnswer.cs" />
     <Compile Include="GIDMessage.cs" />
     <Compile Include="PlanEvent.cs" />
     <Compile Include="SetDefSendFlagAnswer.cs" />

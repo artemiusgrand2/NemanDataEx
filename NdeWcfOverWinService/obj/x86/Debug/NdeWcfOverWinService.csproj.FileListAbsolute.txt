@@ -105,7 +105,6 @@ d:\Distr\NemanDataEx\NemanDataEx\NdeWcfOverWinService\bin\Debug\NdeInterfses.pdb
 d:\Distr\NemanDataEx\NemanDataEx\NdeWcfOverWinService\bin\Debug\NdeDataAccessFb.pdb
 d:\Distr\NemanDataEx\NemanDataEx\NdeWcfOverWinService\bin\Debug\NdeDataAccessSql.pdb
 d:\Distr\NemanDataEx\NemanDataEx\NdeWcfOverWinService\bin\Debug\BCh.Ktc.Nde.MiddleTier.pdb
-d:\Distr\NemanDataEx\NemanDataEx\NdeWcfOverWinService\obj\x86\Debug\NdeWcfOverWinService.csprojAssemblyReference.cache
 d:\Distr\NemanDataEx\NemanDataEx\NdeWcfOverWinService\obj\x86\Debug\NdeWcfOverWinService.ProjectInstaller.resources
 d:\Distr\NemanDataEx\NemanDataEx\NdeWcfOverWinService\obj\x86\Debug\NdeWcfOverWinService.csproj.GenerateResource.cache
 d:\Distr\NemanDataEx\NemanDataEx\NdeWcfOverWinService\obj\x86\Debug\NdeWcfOverWinService.csproj.CoreCompileInputs.cache
@@ -129,3 +128,4 @@ D:\Distributiv\NemanDataEx\NemanDataEx\NdeWcfOverWinService\obj\x86\Debug\NdeWcf
 D:\Distributiv\NemanDataEx\NemanDataEx\NdeWcfOverWinService\obj\x86\Debug\NdeWcfOverWinService.csprojAssemblyReference.cache
 D:\Distributiv\NemanDataEx\NemanDataEx\NdeWcfOverWinService\obj\x86\Debug\NdeWcfOverWinService.csproj.CoreCompileInputs.cache
 D:\Distributiv\NemanDataEx\NemanDataEx\NdeWcfOverWinService\obj\x86\Debug\NdeWcfOverWinService.csproj.CopyComplete
+d:\Distr\NemanDataEx\NemanDataEx\NdeWcfOverWinService\obj\x86\Debug\NdeWcfOverWinService.csproj.AssemblyReference.cache

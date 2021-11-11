@@ -26,7 +26,6 @@ d:\Distr\NemanDataEx\NemanDataEx\NdeInterfses\bin\Debug\NdeInterfses.dll
 d:\Distr\NemanDataEx\NemanDataEx\NdeInterfses\bin\Debug\NdeInterfses.pdb
 d:\Distr\NemanDataEx\NemanDataEx\NdeInterfses\bin\Debug\NdeDataClasses.dll
 d:\Distr\NemanDataEx\NemanDataEx\NdeInterfses\bin\Debug\NdeDataClasses.pdb
-d:\Distr\NemanDataEx\NemanDataEx\NdeInterfses\obj\Debug\NdeInterfases.csprojAssemblyReference.cache
 d:\Distr\NemanDataEx\NemanDataEx\NdeInterfses\obj\Debug\NdeInterfases.csproj.CoreCompileInputs.cache
 d:\Distr\NemanDataEx\NemanDataEx\NdeInterfses\obj\Debug\NdeInterfases.csproj.CopyComplete
 d:\Distr\NemanDataEx\NemanDataEx\NdeInterfses\obj\Debug\NdeInterfses.dll
@@ -40,3 +39,4 @@ D:\Distributiv\NemanDataEx\NemanDataEx\NdeInterfses\obj\Debug\NdeInterfses.pdb
 D:\Distributiv\NemanDataEx\NemanDataEx\NdeInterfses\obj\Debug\NdeInterfases.csprojAssemblyReference.cache
 D:\Distributiv\NemanDataEx\NemanDataEx\NdeInterfses\obj\Debug\NdeInterfases.csproj.CoreCompileInputs.cache
 D:\Distributiv\NemanDataEx\NemanDataEx\NdeInterfses\obj\Debug\NdeInterfases.csproj.CopyComplete
+d:\Distr\NemanDataEx\NemanDataEx\NdeInterfses\obj\Debug\NdeInterfases.csproj.AssemblyReference.cache

@@ -56,7 +56,6 @@ d:\Distr\NemanDataEx\NemanDataEx\NdeServices\bin\NdeDataAccessSql.pdb
 d:\Distr\NemanDataEx\NemanDataEx\NdeServices\bin\NdeDataClasses.pdb
 d:\Distr\NemanDataEx\NemanDataEx\NdeServices\bin\NdeInterfses.pdb
 d:\Distr\NemanDataEx\NemanDataEx\NdeServices\bin\log4net.xml
-d:\Distr\NemanDataEx\NemanDataEx\NdeServices\obj\Debug\NdeServices.csprojAssemblyReference.cache
 d:\Distr\NemanDataEx\NemanDataEx\NdeServices\obj\Debug\NdeServices.csproj.CoreCompileInputs.cache
 d:\Distr\NemanDataEx\NemanDataEx\NdeServices\obj\Debug\NdeServices.csproj.CopyComplete
 d:\Distr\NemanDataEx\NemanDataEx\NdeServices\obj\Debug\NdeServices.dll
@@ -83,3 +82,4 @@ D:\Distributiv\NemanDataEx\NemanDataEx\NdeServices\obj\Debug\NdeServices.pdb
 D:\Distributiv\NemanDataEx\NemanDataEx\NdeServices\obj\Debug\NdeServices.csprojAssemblyReference.cache
 D:\Distributiv\NemanDataEx\NemanDataEx\NdeServices\obj\Debug\NdeServices.csproj.CoreCompileInputs.cache
 D:\Distributiv\NemanDataEx\NemanDataEx\NdeServices\obj\Debug\NdeServices.csproj.CopyComplete
+d:\Distr\NemanDataEx\NemanDataEx\NdeServices\obj\Debug\NdeServices.csproj.AssemblyReference.cache

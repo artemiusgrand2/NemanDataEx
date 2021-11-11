@@ -347,6 +347,14 @@ namespace BCh.Ktc.Nde.MiddleTier
                 _logger.Info($"IP - {_ipUserFull}. " + retString);
                 return retString;
             }
+            //удалить команды
+            var delDefCommands = command as DelDefCommands;
+            if (delDefCommands != null)
+            {
+                var answer = _gidRepo.DelDefCommands();
+                _logger.Info($"IP - {_ipUserFull}. " + answer.LogMessage);
+                return (answer as DelDefCommandsAnswer).IsDelete.ToString(); ;
+            }
             //не понял!!
             throw new NotImplementedException();
         }

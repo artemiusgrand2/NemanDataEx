@@ -38,7 +38,6 @@ d:\Distr\NemanDataEx\NemanDataEx\NdeDataAccess.Fb\bin\Debug\NdeDataClasses.dll
 d:\Distr\NemanDataEx\NemanDataEx\NdeDataAccess.Fb\bin\Debug\NdeInterfses.dll
 d:\Distr\NemanDataEx\NemanDataEx\NdeDataAccess.Fb\bin\Debug\NdeDataClasses.pdb
 d:\Distr\NemanDataEx\NemanDataEx\NdeDataAccess.Fb\bin\Debug\NdeInterfses.pdb
-d:\Distr\NemanDataEx\NemanDataEx\NdeDataAccess.Fb\obj\Debug\NdeDataAccessFb.csprojAssemblyReference.cache
 d:\Distr\NemanDataEx\NemanDataEx\NdeDataAccess.Fb\obj\Debug\NdeDataAccessFb.csproj.CoreCompileInputs.cache
 d:\Distr\NemanDataEx\NemanDataEx\NdeDataAccess.Fb\obj\Debug\NdeDataAccessFb.csproj.CopyComplete
 d:\Distr\NemanDataEx\NemanDataEx\NdeDataAccess.Fb\obj\Debug\NdeDataAccessFb.dll
@@ -55,3 +54,4 @@ D:\Distributiv\NemanDataEx\NemanDataEx\NdeDataAccess.Fb\obj\Debug\NdeDataAccessF
 D:\Distributiv\NemanDataEx\NemanDataEx\NdeDataAccess.Fb\obj\Debug\NdeDataAccessFb.csprojAssemblyReference.cache
 D:\Distributiv\NemanDataEx\NemanDataEx\NdeDataAccess.Fb\obj\Debug\NdeDataAccessFb.csproj.CoreCompileInputs.cache
 D:\Distributiv\NemanDataEx\NemanDataEx\NdeDataAccess.Fb\obj\Debug\NdeDataAccessFb.csproj.CopyComplete
+d:\Distr\NemanDataEx\NemanDataEx\NdeDataAccess.Fb\obj\Debug\NdeDataAccessFb.csproj.AssemblyReference.cache

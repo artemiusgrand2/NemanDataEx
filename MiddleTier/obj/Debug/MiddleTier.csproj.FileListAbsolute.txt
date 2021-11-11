@@ -32,7 +32,6 @@ d:\Distr\NemanDataEx\NemanDataEx\MiddleTier\bin\Debug\NdeInterfses.dll
 d:\Distr\NemanDataEx\NemanDataEx\MiddleTier\bin\Debug\NdeDataClasses.pdb
 d:\Distr\NemanDataEx\NemanDataEx\MiddleTier\bin\Debug\NdeInterfses.pdb
 d:\Distr\NemanDataEx\NemanDataEx\MiddleTier\bin\Debug\log4net.xml
-d:\Distr\NemanDataEx\NemanDataEx\MiddleTier\obj\Debug\MiddleTier.csprojAssemblyReference.cache
 d:\Distr\NemanDataEx\NemanDataEx\MiddleTier\obj\Debug\MiddleTier.csproj.CoreCompileInputs.cache
 d:\Distr\NemanDataEx\NemanDataEx\MiddleTier\obj\Debug\MiddleTier.csproj.CopyComplete
 d:\Distr\NemanDataEx\NemanDataEx\MiddleTier\obj\Debug\BCh.Ktc.Nde.MiddleTier.dll
@@ -51,3 +50,4 @@ D:\Distributiv\NemanDataEx\NemanDataEx\MiddleTier\obj\Debug\BCh.Ktc.Nde.MiddleTi
 D:\Distributiv\NemanDataEx\NemanDataEx\MiddleTier\obj\Debug\MiddleTier.csprojAssemblyReference.cache
 D:\Distributiv\NemanDataEx\NemanDataEx\MiddleTier\obj\Debug\MiddleTier.csproj.CoreCompileInputs.cache
 D:\Distributiv\NemanDataEx\NemanDataEx\MiddleTier\obj\Debug\MiddleTier.csproj.CopyComplete
+d:\Distr\NemanDataEx\NemanDataEx\MiddleTier\obj\Debug\MiddleTier.csproj.AssemblyReference.cache

@@ -23,7 +23,6 @@ d:\Distr\NemanDataEx\NemanDataEx\NdeDataAccessSql\bin\Debug\NdeDataClasses.dll
 d:\Distr\NemanDataEx\NemanDataEx\NdeDataAccessSql\bin\Debug\NdeInterfses.dll
 d:\Distr\NemanDataEx\NemanDataEx\NdeDataAccessSql\bin\Debug\NdeDataClasses.pdb
 d:\Distr\NemanDataEx\NemanDataEx\NdeDataAccessSql\bin\Debug\NdeInterfses.pdb
-d:\Distr\NemanDataEx\NemanDataEx\NdeDataAccessSql\obj\Debug\NdeDataAccessSql.csprojAssemblyReference.cache
 d:\Distr\NemanDataEx\NemanDataEx\NdeDataAccessSql\obj\Debug\NdeDataAccessSql.csproj.CoreCompileInputs.cache
 d:\Distr\NemanDataEx\NemanDataEx\NdeDataAccessSql\obj\Debug\NdeDataAccessSql.csproj.CopyComplete
 d:\Distr\NemanDataEx\NemanDataEx\NdeDataAccessSql\obj\Debug\NdeDataAccessSql.dll
@@ -39,3 +38,4 @@ D:\Distributiv\NemanDataEx\NemanDataEx\NdeDataAccessSql\obj\Debug\NdeDataAccessS
 D:\Distributiv\NemanDataEx\NemanDataEx\NdeDataAccessSql\obj\Debug\NdeDataAccessSql.csprojAssemblyReference.cache
 D:\Distributiv\NemanDataEx\NemanDataEx\NdeDataAccessSql\obj\Debug\NdeDataAccessSql.csproj.CoreCompileInputs.cache
 D:\Distributiv\NemanDataEx\NemanDataEx\NdeDataAccessSql\obj\Debug\NdeDataAccessSql.csproj.CopyComplete
+d:\Distr\NemanDataEx\NemanDataEx\NdeDataAccessSql\obj\Debug\NdeDataAccessSql.csproj.AssemblyReference.cache

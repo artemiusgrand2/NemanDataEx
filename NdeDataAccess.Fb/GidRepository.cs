@@ -122,6 +122,7 @@ namespace NdeDataAccessFb
         private FbCommand _command94;
         private FbCommand _command95;
         private FbCommand _command96;
+        private FbCommand _command97;
 
         //Параметры
         private readonly FbParameter _parEvTime1;
@@ -923,6 +924,9 @@ namespace NdeDataAccessFb
         + " FROM TCOMDEFINITIONS"
         + " WHERE DEF_IDN = @taskId";
 
+        private const string CommandText97 = "DELETE"
+        + " FROM TCOMDEFINITIONS";
+        //+ " WHERE DEF_IDN in (@IDS)";
 
         //Конструктор----------------------------------------------------------------------------------
         public GidRepository(string connectionString, bool flPlay
@@ -5134,6 +5138,36 @@ namespace NdeDataAccessFb
                 connection.Close();
             }
             return $"Для поезда {trainNumber} по станции {station} изменен путь на {axis} для событя с id = {planEvId}. Удалена команда с id - {defId}.";
+        }
+
+        public BaseCommandAnswer DelDefCommands()
+        {
+            var result = new DelDefCommandsAnswer();
+            try
+            {
+                using (var connection = new FbConnection(_connectionString))
+                {
+                    connection.Open();
+                    _command97 = new FbCommand(CommandText97);
+                    //
+                    using (var transaction = connection.BeginTransaction())
+                    {
+                        AssignConnectionAndTransactionToCommand(_command97, connection, transaction);
+                        _command97.ExecuteNonQuery();
+                        result.IsDelete = true;
+                        result.LogMessage = "Удалены все команды";
+                        transaction.Commit();
+                    }
+                    _command97.Dispose();
+                    connection.Close();
+                }
+            }
+            catch(Exception error)
+            {
+                result.LogMessage = $"Команды не удалены. Произошла ошибка - {error.ToString()}";
+            }
+            //
+            return result;
         }
 
         //Ассоциировать команду с соединением и транзакцией
