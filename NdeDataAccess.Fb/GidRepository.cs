@@ -15,7 +15,7 @@ namespace NdeDataAccessFb
     //Реализация функций, определяемых интерфейсом IGidRepository
     public class GidRepository : IGidRepository
     {
-        private readonly TimeSpan _maxBindDelta;
+        public TimeSpan MaxBindDelta { get; private set; }
         private readonly IList<string> _nodeEsr;
         private readonly string _nodeEsrString;
         //Переменные-----------------------------------------------------------------------------------
@@ -932,7 +932,7 @@ namespace NdeDataAccessFb
         public GidRepository(string connectionString, bool flPlay
                         , int deltaTimeStart, int deltaTimeStop
                         , string connectionStringBuh
-                        , BuhSection[] buhSections, IList<string> nodeEsr)
+                        , BuhSection[] buhSections, IList<string> nodeEsr, int maxMinuteBind = 60)
         {
             _connectionString = connectionString;
             _flPlay = flPlay;
@@ -940,7 +940,7 @@ namespace NdeDataAccessFb
             _deltaTimeStop = deltaTimeStop;
             _connectionStringBuh = connectionStringBuh;
             _buhSections = buhSections;
-            _maxBindDelta = new TimeSpan(6, 0, 0);
+            MaxBindDelta = new TimeSpan(0, maxMinuteBind, 0);
             _nodeEsr = new List<string>();
 
             var nodeEsrStrBuilder = new StringBuilder();
@@ -3421,7 +3421,7 @@ namespace NdeDataAccessFb
         private bool IsTimeDiffWithinDelta(DateTime time1, DateTime time2)
         {
             TimeSpan delta = (time1 > time2) ? time1 - time2 : time2 - time1;
-            return delta <= _maxBindDelta;
+            return delta <= MaxBindDelta;
         }
 
 

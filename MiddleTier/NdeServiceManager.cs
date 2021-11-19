@@ -29,6 +29,7 @@ namespace BCh.Ktc.Nde.MiddleTier
             _ipUser = ipUser;
             _ipUserFull = ipUserFull;
             _ipCommandReceiving = ipCommandReceiving;
+            _logger.Info($"Интервал связывания плановой и исполненной ниток - {_gidRepo.MaxBindDelta.ToString()}");
         }
 
         public static void Start()

@@ -56,10 +56,12 @@ namespace NdeServices
 
             BuhSection[] buhSections = NdeConfigurationHelper.RetrieveBuhSectionsFromConfiguration("engine");
             var nodeEsr = NdeConfigurationHelper.ParseNodeEsr(WebConfigurationManager.AppSettings.AllKeys.Contains("nodeEsr") ? WebConfigurationManager.AppSettings["nodeEsr"] : string.Empty);
+            var maxMinuteBind = WebConfigurationManager.AppSettings.AllKeys.Contains("maxMinuteBind") ? int.Parse(WebConfigurationManager.AppSettings["maxMinuteBind"]) : 60;
+        
             //Репозиторий для работы с данными ГИД
             var gidRepo = new GidRepository(conString, flPlay,
               deltaTimeStart, deltaTimeStop, conStringBuh, buhSections,
-               nodeEsr);
+               nodeEsr, maxMinuteBind);
             //
             var iasRepo = new IaspurgpRepository(conStringIas);
             _serviceManager = new NdeServiceManager(gidRepo, iasRepo, GetIpUserConnect.Address, $"{GetIpUserConnect.Address}:{GetIpUserConnect.Port}",
