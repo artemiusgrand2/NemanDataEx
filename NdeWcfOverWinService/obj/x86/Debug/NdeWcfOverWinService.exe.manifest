@@ -49,7 +49,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>z8Cm0n5aTpQ3PjFKHyuCOFe7Ec0zh50rf6mWuTax1Jc=</dsig:DigestValue>
+        <dsig:DigestValue>nlWmLN20obuvGV14fpNqXi+1UyeaL+Nk23yynLLkZ54=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -78,14 +78,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="NdeDataAccessFb.dll" size="138240">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="NdeDataAccessFb.dll" size="138752">
       <assemblyIdentity name="NdeDataAccessFb" version="1.0.0.3" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>Sscj2G5ofjqnWBviK2/v1N7Ah/xXyoDv38Qbv3MJdKE=</dsig:DigestValue>
+        <dsig:DigestValue>gHrAVryfAN6AFG1RcCjUsZMke3EMUjKrWk6M8NouTWM=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -97,19 +97,19 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>zi5JMz/TPQnvUDSqqv27izaCRvNPK7I8j3S+bZ4pl2c=</dsig:DigestValue>
+        <dsig:DigestValue>+UBsVWsPnrjZc44Thl9PG5ibkr+WMKs+m+0Bw7oiM1U=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="NdeDataClasses.dll" size="42496">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="NdeDataClasses.dll" size="43008">
       <assemblyIdentity name="NdeDataClasses" version="1.0.0.2" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>WldC04RM7IzwROY7VfIseFi41b8UVxydzLfIWJ8xYmM=</dsig:DigestValue>
+        <dsig:DigestValue>/yeUt0K+L1Xvo2rLRx4lbHBqVBhyKnzzNjvA0jmI1Ik=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -121,7 +121,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>JHG85qCz47SGD/LGl4uBblsS+3SD1j1wswiGKyPLS84=</dsig:DigestValue>
+        <dsig:DigestValue>Hv67aI8TOG2gtvhGL6XGnVGlf22Nn0S+3Bq3NsRvy1k=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -133,7 +133,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>0S+ntNVXtb9VI/Cx0b88y5tFOq6bJ6L/oPO8f1A09KA=</dsig:DigestValue>
+        <dsig:DigestValue>hO+yO/FXtjpmLXd+N2h9t9cPOxo5ObSW1L7e/MnHzTQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -145,7 +145,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>zfVnI172L7MEtq8aIDTqLb0ByTCPje6pMxPb7HFhgno=</dsig:DigestValue>
+        <dsig:DigestValue>X8Va9PkUQAQKHX+WnR9Dza36e6MnGYAmgFp2sJ16s2g=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

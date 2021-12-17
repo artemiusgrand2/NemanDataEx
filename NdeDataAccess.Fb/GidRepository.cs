@@ -349,6 +349,8 @@ namespace NdeDataAccessFb
         private readonly FbParameter _parEvAxis66;
         private readonly FbParameter _parEvNDO66;
         private readonly FbParameter _parCollSt66;
+        private readonly FbParameter _parTechStop66;
+
         private readonly FbParameter _parNeStation66;
         private readonly FbParameter _parDefIdn67;
         private readonly FbParameter _parSndFlag67;
@@ -870,7 +872,7 @@ namespace NdeDataAccessFb
           + " WHERE Fl_Snd <> 4";
         //
         //Получить расписание плановой нитки
-        private const string CommandText84 = "SELECT  Ev_Type, Ev_Time_P, Ev_Time, Ev_Station, Ev_Rec_Idn, EV_CNFM, EV_AXIS, EV_NDO"
+        private const string CommandText84 = "SELECT  Ev_Type, Ev_Time_P, Ev_Time, Ev_Station, Ev_Rec_Idn, EV_CNFM, EV_AXIS, EV_NDO, TECHSTOP"
           + " FROM TGraphicPl"
           + " WHERE Train_Idn = @TrainIdn"
           + " ORDER by Ev_Rec_Idn";
@@ -1265,6 +1267,7 @@ namespace NdeDataAccessFb
             _parEvNDO66 = new FbParameter("@EvNDO", FbDbType.VarChar);
             _parCollSt66 = new FbParameter("@Coll_St", FbDbType.Integer);
             _parNeStation66 = new FbParameter("@NEStation", FbDbType.VarChar);
+            _parTechStop66 = new FbParameter("@TechStop", FbDbType.VarChar);
             _parDefIdn67 = new FbParameter("@DefIdn", FbDbType.Integer);
             _parSndFlag67 = new FbParameter("@FlSnd", FbDbType.Integer);
             _parTmDefC67 = new FbParameter("@TmDefC", FbDbType.TimeStamp);
@@ -1745,6 +1748,7 @@ namespace NdeDataAccessFb
             _command66.Parameters.Add(_parEvNDO66);
             _command66.Parameters.Add(_parCollSt66);
             _command66.Parameters.Add(_parNeStation66);
+            _command66.Parameters.Add(_parTechStop66);
         }
 
         private void AddParametrsToCommand80()
@@ -1931,6 +1935,7 @@ namespace NdeDataAccessFb
                                                 planEvent.AckEventFlag = dbReader4.GetInt16Safely(5);
                                                 planEvent.Axis = dbReader4.GetString(6);
                                                 planEvent.Ndo = dbReader4.GetString(7);
+                                                planEvent.TechStop = dbReader4.GetString(8);
                                                 trainEvent.PlanEvents.Add(planEvent);
                                             }
                                         }
@@ -4065,6 +4070,7 @@ namespace NdeDataAccessFb
                         _parEvNDO66.Value = planEvent.MsFlags;
                         _parCollSt66.Value = planEvent.FlColSt;
                         _parNeStation66.Value = planEvent.NeStation;
+                        _parTechStop66.Value = planEvent.TechStop;
                         _command66.ExecuteNonQuery();
                     }
                     transaction.Commit();

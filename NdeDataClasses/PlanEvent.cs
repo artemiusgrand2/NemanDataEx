@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
 
 namespace NdeDataClasses
 {
@@ -28,5 +25,8 @@ namespace NdeDataClasses
         public string Ndo { get; set; }
         [DataMember]
         public int AckEventFlag { get; set; }
+
+        [DataMember]
+        public string TechStop { get; set; }
     }
 }
