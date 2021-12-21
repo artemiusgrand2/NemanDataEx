@@ -780,8 +780,8 @@ namespace NdeDataAccessFb
           + " WHERE Train_Idn = @TrainIdn";
         //Запись события плановой нитки
         private const string CommandText66 = "Insert Into TGraphicPl"
-          + " (Train_Idn,Ev_Type,Ev_Time,Ev_Time_P,Ev_Station,Ev_Axis,Ev_NDO,Coll_St,Ev_NE_Station)"
-          + " Values(@TrainIdn,@EvType,@EvTime,@EvTimeP,@EvStation,@EvAxis,@EvNDO,@Coll_St,@NEStation)";
+          + " (Train_Idn,Ev_Type,Ev_Time,Ev_Time_P,Ev_Station,Ev_Axis,Ev_NDO,Coll_St,Ev_NE_Station,TECHSTOP)"
+          + " Values(@TrainIdn,@EvType,@EvTime,@EvTimeP,@EvStation,@EvAxis,@EvNDO,@Coll_St,@NEStation, @TechStop)";
         //Записать флаг передачи задания на исполнение
         private const string CommandText67 = "UPDATE TComDefinitions"
           + " SET Fl_Snd = @FlSnd,Tm_Def_Creat = @TmDefC"
@@ -872,8 +872,9 @@ namespace NdeDataAccessFb
           + " WHERE Fl_Snd <> 4";
         //
         //Получить расписание плановой нитки
+       // private const string CommandText84 = "SELECT  Ev_Type, Ev_Time_P, Ev_Time, Ev_Station, Ev_Rec_Idn, EV_CNFM, EV_AXIS, EV_NDO"
         private const string CommandText84 = "SELECT  Ev_Type, Ev_Time_P, Ev_Time, Ev_Station, Ev_Rec_Idn, EV_CNFM, EV_AXIS, EV_NDO, TECHSTOP"
-          + " FROM TGraphicPl"
+        + " FROM TGraphicPl"
           + " WHERE Train_Idn = @TrainIdn"
           + " ORDER by Ev_Rec_Idn";
         //Получить события по плановым ниткам
