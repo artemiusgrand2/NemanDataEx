@@ -786,12 +786,12 @@ namespace NdeDataAccessFb
         private const string CommandText67 = "UPDATE TComDefinitions"
           + " SET Fl_Snd = @FlSnd,Tm_Def_Creat = @TmDefC"
           + " WHERE Def_Idn = @DefIdn";
-        //Получить задания на команды для выдачи на выполнения с указанными флагами (0 - команда на выполнение , 6 - технологическая ошибка - не выполнена команда при прибытия по плану)
+        //Получить задания на команды для выдачи на выполнения с указанными флагами (0 - команда на выполнение , 6 - технологическая ошибка - не выполнена команда при прибытия по плану, 7 - команда для рон\роч - тоесть ищем любой выходной маршрут)
         private const string CommandText68 = "SELECT Def_Idn,St_Code,Tr_Num"
           + ",Ob_Stt_Type,Ob_Stt_Name,Ob_End_Type,Ob_End_Name"
           + ",Lnk_Def_Idn_N,Lnk_Def_Idn_E,Tm_Def_Start,Stay_Fnd,Ev_Idn_Pln, Fl_Snd"
           + " FROM TComDefinitions"
-          + " WHERE Std_Form = @StdForm AND (Fl_Snd = 0 OR Fl_Snd = 6)";
+          + " WHERE Std_Form = @StdForm AND (Fl_Snd = 0 OR Fl_Snd = 6 OR Fl_Snd = 7)";
         //Получить задание по идентификатору
         private const string CommandText69 = "SELECT Std_Form,Ev_Idn_Pln,Tm_Def_Start,Fl_Snd"
           + " FROM TComDefinitions"
@@ -2308,7 +2308,7 @@ namespace NdeDataAccessFb
                                 //Установить время исполнения (щажжа)???.
                                 //comDefinition.ComStartTime = GetTimeGIDStop() + new TimeSpan(0, 1, 0);
                                 returnedList.Add(comDefinition);
-                                // SetDefSendFlag(comDefinition.DefIdn, 1, comDefinition.ComStartTime);
+                                //SetDefSendFlag(comDefinition.DefIdn, 1, comDefinition.ComStartTime);
                             }
                         }
                     }
@@ -2641,7 +2641,7 @@ namespace NdeDataAccessFb
                             {
                                 if (String.IsNullOrEmpty(dbReader1.GetString(0)))
                                 {
-                                    AssignTrainNumber(trainIdn, "", trainMessage.TrainNumber.ToString(), "", "");
+                                    AssignTrainNumber(trainIdn, "", trainMessage.TrainNumber.ToString(), "", trainMessage.StationCode);
                                 }
                             }
                         }

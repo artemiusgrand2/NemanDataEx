@@ -60,8 +60,10 @@ D:\Distributiv\NemanDataEx\NemanDataEx\NdeUpdateService\bin\Debug\NdeDataAccessS
 D:\Distributiv\NemanDataEx\NemanDataEx\NdeUpdateService\bin\Debug\NdeDataClasses.pdb
 D:\Distributiv\NemanDataEx\NemanDataEx\NdeUpdateService\bin\Debug\NdeInterfses.pdb
 D:\Distributiv\NemanDataEx\NemanDataEx\NdeUpdateService\bin\Debug\log4net.xml
-D:\Distributiv\NemanDataEx\NemanDataEx\NdeUpdateService\obj\x86\Debug\NdeUpdateService.csprojResolveAssemblyReference.cache
 D:\Distributiv\NemanDataEx\NemanDataEx\NdeUpdateService\obj\x86\Debug\BCh.Ktc.Nde.NdeUpdateService.ProjectInstaller.resources
 D:\Distributiv\NemanDataEx\NemanDataEx\NdeUpdateService\obj\x86\Debug\NdeUpdateService.csproj.GenerateResource.Cache
 D:\Distributiv\NemanDataEx\NemanDataEx\NdeUpdateService\obj\x86\Debug\BCh.Ktc.Nde.NdeUpdateService.exe
 D:\Distributiv\NemanDataEx\NemanDataEx\NdeUpdateService\obj\x86\Debug\BCh.Ktc.Nde.NdeUpdateService.pdb
+d:\Distributiv\NemanDataEx\NemanDataEx\NdeUpdateService\obj\x86\Debug\NdeUpdateService.csprojAssemblyReference.cache
+d:\Distributiv\NemanDataEx\NemanDataEx\NdeUpdateService\obj\x86\Debug\NdeUpdateService.csproj.CoreCompileInputs.cache
+d:\Distributiv\NemanDataEx\NemanDataEx\NdeUpdateService\obj\x86\Debug\NdeUpdateService.csproj.CopyComplete
