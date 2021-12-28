@@ -2524,6 +2524,7 @@ namespace NdeDataAccessFb
                     _command25.ExecuteNonQuery();
                     transaction.Commit();
                 }
+                _command25.Parameters.Clear();
                 _command25.Dispose();
                 connection.Close();
             }
@@ -2606,6 +2607,7 @@ namespace NdeDataAccessFb
                         }
                     }
                 }
+                _command48.Parameters.Clear();
                 _command48.Dispose();
                 connection.Close();
             }
@@ -2631,7 +2633,7 @@ namespace NdeDataAccessFb
                     connection.Open();
                     _command49 = new FbCommand(CommandText49);
                     _command49.Parameters.Add(_parTrainIdn49);
-                    using (var transaction = connection.BeginTransaction())
+                    using (var transaction = connection.BeginTransaction()) 
                     {
                         AssignConnectionAndTransactionToCommand(_command49, connection, transaction);
                         _parTrainIdn49.Value = trainIdn;
@@ -2647,6 +2649,7 @@ namespace NdeDataAccessFb
                         }
                         transaction.Commit();
                     }
+                    _command49.Parameters.Clear();
                     _command49.Dispose();
                     connection.Close();
                 }
@@ -3109,6 +3112,7 @@ namespace NdeDataAccessFb
                     _command46.ExecuteNonQuery();
                     transaction.Commit();
                 }
+                _command46.Parameters.Clear();
                 _command46.Dispose();
                 connection.Close();
             }
@@ -3761,8 +3765,10 @@ namespace NdeDataAccessFb
                     }
                     transaction1.Commit();
                 }
+                _command41.Parameters.Clear();
                 _command41.Dispose();
-                _command80.Dispose();
+                _command80.Parameters.Clear();
+                _command80.Dispose(); 
                 connection.Close(); connection1.Close();
             }
             return startTime;
@@ -4350,7 +4356,8 @@ namespace NdeDataAccessFb
                         }
                     }
                 }
-                _command6.Dispose();
+                _command6.Parameters.Clear();
+                _command6.Dispose(); 
                 connection.Close();
             }
             return actualMess;
@@ -4497,6 +4504,7 @@ namespace NdeDataAccessFb
                     _command8.ExecuteNonQuery();
                     transaction.Commit();
                 }
+                _command8.Parameters.Clear();
                 _command8.Dispose();
                 connection.Close();
             }
@@ -4538,6 +4546,7 @@ namespace NdeDataAccessFb
                     _command9.ExecuteNonQuery();
                     transaction.Commit();
                 }
+                _command9.Parameters.Clear();
                 _command9.Dispose();
                 connection.Close();
             }

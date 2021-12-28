@@ -67,3 +67,7 @@ D:\Distributiv\NemanDataEx\NemanDataEx\NdeUpdateService\obj\x86\Debug\BCh.Ktc.Nd
 d:\Distributiv\NemanDataEx\NemanDataEx\NdeUpdateService\obj\x86\Debug\NdeUpdateService.csprojAssemblyReference.cache
 d:\Distributiv\NemanDataEx\NemanDataEx\NdeUpdateService\obj\x86\Debug\NdeUpdateService.csproj.CoreCompileInputs.cache
 d:\Distributiv\NemanDataEx\NemanDataEx\NdeUpdateService\obj\x86\Debug\NdeUpdateService.csproj.CopyComplete
+C:\Неман\NdeUpdateService\log4netUpdater.xml
+C:\Неман\NdeUpdateService\BCh.Ktc.Nde.NdeUpdateService.exe.config
+C:\Неман\NdeUpdateService\BCh.Ktc.Nde.NdeUpdateService.exe
+C:\Неман\NdeUpdateService\BCh.Ktc.Nde.NdeUpdateService.pdb
