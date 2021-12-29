@@ -2643,7 +2643,7 @@ namespace NdeDataAccessFb
                             {
                                 if (String.IsNullOrEmpty(dbReader1.GetString(0)))
                                 {
-                                    AssignTrainNumber(trainIdn, "", trainMessage.TrainNumber.ToString(), "", trainMessage.StationCode);
+                                  strBuilderResult.Append(AssignTrainNumber(trainIdn, "", trainMessage.TrainNumber.ToString(), "", trainMessage.StationCode));
                                 }
                             }
                         }

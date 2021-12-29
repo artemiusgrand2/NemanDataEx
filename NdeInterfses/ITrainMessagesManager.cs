@@ -1,4 +1,6 @@
-﻿namespace NdeInterfases
+﻿using System;
+
+namespace NdeInterfases
 {
   public interface ITrainMessagesManager
   {
