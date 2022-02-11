@@ -2641,10 +2641,10 @@ namespace NdeDataAccessFb
                         {
                             if (dbReader1.Read())
                             {
-                                if (String.IsNullOrEmpty(dbReader1.GetString(0)))
-                                {
+                                //if (String.IsNullOrEmpty(dbReader1.GetString(0)))
+                                //{
                                   strBuilderResult.Append(AssignTrainNumber(trainIdn, "", trainMessage.TrainNumber.ToString(), "", trainMessage.StationCode));
-                                }
+                               // }
                             }
                         }
                         transaction.Commit();
