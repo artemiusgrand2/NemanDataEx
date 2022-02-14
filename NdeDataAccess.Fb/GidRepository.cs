@@ -2647,11 +2647,12 @@ namespace NdeDataAccessFb
                             if (dbReader1.Read())
                             {
                                 if (String.IsNullOrEmpty(dbReader1.GetString(0)))
-                                    strBuilderResult.Append($"Попытка установки номера поезда - {trainMessage.TrainNumber.ToString()}");
-                                else
-                                    strBuilderResult.Append($"Попытка переименовать поезд с - {dbReader1.GetString(0)} на {trainMessage.TrainNumber.ToString()}");
-                                //
-                                strBuilderResult.Append(AssignTrainNumber(trainIdn, "", trainMessage.TrainNumber.ToString(), "", trainMessage.StationCode));
+                                {   //    strBuilderResult.Append($"Попытка установки номера поезда - {trainMessage.TrainNumber.ToString()}");
+                                    //else
+                                    //    strBuilderResult.Append($"Попытка переименовать поезд с - {dbReader1.GetString(0)} на {trainMessage.TrainNumber.ToString()}");
+                                    //
+                                    strBuilderResult.Append(AssignTrainNumber(trainIdn, "", trainMessage.TrainNumber.ToString(), "", trainMessage.StationCode));
+                                }
                             }
                         }
                         transaction.Commit();
@@ -4508,7 +4509,7 @@ namespace NdeDataAccessFb
                     _parWagNoWork8.Value = trainMessage.WagCounts[2];
                     _parOperation8.Value = trainMessage.Operation;
                     _parFlags8.Value = trainMessage.Flags;
-                    _command8.ExecuteNonQuery();
+                    var answer = _command8.ExecuteNonQuery();
                     transaction.Commit();
                 }
                 _command8.Parameters.Clear();
