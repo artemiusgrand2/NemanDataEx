@@ -2491,10 +2491,15 @@ namespace NdeDataAccessFb
                     else
                         strBuiderResult.Append(" Не все параметры определены.");
                 }
+                _command24.Parameters.Clear();
                 _command24.Dispose();
+                _command31.Parameters.Clear();
                 _command31.Dispose();
+                _command32.Parameters.Clear();
                 _command32.Dispose();
+                _command36.Parameters.Clear();
                 _command36.Dispose();
+                _command37.Parameters.Clear();
                 _command37.Dispose();
                 connection.Close();
             }
@@ -2641,10 +2646,12 @@ namespace NdeDataAccessFb
                         {
                             if (dbReader1.Read())
                             {
-                                //if (String.IsNullOrEmpty(dbReader1.GetString(0)))
-                                //{
-                                  strBuilderResult.Append(AssignTrainNumber(trainIdn, "", trainMessage.TrainNumber.ToString(), "", trainMessage.StationCode));
-                               // }
+                                if (String.IsNullOrEmpty(dbReader1.GetString(0)))
+                                    strBuilderResult.Append($"Попытка установки номера поезда - {trainMessage.TrainNumber.ToString()}");
+                                else
+                                    strBuilderResult.Append($"Попытка переименовать поезд с - {dbReader1.GetString(0)} на {trainMessage.TrainNumber.ToString()}");
+                                //
+                                strBuilderResult.Append(AssignTrainNumber(trainIdn, "", trainMessage.TrainNumber.ToString(), "", trainMessage.StationCode));
                             }
                         }
                         transaction.Commit();
@@ -4939,8 +4946,9 @@ namespace NdeDataAccessFb
             }
         }
         //Выполнить команды из истории справок
-        public void RunMessCommands()
+        public string RunMessCommands()
         {
+            var strBuilderResult = new StringBuilder();
             using (var connection = new FbConnection(_connectionString))
             using (var connection1 = new FbConnection(_connectionString))
             using (var connection2 = new FbConnection(_connectionString))
@@ -4971,7 +4979,7 @@ namespace NdeDataAccessFb
                             int _prvWirIdn = dbReader1.GetInt32(2);
                             if (_trainIdn != -1)
                             {
-                                BindTrainThreads(_prvWirIdn, _trainIdn);
+                               strBuilderResult.AppendLine(BindTrainThreads(_prvWirIdn, _trainIdn));
                             }
                         }
                     }
@@ -4993,7 +5001,7 @@ namespace NdeDataAccessFb
                             var msStation = dbReader1.GetString(4);
                             if (trainIdn == -1)
                             {
-                                AssignTrainNumber(prvWirIdn, "", trainNum, "", msStation);
+                                strBuilderResult.AppendLine(AssignTrainNumber(prvWirIdn, "", trainNum, "", msStation));
                             }
                         }
                     }
@@ -5007,6 +5015,8 @@ namespace NdeDataAccessFb
                 connection2.Close();
                 connection3.Close();
             }
+            //
+            return strBuilderResult.ToString();
         }
         //Время первого события ГИД
         public DateTime GetTimeGIDStart()

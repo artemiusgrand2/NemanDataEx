@@ -170,7 +170,9 @@ namespace BCh.Ktc.Nde.MiddleTier
             //_gidRepository.SrhTrEventsForMessages();
             _gidRepository.SetStopMess();
             _gidRepository.SetMessProperties();
-            _gidRepository.RunMessCommands();
+            var message = _gidRepository.RunMessCommands();
+            if (!string.IsNullOrEmpty(message))
+                _logger.Info(_gidRepository.RunMessCommands());
         }
         //---------------------------------------------------------------------------------------------
         //

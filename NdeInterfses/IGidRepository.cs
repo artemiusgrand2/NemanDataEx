@@ -56,7 +56,7 @@ namespace NdeInterfases
         void PrepareWorkMessages();
         void SetStopMess();
         void SetMessProperties();
-        void RunMessCommands();
+        string RunMessCommands();
         DateTime GetTimeGIDStart();
         DateTime GetTimeGIDStop();
         IList<WorkMessage> GetActualMessages();

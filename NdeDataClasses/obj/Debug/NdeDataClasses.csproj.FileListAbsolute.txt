@@ -22,4 +22,3 @@ D:\Distributiv\NemanDataEx\NemanDataEx\NdeDataClasses\bin\Debug\NdeDataClasses.p
 D:\Distributiv\NemanDataEx\NemanDataEx\NdeDataClasses\obj\Debug\NdeDataClasses.dll
 D:\Distributiv\NemanDataEx\NemanDataEx\NdeDataClasses\obj\Debug\NdeDataClasses.pdb
 D:\Distributiv\NemanDataEx\NemanDataEx\NdeDataClasses\obj\Debug\NdeDataClasses.csproj.CoreCompileInputs.cache
-D:\Distributiv\NemanDataEx\NemanDataEx\NdeDataClasses\obj\Debug\NdeDataClasses.csprojAssemblyReference.cache
