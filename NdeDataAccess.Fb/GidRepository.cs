@@ -5138,34 +5138,45 @@ namespace NdeDataAccessFb
         }
 
 
-        public string UpdatePathInPlanDefCommand(string trainNumber, int planEvId, int defId, string station, string axis, string ndo)
+        public BaseCommandAnswer UpdatePathInPlanDefCommand(string trainNumber, int planEvId, int defId, string station, string axis, string ndo)
         {
-            using (var connection = new FbConnection(_connectionString))
+            var result = new UpdatePathInPlanDefAnswer();
+            try
             {
-                connection.Open();
-                _command95 = new FbCommand(CommandText95);
-                _command95.Parameters.Add(_parEvAxis95);
-                _command95.Parameters.Add(_parEvRecIdn95);
-                //
-                //_command96 = new FbCommand(CommandText96);
-                //_command96.Parameters.Add(_parTaskId96);
-                using (var transaction = connection.BeginTransaction())
+                using (var connection = new FbConnection(_connectionString))
                 {
-                    AssignConnectionAndTransactionToCommand(_command95, connection, transaction);
-                   // AssignConnectionAndTransactionToCommand(_command96, connection, transaction);
-                    _parEvAxis95.Value = axis;
-                    _parEvRecIdn95.Value = planEvId;
-                    _parTaskId96.Value = defId;
-                    _command95.ExecuteNonQuery();
-                   // _command96.ExecuteNonQuery();
-                    transaction.Commit();
+                    connection.Open();
+                    _command95 = new FbCommand(CommandText95);
+                    _command95.Parameters.Add(_parEvAxis95);
+                    _command95.Parameters.Add(_parEvRecIdn95);
+                    //
+                    //_command96 = new FbCommand(CommandText96);
+                    //_command96.Parameters.Add(_parTaskId96);
+                    using (var transaction = connection.BeginTransaction())
+                    {
+                        AssignConnectionAndTransactionToCommand(_command95, connection, transaction);
+                        // AssignConnectionAndTransactionToCommand(_command96, connection, transaction);
+                        _parEvAxis95.Value = axis;
+                        _parEvRecIdn95.Value = planEvId;
+                        //_parTaskId96.Value = defId;
+                        _command95.ExecuteNonQuery();
+                        // _command96.ExecuteNonQuery();
+                        transaction.Commit();
+                    }
+                    _command95.Dispose();
+                    // _command96.Dispose();
+                    connection.Close();
                 }
-                _command95.Dispose();
-               // _command96.Dispose();
-                connection.Close();
+                //
+                result.IsUpdate = true;
+                result.LogMessage = $"Для поезда {trainNumber} по станции {station} изменен путь на {axis} для событя с id = {planEvId}.";
             }
-           // return $"Для поезда {trainNumber} по станции {station} изменен путь на {axis} для событя с id = {planEvId}. Удалена команда с id - {defId}.";
-            return $"Для поезда {trainNumber} по станции {station} изменен путь на {axis} для событя с id = {planEvId}.";
+            catch (Exception error)
+            {
+                result.LogMessage = $"Для поезда {trainNumber} по станции {station} не изменен путь на {axis} для событя с id = {planEvId}. Причина - {error.Message}";
+            }
+            // return $"Для поезда {trainNumber} по станции {station} изменен путь на {axis} для событя с id = {planEvId}. Удалена команда с id - {defId}.";
+            return result;
         }
 
         public BaseCommandAnswer DelDefCommands()

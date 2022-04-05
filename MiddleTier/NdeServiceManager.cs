@@ -344,9 +344,11 @@ namespace BCh.Ktc.Nde.MiddleTier
             var updatePathInPlanDefCommand = command as UpdatePathInPlanDefCommand;
             if (updatePathInPlanDefCommand != null)
             {
-                retString = _gidRepo.UpdatePathInPlanDefCommand(updatePathInPlanDefCommand.TrainNumber, updatePathInPlanDefCommand.PlanEvId, updatePathInPlanDefCommand.DefIdn, updatePathInPlanDefCommand.Station, updatePathInPlanDefCommand.Axis, updatePathInPlanDefCommand.NDO);
-                _logger.Info($"IP - {_ipUserFull}. " + retString);
-                return retString;
+                var answer = _gidRepo.UpdatePathInPlanDefCommand(updatePathInPlanDefCommand.TrainNumber, updatePathInPlanDefCommand.PlanEvId, updatePathInPlanDefCommand.DefIdn, updatePathInPlanDefCommand.Station, updatePathInPlanDefCommand.Axis, updatePathInPlanDefCommand.NDO);
+                _logger.Info($"IP - {_ipUserFull}. " + answer.LogMessage);
+                //
+                return (answer as UpdatePathInPlanDefAnswer).IsUpdate.ToString();
+
             }
             //удалить команды
             var delDefCommands = command as DelDefCommands;

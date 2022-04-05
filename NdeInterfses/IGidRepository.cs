@@ -40,7 +40,7 @@ namespace NdeInterfases
         BaseCommandAnswer CleanPlan();
         string WriteEnterExecutedPlan(string trainNumber, int planEvId, string station, string axis, string ndo);
 
-        string UpdatePathInPlanDefCommand(string trainNumber, int planEvId, int defId, string station, string axis, string ndo);
+        BaseCommandAnswer UpdatePathInPlanDefCommand(string trainNumber, int planEvId, int defId, string station, string axis, string ndo);
 
         BaseCommandAnswer DelDefCommands();
         //Внутренние функции
