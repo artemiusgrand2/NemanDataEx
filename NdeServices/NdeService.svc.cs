@@ -65,7 +65,8 @@ namespace NdeServices
             //
             var iasRepo = new IaspurgpRepository(conStringIas);
             _serviceManager = new NdeServiceManager(gidRepo, iasRepo, GetIpUserConnect.Address, $"{GetIpUserConnect.Address}:{GetIpUserConnect.Port}",
-                WebConfigurationManager.AppSettings.AllKeys.Contains("IpCommand") ? WebConfigurationManager.AppSettings["IpCommand"] : string.Empty);
+                WebConfigurationManager.AppSettings.AllKeys.Contains("IpCommand") ? WebConfigurationManager.AppSettings["IpCommand"] : string.Empty, 
+                NdeConfigurationHelper.GetTrimmedEvents());
         }
 
         public static void Start()

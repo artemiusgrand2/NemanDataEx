@@ -6,7 +6,9 @@ using System.Text;
 using System.IO;
 using System.Xml.Serialization;
 using NdeDataClasses;
+using NdeDataClasses.Enums;
 using NdeDataClasses.Commands;
+using NdeDataClasses.Configuration;
 using NdeInterfases;
 using log4net;
 
@@ -21,14 +23,16 @@ namespace BCh.Ktc.Nde.MiddleTier
         private readonly string _ipUser;
         private readonly string _ipUserFull;
         private readonly string _ipCommandReceiving = string.Empty;
+        private readonly IList<TrimmedEvent> _trimmedEvents;
         //
-        public NdeServiceManager(IGidRepository gidRepository, IiaspurgpRepository iasRepo, string ipUser, string ipUserFull, string ipCommandReceiving)
+        public NdeServiceManager(IGidRepository gidRepository, IiaspurgpRepository iasRepo, string ipUser, string ipUserFull, string ipCommandReceiving, IList<TrimmedEvent> trimmedEvents)
         {
             _gidRepo = gidRepository;
             _iasRepo = iasRepo;
             _ipUser = ipUser;
             _ipUserFull = ipUserFull;
             _ipCommandReceiving = ipCommandReceiving;
+            _trimmedEvents = trimmedEvents;
             _logger.Info($"Интервал связывания плановой и исполненной ниток - {_gidRepo.MaxBindDelta.ToString()}");
         }
 
@@ -280,9 +284,13 @@ namespace BCh.Ktc.Nde.MiddleTier
             var bindPlanToTrainCommand = command as BindPlanToTrainCommand;
             if (bindPlanToTrainCommand != null)
             {
+                var planEvents = bindPlanToTrainCommand.planEvents;
+                if(_trimmedEvents != null && _trimmedEvents.Count > 0)
+                    planEvents = planEvents.Where(x => _trimmedEvents.Where(y => y.StationCode == x.MsStation && y.Ndo == x.MsFlags 
+                                                  && ((y.TypeEvent == TypeEvent.dep)? x.MsType == 3: x.MsType != 3)).FirstOrDefault() == null).ToList();
                 //
                 var answer = _gidRepo.BindPlanToTrain(
-                  bindPlanToTrainCommand.planEvents,
+                  planEvents,
                   bindPlanToTrainCommand.trainIdn
                  );
                 //

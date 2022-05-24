@@ -113,7 +113,11 @@
     <Compile Include="Configuration\BuhSectionElement.cs" />
     <Compile Include="Configuration\NdeConfigurationHelper.cs" />
     <Compile Include="Configuration\EngineConfigurationSection.cs" />
+    <Compile Include="Configuration\TrimmedEvent.cs" />
+    <Compile Include="Configuration\TrimmedEventCollection.cs" />
+    <Compile Include="Configuration\TrimmedEventElement.cs" />
     <Compile Include="DelDefCommandsAnswer.cs" />
+    <Compile Include="Enums\TypeEvent.cs" />
     <Compile Include="GIDMessage.cs" />
     <Compile Include="PlanEvent.cs" />
     <Compile Include="SetDefSendFlagAnswer.cs" />
@@ -125,6 +129,7 @@
     <Compile Include="UpdatePathInPlanDefAnswer.cs" />
     <Compile Include="WorkMessage.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

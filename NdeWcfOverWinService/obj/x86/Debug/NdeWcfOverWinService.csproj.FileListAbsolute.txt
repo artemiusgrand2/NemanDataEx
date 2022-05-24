@@ -113,7 +113,6 @@ d:\Distr\NemanDataEx\NemanDataEx\NdeWcfOverWinService\obj\x86\Debug\NdeWcfOverWi
 d:\Distr\NemanDataEx\NemanDataEx\NdeWcfOverWinService\obj\x86\Debug\NdeWcfOverWinService.csproj.CopyComplete
 d:\Distr\NemanDataEx\NemanDataEx\NdeWcfOverWinService\obj\x86\Debug\NdeWcfOverWinService.exe
 d:\Distr\NemanDataEx\NemanDataEx\NdeWcfOverWinService\obj\x86\Debug\NdeWcfOverWinService.pdb
-C:\Неман\NdeWcfOverWinService\log4netUpdater.xml
 C:\Неман\NdeWcfOverWinService\NdeWcfOverWinService.exe.config
 C:\Неман\NdeWcfOverWinService\NdeWcfOverWinService.exe.manifest
 C:\Неман\NdeWcfOverWinService\NdeWcfOverWinService.application
