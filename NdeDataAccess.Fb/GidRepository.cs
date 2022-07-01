@@ -393,6 +393,7 @@ namespace NdeDataAccessFb
         private readonly FbParameter _parTrainNum91;
         private readonly FbParameter _parEV_REC_IDN93;
         private readonly FbParameter _parEvAxis93;
+        private readonly FbParameter _parEvTime93;
         private readonly FbParameter _parEvAxis95;
         private readonly FbParameter _parEvRecIdn95;
         private readonly FbParameter _parTaskId96;
@@ -909,7 +910,7 @@ namespace NdeDataAccessFb
         private const string CommandText92 = "SELECT Train_Idn FROM TGraphicPl GROUP BY Train_Idn";
         //Подтверждаем событие планового графика
         private const string CommandText93 = "UPDATE TGraphicPl"
-        + " SET EV_Cnfm = 2, EV_AXIS = @EvAxis"
+        + " SET EV_Cnfm = 2, EV_AXIS = @EvAxis, EV_TIME = @EvTime"
         + " WHERE Ev_Rec_Idn = @EvRecIdn";
 
         //Получение id комманд
@@ -1309,6 +1310,7 @@ namespace NdeDataAccessFb
             _parTrainNum91 = new FbParameter("@TrainNumber", FbDbType.VarChar);
             _parEV_REC_IDN93 = new FbParameter("@EvRecIdn", FbDbType.Integer);
             _parEvAxis93 = new FbParameter("@EvAxis", FbDbType.VarChar);
+            _parEvTime93 = new FbParameter("@EvTime", FbDbType.TimeStamp);
 
             _parEvAxis95 = new FbParameter("@EvAxis", FbDbType.VarChar);
             _parEvRecIdn95 = new FbParameter("@EvRecIdn", FbDbType.Integer);
@@ -5123,11 +5125,13 @@ namespace NdeDataAccessFb
                 _command93 = new FbCommand(CommandText93);
                 _command93.Parameters.Add(_parEV_REC_IDN93);
                 _command93.Parameters.Add(_parEvAxis93);
+                _command93.Parameters.Add(_parEvTime93);
                 using (var transaction = connection.BeginTransaction())
                 {
                     AssignConnectionAndTransactionToCommand(_command93, connection, transaction);
                     _parEV_REC_IDN93.Value = planEvId;
                     _parEvAxis93.Value = axis;
+                    _parEvTime93.Value = DateTime.Now;
                     _command93.ExecuteNonQuery();
                     transaction.Commit();
                 }

@@ -128,3 +128,4 @@ D:\Distributiv\NemanDataEx\NemanDataEx\NdeWcfOverWinService\obj\x86\Debug\NdeWcf
 D:\Distributiv\NemanDataEx\NemanDataEx\NdeWcfOverWinService\obj\x86\Debug\NdeWcfOverWinService.csproj.CoreCompileInputs.cache
 D:\Distributiv\NemanDataEx\NemanDataEx\NdeWcfOverWinService\obj\x86\Debug\NdeWcfOverWinService.csproj.CopyComplete
 d:\Distr\NemanDataEx\NemanDataEx\NdeWcfOverWinService\obj\x86\Debug\NdeWcfOverWinService.csproj.AssemblyReference.cache
+C:\Неман\NdeWcfOverWinService\log4netUpdater.xml
