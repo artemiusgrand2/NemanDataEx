@@ -1,6 +1,4 @@
-﻿
-
-namespace NdeDataClasses
+﻿namespace NdeDataClasses
 {
     public class SetDefSendFlagAnswer : BaseCommandAnswer
     {

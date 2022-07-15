@@ -35,6 +35,8 @@ namespace NdeInterfases
         string TrackPointMessages(IList<TrackPointMessage> trackPointMessages);
         BaseCommandAnswer BindPlanToTrain(IList<GIDMessage> planEvents, int trainIdn);
         BaseCommandAnswer SetDefSendFlag(int defIdn, int sendFlag, DateTime tmDefC);
+        BaseCommandAnswer SetServiceFlag(int defIdn, int serviceFlag);
+
         string SetReplys(IList<string> replys);
         string WriteBuh2Data(Buh2DataCommand buh2DataCommand);
         BaseCommandAnswer CleanPlan();

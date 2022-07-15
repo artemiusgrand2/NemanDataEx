@@ -331,6 +331,20 @@ namespace BCh.Ktc.Nde.MiddleTier
                  );
                 return retString;
             }
+            //
+            var setServiceFlagCommand = command as SetServiceFlagCommand;
+            if (setServiceFlagCommand != null)
+            {
+                //
+                var answer = _gidRepo.SetServiceFlag(
+                  setServiceFlagCommand.defIdn,
+                  setServiceFlagCommand.serviceFlag
+                 );
+                //
+                _logger.Info($"IP - {_ipUserFull}. " + answer.LogMessage);
+                //
+                return (answer as SetServiceFlagAnswer).IsWrite.ToString();
+            }
             //удаляем плановый график
             var cleanPlanCommand = command as CleanPlanCommand;
             if (cleanPlanCommand != null)

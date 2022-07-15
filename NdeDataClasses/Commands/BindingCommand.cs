@@ -25,6 +25,7 @@ namespace NdeDataClasses.Commands
   [KnownType(typeof(WriteEnterExecutedPlanCommand))]
   [KnownType(typeof(UpdatePathInPlanDefCommand))]
   [KnownType(typeof(DelDefCommands))]
+  [KnownType(typeof(SetServiceFlagCommand))]
     public abstract class BindingCommand
   {
   }

@@ -123,6 +123,7 @@ namespace NdeDataAccessFb
         private FbCommand _command95;
         private FbCommand _command96;
         private FbCommand _command97;
+        private FbCommand _command98;
 
         //Параметры
         private readonly FbParameter _parEvTime1;
@@ -397,6 +398,11 @@ namespace NdeDataAccessFb
         private readonly FbParameter _parEvAxis95;
         private readonly FbParameter _parEvRecIdn95;
         private readonly FbParameter _parTaskId96;
+
+
+        private readonly FbParameter _parDefIdn98;
+        private readonly FbParameter _parSerFlag98;
+
         //Тексты запросов для команд
         //Времена последних событий для всех ниток (поездов)
         private const string CommandText1 = "SELECT TG.Train_Idn, MAX(TG.Ev_Time)"
@@ -790,9 +796,9 @@ namespace NdeDataAccessFb
         //Получить задания на команды для выдачи на выполнения с указанными флагами (0 - команда на выполнение , 6 - технологическая ошибка - не выполнена команда при прибытия по плану, 7 - команда для рон\роч - тоесть ищем любой выходной маршрут)
         private const string CommandText68 = "SELECT Def_Idn,St_Code,Tr_Num"
           + ",Ob_Stt_Type,Ob_Stt_Name,Ob_End_Type,Ob_End_Name"
-          + ",Lnk_Def_Idn_N,Lnk_Def_Idn_E,Tm_Def_Start,Stay_Fnd,Ev_Idn_Pln, Fl_Snd"
+          + ",Lnk_Def_Idn_N,Lnk_Def_Idn_E,Tm_Def_Start,Stay_Fnd,Ev_Idn_Pln, Fl_Snd, SERVICE_FLAG"
           + " FROM TComDefinitions"
-          + " WHERE Std_Form = @StdForm AND (Fl_Snd = 0 OR Fl_Snd = 6 OR Fl_Snd = 7)";
+          + " WHERE Std_Form = @StdForm AND (Fl_Snd = 0 OR Fl_Snd = 6 OR Fl_Snd = 7 or (Fl_Snd =2 and SERVICE_FLAG > 0))";
         //Получить задание по идентификатору
         private const string CommandText69 = "SELECT Std_Form,Ev_Idn_Pln,Tm_Def_Start,Fl_Snd"
           + " FROM TComDefinitions"
@@ -931,6 +937,11 @@ namespace NdeDataAccessFb
         private const string CommandText97 = "DELETE"
         + " FROM TCOMDEFINITIONS";
         //+ " WHERE DEF_IDN in (@IDS)";
+
+        //Записать сервисный флаг команды
+        private const string CommandText98 = "UPDATE TComDefinitions"
+          + " SET SERVICE_FLAG = @ServiceFlag"
+          + " WHERE Def_Idn = @DefIdn";
 
         //Конструктор----------------------------------------------------------------------------------
         public GidRepository(string connectionString, bool flPlay
@@ -1315,6 +1326,9 @@ namespace NdeDataAccessFb
             _parEvAxis95 = new FbParameter("@EvAxis", FbDbType.VarChar);
             _parEvRecIdn95 = new FbParameter("@EvRecIdn", FbDbType.Integer);
             _parTaskId96 = new FbParameter("@taskId", FbDbType.Integer);
+
+            _parDefIdn98 = new FbParameter("@DefIdn", FbDbType.Integer);
+            _parSerFlag98 = new FbParameter("@ServiceFlag", FbDbType.Integer);
             //
             _parRecIdn64.Direction = ParameterDirection.Output;
             //Добавляем параметры в команду(ы)
@@ -2221,7 +2235,8 @@ namespace NdeDataAccessFb
                                     ComStartTime = dbReader1.GetDateTime(9),
                                     CollStartTime = DateTime.MinValue,
                                     PlnEvIdn = dbReader1.GetInt32(11),
-                                    FlSnd = dbReader1.GetInt32(12)
+                                    FlSnd = dbReader1.GetInt32(12),
+                                    ServiceFlag = dbReader1.GetInt32(13)
                                 };
                                 //ищем Id плановой нитки
                                 _parPlnEvIdn70.Value = comDefinition.PlnEvIdn;
@@ -3578,7 +3593,43 @@ namespace NdeDataAccessFb
             }
             catch(Exception error)
             {
-                result.LogMessage = $"Записан флаг - {sendFlag} для задания с id - {defIdn}"; error.ToString();
+                result.LogMessage = $"Не записан флаг - {sendFlag} для задания с id - {defIdn}"; error.ToString();
+            }
+            //
+            return result;
+        }
+
+        //установить сервисный флаг
+        public BaseCommandAnswer SetServiceFlag(int defIdn, int serviceFlag)
+        {
+            var result = new SetServiceFlagAnswer();
+            try
+            {
+                using (var connection = new FbConnection(_connectionString))
+                {
+                    connection.Open();
+                    _command98 = new FbCommand(CommandText98);
+                    _command98.Parameters.Add(_parDefIdn98);
+                    _command98.Parameters.Add(_parSerFlag98);
+ 
+                    using (var transaction = connection.BeginTransaction())
+                    {
+                        AssignConnectionAndTransactionToCommand(_command98, connection, transaction);
+                        _parDefIdn98.Value = defIdn;
+                        _parSerFlag98.Value = serviceFlag;
+                        _command98.ExecuteNonQuery();
+                        transaction.Commit();
+                    }
+                    _command98.Dispose();
+                    connection.Close();
+                }
+                //
+                result.LogMessage = $"Записан сервисный флаг - {serviceFlag} для задания с id - {defIdn}";
+                result.IsWrite = true;
+            }
+            catch (Exception error)
+            {
+                result.LogMessage = $"Не записан сервисный флаг - {serviceFlag} для задания с id - {defIdn}"; error.ToString();
             }
             //
             return result;

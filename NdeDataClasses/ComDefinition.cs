@@ -44,6 +44,9 @@ namespace NdeDataClasses
         [DataMember]
         public int FlSnd { get; set; }
 
+        [DataMember]
+        public int ServiceFlag { get; set; }
+
         public ComDefAppendix Appendix { get; set; }
     }
 }

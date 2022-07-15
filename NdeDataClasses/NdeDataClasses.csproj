@@ -99,6 +99,7 @@
     <Compile Include="Commands\RunTrackIoTrackCommand.cs" />
     <Compile Include="Commands\SetDefSendFlagCommand.cs" />
     <Compile Include="Commands\SetReplysCommand.cs" />
+    <Compile Include="Commands\SetServiceFlagCommand.cs" />
     <Compile Include="Commands\SetTrackInCommand.cs" />
     <Compile Include="Commands\StopMessForTrainCommand.cs" />
     <Compile Include="Commands\TrackPointMessagesCommand.cs" />
@@ -121,6 +122,7 @@
     <Compile Include="GIDMessage.cs" />
     <Compile Include="PlanEvent.cs" />
     <Compile Include="SetDefSendFlagAnswer.cs" />
+    <Compile Include="SetServiceFlagAnswer.cs" />
     <Compile Include="TrackPointMessage.cs" />
     <Compile Include="TrainEvent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
