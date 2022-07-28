@@ -798,7 +798,7 @@ namespace NdeDataAccessFb
           + ",Ob_Stt_Type,Ob_Stt_Name,Ob_End_Type,Ob_End_Name"
           + ",Lnk_Def_Idn_N,Lnk_Def_Idn_E,Tm_Def_Start,Stay_Fnd,Ev_Idn_Pln, Fl_Snd, SERVICE_FLAG"
           + " FROM TComDefinitions"
-          + " WHERE Std_Form = @StdForm AND (Fl_Snd = 0 OR Fl_Snd = 6 OR Fl_Snd = 7 or (Fl_Snd =2 and SERVICE_FLAG > 0))";
+          + " WHERE Std_Form = @StdForm AND (Fl_Snd = 0 OR Fl_Snd = 6 OR Fl_Snd = 7 or Fl_Snd = 8 or (Fl_Snd =2 and SERVICE_FLAG > 0))";
         //Получить задание по идентификатору
         private const string CommandText69 = "SELECT Std_Form,Ev_Idn_Pln,Tm_Def_Start,Fl_Snd"
           + " FROM TComDefinitions"
