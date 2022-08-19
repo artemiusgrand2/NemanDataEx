@@ -120,6 +120,7 @@ namespace BCh.Ktc.Nde.MiddleTier
             }
             _gidRepository.WriteAllSaipsDataToGid();
         }
+
         //Связать справки с поездами по данным из ГИДа
         public void AssignForeignMessages()
         {
@@ -135,6 +136,7 @@ namespace BCh.Ktc.Nde.MiddleTier
                 _logger.Info(_gidRepository.AssignMessageForTrain(actualMessage.MessIdn, trIdn));
             }
         }
+
         //Поддержка истории справок
         public void UpdateMessagesHistory()
         {

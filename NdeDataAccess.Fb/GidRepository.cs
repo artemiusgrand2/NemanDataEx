@@ -351,6 +351,7 @@ namespace NdeDataAccessFb
         private readonly FbParameter _parEvNDO66;
         private readonly FbParameter _parCollSt66;
         private readonly FbParameter _parTechStop66;
+        private readonly FbParameter _parStCurTime66;
 
         private readonly FbParameter _parNeStation66;
         private readonly FbParameter _parDefIdn67;
@@ -787,8 +788,8 @@ namespace NdeDataAccessFb
           + " WHERE Train_Idn = @TrainIdn";
         //Запись события плановой нитки
         private const string CommandText66 = "Insert Into TGraphicPl"
-          + " (Train_Idn,Ev_Type,Ev_Time,Ev_Time_P,Ev_Station,Ev_Axis,Ev_NDO,Coll_St,Ev_NE_Station,TECHSTOP)"
-          + " Values(@TrainIdn,@EvType,@EvTime,@EvTimeP,@EvStation,@EvAxis,@EvNDO,@Coll_St,@NEStation, @TechStop)";
+          + " (Train_Idn,Ev_Type,Ev_Time,Ev_Time_P,Ev_Station,Ev_Axis,Ev_NDO,Coll_St,Ev_NE_Station,TECHSTOP, ST_CUR_TIME)"
+          + " Values(@TrainIdn,@EvType,@EvTime,@EvTimeP,@EvStation,@EvAxis,@EvNDO,@Coll_St,@NEStation, @TechStop, @StCurTime)";
         //Записать флаг передачи задания на исполнение
         private const string CommandText67 = "UPDATE TComDefinitions"
           + " SET Fl_Snd = @FlSnd,Tm_Def_Creat = @TmDefC"
@@ -1281,6 +1282,7 @@ namespace NdeDataAccessFb
             _parCollSt66 = new FbParameter("@Coll_St", FbDbType.Integer);
             _parNeStation66 = new FbParameter("@NEStation", FbDbType.VarChar);
             _parTechStop66 = new FbParameter("@TechStop", FbDbType.VarChar);
+            _parStCurTime66 = new FbParameter("@StCurTime", FbDbType.SmallInt);
             _parDefIdn67 = new FbParameter("@DefIdn", FbDbType.Integer);
             _parSndFlag67 = new FbParameter("@FlSnd", FbDbType.Integer);
             _parTmDefC67 = new FbParameter("@TmDefC", FbDbType.TimeStamp);
@@ -1766,6 +1768,7 @@ namespace NdeDataAccessFb
             _command66.Parameters.Add(_parCollSt66);
             _command66.Parameters.Add(_parNeStation66);
             _command66.Parameters.Add(_parTechStop66);
+            _command66.Parameters.Add(_parStCurTime66);
         }
 
         private void AddParametrsToCommand80()
@@ -3352,7 +3355,7 @@ namespace NdeDataAccessFb
             //
             var planIdn = WritePlanWire(planEvents);
             //пробуем найти исполненную нитку
-            if(trainIdn == 0)
+            if (trainIdn == 0)
                 trainIdn = FindExecutedId(planEvents);
             //
             using (var connection = new FbConnection(_connectionString))
@@ -4100,7 +4103,7 @@ namespace NdeDataAccessFb
             return comDefinition;
         }
         //Записать плановую нитку
-        public Tuple< int, string> WritePlanWire(IList<GIDMessage> planEvents)
+        private Tuple< int, string> WritePlanWire(IList<GIDMessage> planEvents)
         {
             int planIdn = 0;
             string planNum = "";
@@ -4139,6 +4142,8 @@ namespace NdeDataAccessFb
                         _parCollSt66.Value = planEvent.FlColSt;
                         _parNeStation66.Value = planEvent.NeStation;
                         _parTechStop66.Value = planEvent.TechStop;
+                        _parStCurTime66.Value = (planEvent.MsTime > DateTime.Now) ? 0 : 1;
+
                         _command66.ExecuteNonQuery();
                     }
                     transaction.Commit();
