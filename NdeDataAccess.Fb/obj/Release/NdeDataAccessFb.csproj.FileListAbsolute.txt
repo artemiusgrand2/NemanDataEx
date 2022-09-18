@@ -9,3 +9,15 @@ D:\Work\NemanDataEx\NdeDataAccess.Fb\obj\Release\NdeDataAccessFb.csprojResolveAs
 D:\Work\NemanDataEx\NdeDataAccess.Fb\obj\Release\NdeDataAccessFb.csproj.CoreCompileInputs.cache
 D:\Work\NemanDataEx\NdeDataAccess.Fb\obj\Release\NdeDataAccessFb.dll
 D:\Work\NemanDataEx\NdeDataAccess.Fb\obj\Release\NdeDataAccessFb.pdb
+d:\Distr\NemanDataEx\NemanDataEx\NdeDataAccess.Fb\bin\Release\NdeDataAccessFb.dll
+d:\Distr\NemanDataEx\NemanDataEx\NdeDataAccess.Fb\bin\Release\NdeDataAccessFb.pdb
+d:\Distr\NemanDataEx\NemanDataEx\NdeDataAccess.Fb\bin\Release\FirebirdSql.Data.FirebirdClient.dll
+d:\Distr\NemanDataEx\NemanDataEx\NdeDataAccess.Fb\bin\Release\NdeDataClasses.dll
+d:\Distr\NemanDataEx\NemanDataEx\NdeDataAccess.Fb\bin\Release\NdeInterfses.dll
+d:\Distr\NemanDataEx\NemanDataEx\NdeDataAccess.Fb\bin\Release\NdeDataClasses.pdb
+d:\Distr\NemanDataEx\NemanDataEx\NdeDataAccess.Fb\bin\Release\NdeInterfses.pdb
+d:\Distr\NemanDataEx\NemanDataEx\NdeDataAccess.Fb\obj\Release\NdeDataAccessFb.csproj.AssemblyReference.cache
+d:\Distr\NemanDataEx\NemanDataEx\NdeDataAccess.Fb\obj\Release\NdeDataAccessFb.csproj.CoreCompileInputs.cache
+d:\Distr\NemanDataEx\NemanDataEx\NdeDataAccess.Fb\obj\Release\NdeDataAccessFb.csproj.CopyComplete
+d:\Distr\NemanDataEx\NemanDataEx\NdeDataAccess.Fb\obj\Release\NdeDataAccessFb.dll
+d:\Distr\NemanDataEx\NemanDataEx\NdeDataAccess.Fb\obj\Release\NdeDataAccessFb.pdb

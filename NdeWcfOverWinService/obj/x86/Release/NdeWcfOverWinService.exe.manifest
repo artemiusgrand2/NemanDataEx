@@ -14,16 +14,16 @@
       </applicationRequestMinimum>
       <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
         <!--
-          UAC Manifest Options
-          If you want to change the Windows User Account Control level replace the 
-          requestedExecutionLevel node with one of the following.
+          Параметры манифеста UAC
+          Если нужно изменить уровень контроля учетных записей Windows, замените 
+          узел requestedExecutionLevel одним из следующих значений.
 
         <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
         <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
         <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
 
-         If you want to utilize File and Registry Virtualization for backward 
-         compatibility then delete the requestedExecutionLevel node.
+        Если нужно использовать виртуализацию файлов и реестра для обратной
+             совместимости, удалите узел requestedExecutionLevel.
     -->
         <requestedExecutionLevel level="asInvoker" uiAccess="false" />
       </requestedPrivileges>
@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="BCh.Ktc.Nde.MiddleTier.dll" size="11776">
-      <assemblyIdentity name="BCh.Ktc.Nde.MiddleTier" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="BCh.Ktc.Nde.MiddleTier.dll" size="19456">
+      <assemblyIdentity name="BCh.Ktc.Nde.MiddleTier" version="1.0.0.8" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>hhfy8Kyn3M+fO4PaCDQpGatfJzfJDzVupJFNLyxVpPQ=</dsig:DigestValue>
+        <dsig:DigestValue>oCVWRumBPKdtuhRIKsO2tgbtJr1d6bFAqaYT4eVyjOo=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -78,72 +78,84 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="NdeDataAccessFb.dll" size="115200">
-      <assemblyIdentity name="NdeDataAccessFb" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="NdeDataAccessFb.dll" size="136704">
+      <assemblyIdentity name="NdeDataAccessFb" version="1.0.0.3" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>rWFJ6TX0NlurwPr/Xoy9g+jQX1rdJhhyMiR12reY83Y=</dsig:DigestValue>
+        <dsig:DigestValue>iaSmEY2XakY6WRIHgrp0AFksBvEWrf/KSzooXS++XBo=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="NdeDataClasses.dll" size="33792">
-      <assemblyIdentity name="NdeDataClasses" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="NdeDataAccessSql.dll" size="19968">
+      <assemblyIdentity name="NdeDataAccessSql" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>kTrOEKIzQciac8/1vCa0NUsTyTQLO/Woe1ikN3KMP0s=</dsig:DigestValue>
+        <dsig:DigestValue>1xZJfbzfZHjuMUs2H+hL98B1bog8keFS55elZBccAls=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="NdeInterfses.dll" size="7168">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="NdeDataClasses.dll" size="44544">
+      <assemblyIdentity name="NdeDataClasses" version="1.0.0.2" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>9ehodHQ42n20DG5BJ66Faqtk96omD0sJ25Org2k/JZg=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="NdeInterfses.dll" size="7680">
       <assemblyIdentity name="NdeInterfses" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>r2jFnPVkVUDryogR+GAlhzJafVfh9CRCrRFIv+6Lz0E=</dsig:DigestValue>
+        <dsig:DigestValue>/IUGiVJKqMqjjR2fe2XPU3cdDrrGybNbphY/GYGWvMw=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="NdeServices.dll" size="6144">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="NdeServices.dll" size="7680">
       <assemblyIdentity name="NdeServices" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>B5AOBBYSrVmeAhHZ6CB9sApWpBn7rlDgACIR4B7z+u0=</dsig:DigestValue>
+        <dsig:DigestValue>SVdDERWxXd+EhNMOcPjvpGGQVERiTKHa9ffB9foJtAE=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="NdeWcfOverWinService.exe" size="7096">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="NdeWcfOverWinService.exe" size="6144">
       <assemblyIdentity name="NdeWcfOverWinService" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>wYKH95zY+9c9DSwAejmewvFTnvQxsNhKW0+w8p+LU4I=</dsig:DigestValue>
+        <dsig:DigestValue>92/vmTS+MojDncJahCGmT08X5DMN4LvOy50ZQM6LEg4=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="NdeWcfOverWinService.exe.config" size="1994">
+  <file name="NdeWcfOverWinService.exe.config" size="4503">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>jVHK9mhbW2Sk2fVCjTlkSyJd65ObNcT4lCM2unDYW1A=</dsig:DigestValue>
+      <dsig:DigestValue>YK0LJ9Q4vAh/buNMkLFet0rf3vd/ijWktveCxRUKcio=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

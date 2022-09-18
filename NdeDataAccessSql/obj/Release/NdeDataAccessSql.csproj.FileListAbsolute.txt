@@ -8,3 +8,14 @@ D:\Work\NemanDataEx\NdeDataAccessSql\obj\Release\NdeDataAccessSql.csprojResolveA
 D:\Work\NemanDataEx\NdeDataAccessSql\obj\Release\NdeDataAccessSql.csproj.CoreCompileInputs.cache
 D:\Work\NemanDataEx\NdeDataAccessSql\obj\Release\NdeDataAccessSql.dll
 D:\Work\NemanDataEx\NdeDataAccessSql\obj\Release\NdeDataAccessSql.pdb
+d:\Distr\NemanDataEx\NemanDataEx\NdeDataAccessSql\bin\Release\NdeDataAccessSql.dll
+d:\Distr\NemanDataEx\NemanDataEx\NdeDataAccessSql\bin\Release\NdeDataAccessSql.pdb
+d:\Distr\NemanDataEx\NemanDataEx\NdeDataAccessSql\bin\Release\NdeDataClasses.dll
+d:\Distr\NemanDataEx\NemanDataEx\NdeDataAccessSql\bin\Release\NdeInterfses.dll
+d:\Distr\NemanDataEx\NemanDataEx\NdeDataAccessSql\bin\Release\NdeDataClasses.pdb
+d:\Distr\NemanDataEx\NemanDataEx\NdeDataAccessSql\bin\Release\NdeInterfses.pdb
+d:\Distr\NemanDataEx\NemanDataEx\NdeDataAccessSql\obj\Release\NdeDataAccessSql.csproj.AssemblyReference.cache
+d:\Distr\NemanDataEx\NemanDataEx\NdeDataAccessSql\obj\Release\NdeDataAccessSql.csproj.CoreCompileInputs.cache
+d:\Distr\NemanDataEx\NemanDataEx\NdeDataAccessSql\obj\Release\NdeDataAccessSql.csproj.CopyComplete
+d:\Distr\NemanDataEx\NemanDataEx\NdeDataAccessSql\obj\Release\NdeDataAccessSql.dll
+d:\Distr\NemanDataEx\NemanDataEx\NdeDataAccessSql\obj\Release\NdeDataAccessSql.pdb

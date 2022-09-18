@@ -40,7 +40,6 @@ D:\Distributiv\NemanDataEx\NdeServices\obj\Debug\NdeServices.csprojResolveAssemb
 D:\Distributiv\NemanDataEx\NdeServices\obj\Debug\NdeServices.dll
 D:\Distributiv\NemanDataEx\NdeServices\obj\Debug\NdeServices.pdb
 d:\Distr\NemanDataEx\NemanDataEx\NdeServices\bin\log4netUpdater.xml
-d:\Distr\NemanDataEx\NemanDataEx\NdeServices\bin\NdeServices.dll.config
 d:\Distr\NemanDataEx\NemanDataEx\NdeServices\bin\NdeServices.dll
 d:\Distr\NemanDataEx\NemanDataEx\NdeServices\bin\NdeServices.pdb
 d:\Distr\NemanDataEx\NemanDataEx\NdeServices\bin\BCh.Ktc.Nde.MiddleTier.dll

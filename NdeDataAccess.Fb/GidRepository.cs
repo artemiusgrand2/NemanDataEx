@@ -3352,11 +3352,13 @@ namespace NdeDataAccessFb
             //    DelLinkedPlWire(trainIdn);
             //else
                 trainIdn = trainBuffer.Item1.Key;
-            //
-            var planIdn = WritePlanWire(planEvents);
+          
             //пробуем найти исполненную нитку
             if (trainIdn == 0)
                 trainIdn = FindExecutedId(planEvents);
+
+            //
+            var planIdn = WritePlanWire(planEvents, trainIdn);
             //
             using (var connection = new FbConnection(_connectionString))
             {
@@ -4103,7 +4105,7 @@ namespace NdeDataAccessFb
             return comDefinition;
         }
         //Записать плановую нитку
-        private Tuple< int, string> WritePlanWire(IList<GIDMessage> planEvents)
+        private Tuple< int, string> WritePlanWire(IList<GIDMessage> planEvents, int trainIdn)
         {
             int planIdn = 0;
             string planNum = "";
@@ -4142,7 +4144,7 @@ namespace NdeDataAccessFb
                         _parCollSt66.Value = planEvent.FlColSt;
                         _parNeStation66.Value = planEvent.NeStation;
                         _parTechStop66.Value = planEvent.TechStop;
-                        _parStCurTime66.Value = (planEvent.MsTime > DateTime.Now) ? 0 : 1;
+                        _parStCurTime66.Value = (trainIdn != 0 || planEvent.MsTime > DateTime.Now) ? 0 : 1;
 
                         _command66.ExecuteNonQuery();
                     }
