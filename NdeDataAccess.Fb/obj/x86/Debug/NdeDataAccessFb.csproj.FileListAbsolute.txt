@@ -1,9 +1,0 @@
-D:\Work\NemanDataEx\NdeDataAccess.Fb\bin\x86\Debug\NdeDataAccessFb.dll
-D:\Work\NemanDataEx\NdeDataAccess.Fb\bin\x86\Debug\NdeDataAccessFb.pdb
-D:\Work\NemanDataEx\NdeDataAccess.Fb\bin\x86\Debug\NdeDataClasses.dll
-D:\Work\NemanDataEx\NdeDataAccess.Fb\bin\x86\Debug\NdeInterfses.dll
-D:\Work\NemanDataEx\NdeDataAccess.Fb\bin\x86\Debug\NdeDataClasses.pdb
-D:\Work\NemanDataEx\NdeDataAccess.Fb\bin\x86\Debug\NdeInterfses.pdb
-D:\Work\NemanDataEx\NdeDataAccess.Fb\obj\x86\Debug\ResolveAssemblyReference.cache
-D:\Work\NemanDataEx\NdeDataAccess.Fb\obj\x86\Debug\NdeDataAccessFb.dll
-D:\Work\NemanDataEx\NdeDataAccess.Fb\obj\x86\Debug\NdeDataAccessFb.pdb

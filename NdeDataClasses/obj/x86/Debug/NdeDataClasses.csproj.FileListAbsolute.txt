@@ -1,5 +1,0 @@
-D:\Work\NemanDataEx\NdeDataClasses\bin\x86\Debug\NdeDataClasses.dll
-D:\Work\NemanDataEx\NdeDataClasses\bin\x86\Debug\NdeDataClasses.pdb
-D:\Work\NemanDataEx\NdeDataClasses\obj\x86\Debug\ResolveAssemblyReference.cache
-D:\Work\NemanDataEx\NdeDataClasses\obj\x86\Debug\NdeDataClasses.dll
-D:\Work\NemanDataEx\NdeDataClasses\obj\x86\Debug\NdeDataClasses.pdb
